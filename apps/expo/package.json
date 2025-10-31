@@ -5,6 +5,7 @@
     "expo-image": "~3.0.10",
     "expo-linear-gradient": "~15.0.7",
     "expo-linking": "~8.0.8",
+    "expo-localization": "^17.0.7",
     "expo-splash-screen": "~31.0.10",
     "expo-status-bar": "~3.0.8",
     "moti": "^0.30.0",
