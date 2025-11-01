@@ -1,4 +1,6 @@
 const path = require('path')
+const { withSentryConfig } = require('@sentry/nextjs')
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -85,7 +87,7 @@ const withTurpopack = {
 /**
  * @type {import('next').NextConfig}
  */
-module.exports = {
+const nextConfig = {
   transpilePackages: [
     'react-native',
     'react-native-web',
@@ -113,3 +115,16 @@ module.exports = {
   ...withWebpack,
   ...withTurpopack,
 }
+
+// Sentry configuration options
+const sentryWebpackPluginOptions = {
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options
+
+  // Suppresses source map uploading logs during build
+  silent: true,
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+}
+
+module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions)

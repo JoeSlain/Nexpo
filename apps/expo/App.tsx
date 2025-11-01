@@ -1,3 +1,5 @@
+import './sentry.config'
+
 import { NativeNavigation } from 'app/navigation/native'
 import { Provider } from 'app/provider'
 
