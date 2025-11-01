@@ -18,8 +18,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
+    "@expo/metro-config": "~54.0.7",
+    "@lingui/metro-transformer": "^5.5.2",
     "@types/react": "~19.1.10",
     "babel-plugin-react-compiler": "19.0.0-beta-3229e95-20250315",
+    "babel-preset-expo": "~54.0.5",
     "react-compiler-runtime": "19.0.0-beta-3229e95-20250315",
     "typescript": "~5.9.2"
   },

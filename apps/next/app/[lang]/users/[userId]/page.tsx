@@ -2,10 +2,10 @@
 import { Text, View } from 'react-native'
 import { useParams, useRouter } from 'solito/navigation'
 
-const useUserParams = useParams<{ userId: string }>
+const useUserParams = useParams<{ userId: string; lang: string }>
 
-export default function Home() {
-  const { userId } = useUserParams()
+export default function UserPage() {
+  const { userId, lang } = useUserParams()
   const router = useRouter()
 
   return (
@@ -16,3 +16,4 @@ export default function Home() {
     </View>
   )
 }
+

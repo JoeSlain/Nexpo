@@ -1,0 +1,46 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2025-11-01 01:13+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: fr\n"
+
+#. placeholder {0}: locale.currencySymbol
+#. placeholder {1}: locale.currencyCode
+#: features/home/screen.tsx:60
+msgid "Currency: {0} ({1})"
+msgstr "Devise: {0} ({1})"
+
+#: features/home/screen.tsx:27
+msgid "Here is a basic starter to show you how you can navigate from one screen to another. This screen uses the same code on Next.js and React Native."
+msgstr "Voici un exemple de base pour vous montrer comment naviguer d'un écran à un autre. Cet écran utilise le même code sur Next.js et React Native."
+
+#. placeholder {0}: locale.languageTag
+#. placeholder {1}: locale.languageCode
+#: features/home/screen.tsx:53
+msgid "Language: {0} ({1})"
+msgstr "Langue: {0} ({1})"
+
+#: features/home/screen.tsx:81
+msgid "Link"
+msgstr "Lien"
+
+#: features/home/screen.tsx:50
+msgid "Locale Information:"
+msgstr "Informations de la locale:"
+
+#. placeholder {0}: locale.measurementSystem
+#. placeholder {1}: locale.temperatureUnit
+#: features/home/screen.tsx:66
+msgid "Measurement: {0} • Temperature: {1}"
+msgstr "Mesure: {0} • Température: {1}"
+
+#: features/home/screen.tsx:34
+msgid "Solito is made by <0>Fernando Rojo</0>."
+msgstr "Solito est fait par <0>Fernando Rojo</0>."
+
+#: features/home/screen.tsx:23
+msgid "Welcome to Solito."
+msgstr "Bienvenue sur Solito."

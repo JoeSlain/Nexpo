@@ -5,9 +5,15 @@ import { NavigationProvider } from "./navigation";
 import TamaguiProvider from "./tamagui";
 import { LocaleProvider } from "./local/LocaleProvider";
 
-export function Provider({ children }: { children: React.ReactNode }) {
+export function Provider({
+	children,
+	locale,
+}: {
+	children: React.ReactNode;
+	locale?: string;
+}) {
 	return (
-		<LocaleProvider>
+		<LocaleProvider initialLocale={locale}>
 			<SafeArea>
 				<TamaguiProvider>
 					<NavigationProvider>{children}</NavigationProvider>

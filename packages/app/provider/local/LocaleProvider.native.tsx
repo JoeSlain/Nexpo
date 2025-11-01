@@ -1,7 +1,9 @@
-import { i18n } from "@lingui/core";
+import { setupI18n } from "@lingui/core";
+import { I18nProvider, type TransRenderProps } from "@lingui/react";
 import * as Localization from "expo-localization";
 import type React from "react";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { Text } from "react-native";
 
 export type LocaleInfo = {
 	languageTag: string;
@@ -56,29 +58,62 @@ function getInitialLocale(): LocaleInfo {
 		temperatureUnit: localizationLocale.temperatureUnit || "celsius",
 	};
 
-	// Ensure Lingui's locale is activated with the device locale
-	if (localeInfo.languageCode) {
-		// Use the language code part for Lingui (e.g., 'en' from 'en-US')
-		const linguiLocale = localeInfo.languageCode;
-		// Only set if the locale is supported (falling back to 'en')
-		const supportedLocales = ["en", "fr"];
-		const localeToActivate = supportedLocales.includes(linguiLocale)
-			? linguiLocale
-			: "en";
-
-		// If Lingui doesn't have an active locale yet, activate it
-		if (!i18n.locale) {
-			i18n.activate(localeToActivate);
-		}
-	}
-
 	return localeInfo;
 }
+
+// Helper function to get supported Lingui locale
+function getLinguiLocale(languageCode: string | null): string {
+	const supportedLocales = ["en", "cs", "fr"];
+	if (!languageCode) return "en";
+
+	// Use the language code part for Lingui (e.g., 'en' from 'en-US')
+	return supportedLocales.includes(languageCode) ? languageCode : "en";
+}
+
+// Default component for Trans macro (Text component for React Native)
+const DefaultComponent = (props: TransRenderProps) => {
+	return <Text>{props.children}</Text>;
+};
 
 export const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
 	const [locale, setLocaleState] = useState<LocaleInfo>(getInitialLocale);
+
+	// Dynamically import messages based on locale
+	const linguiLocale = getLinguiLocale(locale.languageCode);
+
+	// Initialize i18n instance with messages
+	const linguiInstance = useMemo(() => {
+		// Dynamically import messages - After running `lingui compile`,
+		// messages will be available in the compiled message files
+		let messages = {};
+
+		try {
+			if (linguiLocale === "cs") {
+				// eslint-disable-next-line @typescript-eslint/no-require-imports
+				messages = require("../../locales/cs/messages").messages || {};
+			} else if (linguiLocale === "fr") {
+				// eslint-disable-next-line @typescript-eslint/no-require-imports
+				messages = require("../../locales/fr/messages").messages || {};
+			} else {
+				// eslint-disable-next-line @typescript-eslint/no-require-imports
+				messages = require("../../locales/en/messages").messages || {};
+			}
+		} catch {
+			// Messages not compiled yet, use empty object
+			console.warn(
+				`Messages for locale "${linguiLocale}" not found. Run 'yarn lingui:compile' to compile messages.`,
+			);
+		}
+
+		const instance = setupI18n({
+			locale: linguiLocale,
+			messages: { [linguiLocale]: messages },
+		});
+
+		return instance;
+	}, [linguiLocale]);
 
 	// Re-initialize if device locale changes (e.g., user changes system language)
 	useEffect(() => {
@@ -95,20 +130,15 @@ export const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({
 		};
 		setLocaleState(updatedLocale);
 
-		// When locale is manually changed, also update Lingui
-		const linguiLocale = languageTag.split("-")[0] || "en";
-		const supportedLocales = ["en", "fr"];
-		const localeToActivate = supportedLocales.includes(linguiLocale)
-			? linguiLocale
-			: "en";
-
-		// Activate the new locale in Lingui
-		i18n.activate(localeToActivate);
+		// The i18n instance will be recreated via useMemo when linguiLocale changes
+		// which happens when locale.languageCode changes
 	};
 
 	return (
-		<LocaleContext.Provider value={{ locale, setLocale }}>
-			{children}
-		</LocaleContext.Provider>
+		<I18nProvider i18n={linguiInstance} defaultComponent={DefaultComponent}>
+			<LocaleContext.Provider value={{ locale, setLocale }}>
+				{children}
+			</LocaleContext.Provider>
+		</I18nProvider>
 	);
 };

@@ -3,7 +3,7 @@ const path = require('path')
  * @type {import('next').NextConfig}
  */
 const withWebpack = {
-  webpack(config) {
+  webpack(config, { isServer }) {
     if (!config.resolve) {
       config.resolve = {}
     }
@@ -18,6 +18,9 @@ const withWebpack = {
         'react-native-web/dist/vendor/react-native/emitter/EventEmitter',
       'react-native/Libraries/EventEmitter/NativeEventEmitter$':
         'react-native-web/dist/vendor/react-native/NativeEventEmitter',
+      // Prevent @lingui/react/macro from loading Babel plugin at runtime (SWC handles it)
+      '@lingui/babel-plugin-lingui-macro': false,
+      '@lingui/conf': false,
     }
 
     config.resolve.extensions = [
@@ -27,6 +30,22 @@ const withWebpack = {
       '.web.tsx',
       ...(config.resolve?.extensions ?? []),
     ]
+
+    // Exclude Node.js built-in modules from client bundle
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+        os: false,
+        crypto: false,
+        stream: false,
+        util: false,
+        buffer: false,
+        process: false,
+      }
+      
+    }
 
     return config
   },
@@ -84,6 +103,12 @@ module.exports = {
       __DEV__: JSON.stringify(process.env.NODE_ENV !== 'production'),
     },
   },
+  
+  // Configure SWC plugin for Lingui
+  experimental: {
+    swcPlugins: [['@lingui/swc-plugin', {}]],
+  },
+  
   reactStrictMode: false, // reanimated doesn't support this on web
 
   ...withWebpack,

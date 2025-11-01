@@ -1,5 +1,6 @@
 "use client";
 
+import { Trans } from "@lingui/react/macro";
 import { TextLink } from "solito/link";
 import { View } from "react-native";
 import { Text } from "tamagui";
@@ -7,6 +8,7 @@ import { useLocale } from "app/provider/local/LocaleProvider";
 
 export function HomeScreen() {
 	const { locale } = useLocale();
+
 	return (
 		<View
 			style={{
@@ -17,42 +19,54 @@ export function HomeScreen() {
 				gap: 32,
 			}}
 		>
-			<H1>Welcome to Solito.</H1>
+			<H1>
+				<Trans>Welcome to Solito.</Trans>
+			</H1>
 			<View style={{ maxWidth: 600, gap: 16 }}>
 				<Text style={{ textAlign: "center" }}>
-					Here is a basic starter to show you how you can navigate from one
-					screen to another. This screen uses the same code on Next.js and React
-					Native.
+					<Trans>
+						Here is a basic starter to show you how you can navigate from one
+						screen to another. This screen uses the same code on Next.js and
+						React Native.
+					</Trans>
 				</Text>
 				<Text style={{ textAlign: "center" }}>
-					Solito is made by{" "}
-					<TextLink
-						href="https://twitter.com/fernandotherojo"
-						target="_blank"
-						rel="noreferrer"
-						style={{ color: "blue" }}
-					>
-						Fernando Rojo
-					</TextLink>
-					.
+					<Trans>
+						Solito is made by{" "}
+						<TextLink
+							href="https://twitter.com/fernandotherojo"
+							target="_blank"
+							rel="noreferrer"
+							style={{ color: "blue" }}
+						>
+							Fernando Rojo
+						</TextLink>
+						.
+					</Trans>
 				</Text>
 			</View>
 			<View style={{ maxWidth: 600, gap: 8, marginTop: 16 }}>
 				<Text style={{ textAlign: "center", fontSize: 14, fontWeight: "600" }}>
-					Locale Information:
+					<Trans>Locale Information:</Trans>
 				</Text>
 				<Text style={{ textAlign: "center", fontSize: 12 }}>
-					Language: {locale.languageTag} ({locale.languageCode})
+					<Trans>
+						Language: {locale.languageTag} ({locale.languageCode})
+					</Trans>
 					{locale.regionCode && ` - Region: ${locale.regionCode}`}
 				</Text>
 				{locale.currencyCode && (
 					<Text style={{ textAlign: "center", fontSize: 12 }}>
-						Currency: {locale.currencySymbol} ({locale.currencyCode})
+						<Trans>
+							Currency: {locale.currencySymbol} ({locale.currencyCode})
+						</Trans>
 					</Text>
 				)}
 				<Text style={{ textAlign: "center", fontSize: 12 }}>
-					Measurement: {locale.measurementSystem} • Temperature:{" "}
-					{locale.temperatureUnit}
+					<Trans>
+						Measurement: {locale.measurementSystem} • Temperature:{" "}
+						{locale.temperatureUnit}
+					</Trans>
 				</Text>
 			</View>
 			<View style={{ flexDirection: "row", gap: 32 }}>
@@ -64,7 +78,7 @@ export function HomeScreen() {
 						color: "blue",
 					}}
 				>
-					Link
+					<Trans>Link</Trans>
 				</TextLink>
 			</View>
 		</View>
