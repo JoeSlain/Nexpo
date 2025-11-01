@@ -44,7 +44,6 @@ const withWebpack = {
         buffer: false,
         process: false,
       }
-      
     }
 
     return config
@@ -103,12 +102,12 @@ module.exports = {
       __DEV__: JSON.stringify(process.env.NODE_ENV !== 'production'),
     },
   },
-  
+
   // Configure SWC plugin for Lingui
   experimental: {
     swcPlugins: [['@lingui/swc-plugin', {}]],
   },
-  
+
   reactStrictMode: false, // reanimated doesn't support this on web
 
   ...withWebpack,

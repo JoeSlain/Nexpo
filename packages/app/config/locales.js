@@ -26,11 +26,11 @@
  * - apps/next/app/[lang]/layout.tsx (generateStaticParams)
  */
 module.exports = {
-	SUPPORTED_LOCALES: ["en", "cs", "fr"],
-	DEFAULT_LOCALE: "en",
-	getLanguageCode: (locale) => locale.split("-")[0],
-	isSupportedLocale: (locale) => {
-		const languageCode = module.exports.getLanguageCode(locale);
-		return module.exports.SUPPORTED_LOCALES.includes(languageCode);
-	},
-};
+  SUPPORTED_LOCALES: ['en', 'cs', 'fr'],
+  DEFAULT_LOCALE: 'en',
+  getLanguageCode: (locale) => locale.split('-')[0],
+  isSupportedLocale: (locale) => {
+    const languageCode = module.exports.getLanguageCode(locale)
+    return module.exports.SUPPORTED_LOCALES.includes(languageCode)
+  },
+}

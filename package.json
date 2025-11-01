@@ -1,38 +1,43 @@
 {
-	"name": "solito-blank",
-	"private": true,
-	"workspaces": [
-		"apps/*",
-		"packages/*"
-	],
-	"devDependencies": {
-		"@lingui/babel-plugin-lingui-macro": "^5.5.2",
-		"@types/negotiator": "^0.6.4",
-		"@types/react": "^18.2.21",
-		"eslint": "^8.21.0",
-		"turbo": "^2.4.4",
-		"typescript": "^5.2.2"
-	},
-	"scripts": {
-		"native": "cd apps/expo && yarn start",
-		"web": "cd apps/next && yarn next",
-		"lingui:extract": "yarn workspace app lingui:extract",
-		"lingui:compile": "yarn workspace app lingui:compile"
-	},
-	"packageManager": "yarn@4.7.0",
-	"eslintConfig": {
-		"extends": "next",
-		"settings": {
-			"next": {
-				"rootDir": "apps/next/"
-			}
-		},
-		"root": true
-	},
-	"prettier": {
-		"semi": false,
-		"useTabs": false,
-		"tabWidth": 2,
-		"singleQuote": true
-	}
+  "name": "solito-blank",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.2",
+    "@lingui/babel-plugin-lingui-macro": "^5.5.2",
+    "@types/negotiator": "^0.6.4",
+    "@types/react": "^18.2.21",
+    "eslint": "^8.21.0",
+    "turbo": "^2.4.4",
+    "typescript": "^5.2.2"
+  },
+  "scripts": {
+    "native": "cd apps/expo && yarn start",
+    "web": "cd apps/next && yarn next",
+    "lingui:extract": "yarn workspace app lingui:extract",
+    "lingui:compile": "yarn workspace app lingui:compile",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format ."
+  },
+  "packageManager": "yarn@4.7.0",
+  "eslintConfig": {
+    "extends": "next",
+    "settings": {
+      "next": {
+        "rootDir": "apps/next/"
+      }
+    },
+    "root": true
+  },
+  "prettier": {
+    "semi": false,
+    "useTabs": false,
+    "tabWidth": 2,
+    "singleQuote": true
+  }
 }

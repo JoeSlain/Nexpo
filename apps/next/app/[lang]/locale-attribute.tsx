@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect } from 'react'
 import { useParams } from 'next/navigation'
+import { useEffect } from 'react'
 
 export function LocaleAttribute() {
   const params = useParams()
@@ -16,4 +16,3 @@ export function LocaleAttribute() {
 
   return null
 }
-

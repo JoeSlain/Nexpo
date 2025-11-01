@@ -3,32 +3,32 @@
 /**
  * @type {import('expo/metro-config')}
  */
-const { getDefaultConfig } = require("expo/metro-config");
-const path = require("path");
+const { getDefaultConfig } = require('expo/metro-config')
+const path = require('path')
 
-const projectRoot = __dirname;
-const workspaceRoot = path.resolve(projectRoot, "../..");
+const projectRoot = __dirname
+const workspaceRoot = path.resolve(projectRoot, '../..')
 
-const config = getDefaultConfig(projectRoot);
+const config = getDefaultConfig(projectRoot)
 
-config.watchFolders = [workspaceRoot];
+config.watchFolders = [workspaceRoot]
 config.resolver.nodeModulesPaths = [
-	path.resolve(projectRoot, "node_modules"),
-	path.resolve(workspaceRoot, "node_modules"),
-];
-config.resolver.disableHierarchicalLookup = true;
+  path.resolve(projectRoot, 'node_modules'),
+  path.resolve(workspaceRoot, 'node_modules'),
+]
+config.resolver.disableHierarchicalLookup = true
 
 // Add Lingui transformer for compiling .po files on the fly
 config.transformer = {
-	...config.transformer,
-	babelTransformerPath: require.resolve("@lingui/metro-transformer/expo"),
-};
+  ...config.transformer,
+  babelTransformerPath: require.resolve('@lingui/metro-transformer/expo'),
+}
 
 config.transformer.getTransformOptions = async () => ({
-	transform: {
-		experimentalImportSupport: false,
-		inlineRequires: true,
-	},
-});
+  transform: {
+    experimentalImportSupport: false,
+    inlineRequires: true,
+  },
+})
 
-module.exports = config;
+module.exports = config

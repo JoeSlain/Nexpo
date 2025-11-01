@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from 'react-native'
+import { Pressable, Text, View } from 'react-native'
 import { useRouter, useSearchParams } from 'solito/navigation'
 
 export function UserDetailScreen() {

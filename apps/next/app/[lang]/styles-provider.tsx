@@ -4,15 +4,9 @@ import { StyleSheet } from 'react-native'
 
 export function StylesProvider({ children }: { children: React.ReactNode }) {
   useServerInsertedHTML(() => {
-    // @ts-ignore
+    // @ts-expect-error
     const sheet = StyleSheet.getSheet()
-    return (
-      <style
-        dangerouslySetInnerHTML={{ __html: sheet.textContent }}
-        id={sheet.id}
-      />
-    )
+    return <style id={sheet.id}>{sheet.textContent}</style>
   })
   return <>{children}</>
 }
-
