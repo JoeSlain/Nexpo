@@ -2,6 +2,7 @@ import { setupI18n } from "@lingui/core";
 import { I18nProvider, type TransRenderProps } from "@lingui/react";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { FC, ReactNode } from "react";
+import { DEFAULT_LOCALE, isSupportedLocale } from "../../config/locales.js";
 
 export type LocaleInfo = {
 	languageTag: string;
@@ -87,11 +88,10 @@ function getInitialLocale(): LocaleInfo {
 
 // Helper function to get supported Lingui locale
 function getLinguiLocale(languageCode: string | null): string {
-	const supportedLocales = ["en", "cs", "fr"];
-	if (!languageCode) return "en";
+	if (!languageCode) return DEFAULT_LOCALE;
 
 	// Use the language code part for Lingui (e.g., 'en' from 'en-US')
-	return supportedLocales.includes(languageCode) ? languageCode : "en";
+	return isSupportedLocale(languageCode) ? languageCode : DEFAULT_LOCALE;
 }
 
 // Default component for Trans macro (div component for web)
@@ -189,16 +189,10 @@ export const LocaleProvider: FC<{
 		let messages = {};
 
 		try {
-			if (linguiLocale === "cs") {
-				// eslint-disable-next-line @typescript-eslint/no-require-imports
-				messages = require("../../locales/cs/messages").messages || {};
-			} else if (linguiLocale === "fr") {
-				// eslint-disable-next-line @typescript-eslint/no-require-imports
-				messages = require("../../locales/fr/messages").messages || {};
-			} else {
-				// eslint-disable-next-line @typescript-eslint/no-require-imports
-				messages = require("../../locales/en/messages").messages || {};
-			}
+			// Dynamically load messages based on locale
+			// eslint-disable-next-line @typescript-eslint/no-require-imports
+			messages =
+				require(`../../locales/${linguiLocale}/messages`).messages || {};
 		} catch {
 			// Messages not compiled yet, use empty object
 			console.warn(

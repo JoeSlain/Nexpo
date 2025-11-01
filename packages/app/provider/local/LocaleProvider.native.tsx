@@ -4,6 +4,7 @@ import * as Localization from "expo-localization";
 import type React from "react";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { Text } from "react-native";
+import { DEFAULT_LOCALE, isSupportedLocale } from "../../config/locales.js";
 
 export type LocaleInfo = {
 	languageTag: string;
@@ -63,11 +64,10 @@ function getInitialLocale(): LocaleInfo {
 
 // Helper function to get supported Lingui locale
 function getLinguiLocale(languageCode: string | null): string {
-	const supportedLocales = ["en", "cs", "fr"];
-	if (!languageCode) return "en";
+	if (!languageCode) return DEFAULT_LOCALE;
 
 	// Use the language code part for Lingui (e.g., 'en' from 'en-US')
-	return supportedLocales.includes(languageCode) ? languageCode : "en";
+	return isSupportedLocale(languageCode) ? languageCode : DEFAULT_LOCALE;
 }
 
 // Default component for Trans macro (Text component for React Native)
@@ -87,17 +87,18 @@ export const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({
 	const linguiInstance = useMemo(() => {
 		// Dynamically import messages - After running `lingui compile`,
 		// messages will be available in the compiled message files
+		// Metro bundler requires static requires, so we map all locales
 		let messages = {};
 
 		try {
+			// Static requires for Metro bundler compatibility
+			// eslint-disable-next-line @typescript-eslint/no-require-imports
 			if (linguiLocale === "cs") {
-				// eslint-disable-next-line @typescript-eslint/no-require-imports
 				messages = require("../../locales/cs/messages").messages || {};
 			} else if (linguiLocale === "fr") {
-				// eslint-disable-next-line @typescript-eslint/no-require-imports
 				messages = require("../../locales/fr/messages").messages || {};
 			} else {
-				// eslint-disable-next-line @typescript-eslint/no-require-imports
+				// Default to English
 				messages = require("../../locales/en/messages").messages || {};
 			}
 		} catch {

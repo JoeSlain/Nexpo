@@ -1,6 +1,7 @@
 import { StylesProvider } from "./styles-provider";
 import { Provider } from "app/provider";
 import { LocaleAttribute } from "./locale-attribute";
+import { SUPPORTED_LOCALES } from "app/config/locales.js";
 import "./globals.css";
 
 export const metadata = {
@@ -9,7 +10,7 @@ export const metadata = {
 };
 
 export async function generateStaticParams() {
-	return [{ lang: 'en' }, { lang: 'fr' }]
+	return SUPPORTED_LOCALES.map((lang) => ({ lang }));
 }
 
 export default async function RootLayout({
