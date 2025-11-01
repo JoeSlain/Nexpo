@@ -79,3 +79,7 @@ build/**
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Supabase local development files
+.supabase/
+supabase/.temp/

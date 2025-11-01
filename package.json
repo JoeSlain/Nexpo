@@ -13,6 +13,7 @@
     "eslint": "^8.21.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
+    "supabase": "2.54.11",
     "turbo": "^2.4.4",
     "typescript": "^5.2.2"
   },
@@ -25,7 +26,14 @@
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
     "format:check": "biome format .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:reset": "supabase db reset",
+    "supabase:status": "supabase status",
+    "supabase:logs": "supabase logs",
+    "supabase:migration:new": "supabase migration new",
+    "supabase:migration:up": "supabase migration up"
   },
   "packageManager": "yarn@4.7.0",
   "eslintConfig": {

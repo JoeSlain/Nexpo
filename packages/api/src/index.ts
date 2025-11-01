@@ -1,49 +1,52 @@
 import { z } from 'zod'
+import { createServerClient } from './supabase'
 import { publicProcedure, router } from './trpc'
 
 // Example types - replace with your actual types
 type User = { id: string; name: string }
 
-// Mock database - replace with your actual database
-const db = {
-  user: {
-    findMany: async (): Promise<User[]> => {
-      return [
-        { id: '1', name: 'Alice' },
-        { id: '2', name: 'Bob' },
-        { id: '3', name: 'Charlie' },
-      ]
-    },
-    findById: async (id: string): Promise<User | undefined> => {
-      const users = await db.user.findMany()
-      return users.find((u) => u.id === id)
-    },
-    create: async (data: { name: string }): Promise<User> => {
-      const id = String(Date.now())
-      return { id, name: data.name }
-    },
-  },
-}
-
 export const appRouter = router({
   userList: publicProcedure.query(async () => {
-    // Retrieve users from a datasource
-    const users = await db.user.findMany()
-    return users
+    const supabase = createServerClient()
+    const { data, error } = await supabase.from('users').select('id, name')
+
+    if (error) {
+      throw new Error(`Failed to fetch users: ${error.message}`)
+    }
+
+    return data as User[]
   }),
 
   userById: publicProcedure.input(z.string()).query(async (opts) => {
     const { input } = opts
-    // Retrieve the user with the given ID
-    const user = await db.user.findById(input)
-    return user
+    const supabase = createServerClient()
+    const { data, error } = await supabase.from('users').select('id, name').eq('id', input).single()
+
+    if (error) {
+      if (error.code === 'PGRST116') {
+        // No rows returned
+        return undefined
+      }
+      throw new Error(`Failed to fetch user: ${error.message}`)
+    }
+
+    return data as User | undefined
   }),
 
   userCreate: publicProcedure.input(z.object({ name: z.string() })).mutation(async (opts) => {
     const { input } = opts
-    // Create a new user in the database
-    const user = await db.user.create(input)
-    return user
+    const supabase = createServerClient()
+    const { data, error } = await supabase
+      .from('users')
+      .insert({ name: input })
+      .select('id, name')
+      .single()
+
+    if (error) {
+      throw new Error(`Failed to create user: ${error.message}`)
+    }
+
+    return data as User
   }),
 
   hello: publicProcedure
@@ -60,3 +63,7 @@ export type AppRouter = typeof appRouter
 
 // Export the router for server-side usage
 export { appRouter }
+
+export type { SupabaseClient } from './supabase'
+// Export Supabase utilities
+export { createServerClient } from './supabase'
