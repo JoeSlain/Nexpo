@@ -11663,6 +11663,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nexpo@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "nexpo@workspace:."
+  dependencies:
+    "@biomejs/biome": "npm:^2.3.2"
+    "@lingui/babel-plugin-lingui-macro": "npm:^5.5.2"
+    "@types/negotiator": "npm:^0.6.4"
+    "@types/react": "npm:^18.2.21"
+    eslint: "npm:^8.21.0"
+    husky: "npm:^9.1.7"
+    lint-staged: "npm:^16.2.6"
+    supabase: "npm:2.54.11"
+    turbo: "npm:^2.4.4"
+    typescript: "npm:^5.2.2"
+  languageName: unknown
+  linkType: soft
+
 "next-app@workspace:apps/next":
   version: 0.0.0-use.local
   resolution: "next-app@workspace:apps/next"
@@ -13793,23 +13810,6 @@ __metadata:
   checksum: 10/d19366c95908c19db154f329bbe94c2317d315dc933a7c2b5101e73f32a555c84fb199b62174e1490082a593a4933d8d5a9b297bde7d1419c14a11a965f51356
   languageName: node
   linkType: hard
-
-"solito-blank@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "solito-blank@workspace:."
-  dependencies:
-    "@biomejs/biome": "npm:^2.3.2"
-    "@lingui/babel-plugin-lingui-macro": "npm:^5.5.2"
-    "@types/negotiator": "npm:^0.6.4"
-    "@types/react": "npm:^18.2.21"
-    eslint: "npm:^8.21.0"
-    husky: "npm:^9.1.7"
-    lint-staged: "npm:^16.2.6"
-    supabase: "npm:2.54.11"
-    turbo: "npm:^2.4.4"
-    typescript: "npm:^5.2.2"
-  languageName: unknown
-  linkType: soft
 
 "solito@npm:next":
   version: 5.0.0-rc.1

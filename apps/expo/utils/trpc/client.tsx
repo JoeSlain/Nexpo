@@ -22,8 +22,13 @@ function getQueryClient() {
 }
 
 function getUrl() {
+  // Use environment variable if set, otherwise fallback to defaults
+  if (process.env.EXPO_PUBLIC_API_URL) {
+    return process.env.EXPO_PUBLIC_API_URL
+  }
+
   // In development, you might want to use your local machine's IP
-  // For production, replace with your API URL
+  // For production, set EXPO_PUBLIC_API_URL environment variable
   if (__DEV__) {
     // You can use Constants.expoConfig?.hostUri or a hardcoded local IP
     // For now, using localhost - in a real app, you'd want to detect the network IP
@@ -31,8 +36,12 @@ function getUrl() {
     // e.g., 'http://192.168.1.100:3000/api/trpc'
     return 'http://localhost:3000/api/trpc'
   }
-  // Replace with your production API URL
-  return 'https://your-api-domain.com/api/trpc'
+
+  // Production fallback - should be set via EXPO_PUBLIC_API_URL
+  throw new Error(
+    'EXPO_PUBLIC_API_URL environment variable is required in production. ' +
+      'Please set it in your .env file or EAS environment variables.'
+  )
 }
 
 export function TRPCProvider({ children }: { children: React.ReactNode }) {

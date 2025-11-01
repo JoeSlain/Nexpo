@@ -1,5 +1,5 @@
 {
-  "name": "solito-blank",
+  "name": "nexpo",
   "private": true,
   "workspaces": [
     "apps/*",

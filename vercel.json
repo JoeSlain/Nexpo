@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "cd ../.. && npx turbo run build --filter=next-app",
+  "devCommand": "cd ../.. && npx turbo run dev --filter=next-app",
+  "installCommand": "cd ../.. && yarn install",
+  "framework": "nextjs",
+  "outputDirectory": ".next",
+  "rootDirectory": "apps/next",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD ../..",
+  "crons": [],
+  "git": {
+    "deploymentEnabled": {
+      "main": true
+    }
+  },
+  "env": {
+    "ENABLE_ROOT_PATH_BUILD_CACHE": "1"
+  }
+}
