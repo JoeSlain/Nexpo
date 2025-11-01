@@ -6,7 +6,7 @@ A production-ready monorepo template for building cross-platform applications wi
 
 ### Option 1: Use as GitHub Template
 
-1. Click "Use this template" on GitHub (you'll need to [enable this feature first](#enabling-template-repository))
+1. Click "Use this template" on GitHub
 2. Clone your new repository
 3. Follow the [Setup Instructions](#-setup-instructions)
 
@@ -18,17 +18,6 @@ After enabling the template repository, you can deploy directly to Vercel:
 
 > **Note**: Replace `YOUR_REPO_URL` with your repository URL after making this a template on GitHub.
 
-### Enabling Template Repository
-
-To make this repository available as a GitHub template:
-
-1. Go to your repository on GitHub
-2. Click **Settings** (in the repository menu)
-3. Scroll down to **Template repository** section
-4. Check the box: **☑ Template repository**
-5. Save changes
-
-Once enabled, users will see a "Use this template" button when viewing your repository.
 
 ## 📦 What's Included
 

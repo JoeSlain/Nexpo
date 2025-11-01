@@ -5,7 +5,7 @@ import { useLocale } from 'app/provider/local/LocaleProvider'
 import { View } from 'react-native'
 import { TextLink } from 'solito/link'
 import { Text } from 'tamagui'
-
+import { ExampleButton } from 'ui'
 export function HomeScreen() {
   const { locale } = useLocale()
 
@@ -19,28 +19,19 @@ export function HomeScreen() {
         gap: 32,
       }}
     >
+      <ExampleButton>
+        <Text>
+          <Trans>This button is from the ui package</Trans>
+        </Text>
+      </ExampleButton>
       <H1>
-        <Trans>Welcome to Solito.</Trans>
+        <Trans>Welcome to Nexpo.</Trans>
       </H1>
       <View style={{ maxWidth: 600, gap: 16 }}>
         <Text style={{ textAlign: 'center' }}>
           <Trans>
             Here is a basic starter to show you how you can navigate from one screen to another.
             This screen uses the same code on Next.js and React Native.
-          </Trans>
-        </Text>
-        <Text style={{ textAlign: 'center' }}>
-          <Trans>
-            Solito is made by{' '}
-            <TextLink
-              href="https://twitter.com/fernandotherojo"
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'blue' }}
-            >
-              Fernando Rojo
-            </TextLink>
-            .
           </Trans>
         </Text>
       </View>
