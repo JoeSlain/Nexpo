@@ -7,7 +7,6 @@ import { useLocale } from "app/provider/local/LocaleProvider";
 
 export function HomeScreen() {
 	const { locale } = useLocale();
-console.log(locale)
 	return (
 		<View
 			style={{
