@@ -67,7 +67,7 @@ export function HomeScreen() {
           </Trans>
         </Text>
       </View>
-      <View style={{ flexDirection: 'row', gap: 32 }}>
+      <View style={{ flexDirection: 'row', gap: 32, flexWrap: 'wrap', justifyContent: 'center' }}>
         <TextLink
           href="/users/fernando"
           style={{

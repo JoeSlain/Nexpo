@@ -18,6 +18,17 @@ config.resolver.nodeModulesPaths = [
 ]
 config.resolver.disableHierarchicalLookup = true
 
+// Add extra node modules paths for workspace packages
+config.resolver.extraNodeModules = {
+  ...config.resolver.extraNodeModules,
+}
+
+// Ensure Metro can resolve workspace packages
+config.resolver.resolverMainFields = ['react-native', 'browser', 'main']
+
+// Configure Metro to resolve paths from workspace root
+config.resolver.platforms = ['ios', 'android', 'native', 'web']
+
 // Add Lingui transformer for compiling .po files on the fly
 config.transformer = {
   ...config.transformer,

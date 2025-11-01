@@ -5773,6 +5773,57 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.90.5":
+  version: 5.90.5
+  resolution: "@tanstack/query-core@npm:5.90.5"
+  checksum: 10/987794b548010173f0514ad206515e744e928a9cea563ec79cf08dd4bcf496bc984fea00a28918ad079417fc3820779cb13a19303c15406ef53128dae115f03a
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.62.11":
+  version: 5.90.5
+  resolution: "@tanstack/react-query@npm:5.90.5"
+  dependencies:
+    "@tanstack/query-core": "npm:5.90.5"
+  peerDependencies:
+    react: ^18 || ^19
+  checksum: 10/9ea521318570452352b5c0e3d5e23fca806c3b00a53bd36f35b932f48a7073aebe089bcb7dad35200059ae52ff9e1958020b70d2f4f688f6a2ca815b1dde860c
+  languageName: node
+  linkType: hard
+
+"@trpc/client@npm:^11.0.0-rc.599":
+  version: 11.7.1
+  resolution: "@trpc/client@npm:11.7.1"
+  peerDependencies:
+    "@trpc/server": 11.7.1
+    typescript: ">=5.7.2"
+  checksum: 10/e3388bb1fa62134f60dbbaf4c0ad2136750b209bb66d131494e8b85d87ac5401dfd2788b50ac29641fa0d680d6c7298237eb05fedbe123611fb07ab11f316db5
+  languageName: node
+  linkType: hard
+
+"@trpc/react-query@npm:^11.0.0-rc.599":
+  version: 11.7.1
+  resolution: "@trpc/react-query@npm:11.7.1"
+  peerDependencies:
+    "@tanstack/react-query": ^5.80.3
+    "@trpc/client": 11.7.1
+    "@trpc/server": 11.7.1
+    react: ">=18.2.0"
+    react-dom: ">=18.2.0"
+    typescript: ">=5.7.2"
+  checksum: 10/de2c0348a6c822d65e1c86eae870f8c65d71093b6a0b85bf73a6173ca6fe1c2f8d106a490dbe0fecfa25ebda9e0c516ed7794862d248f2d6c8f0bb8784161a83
+  languageName: node
+  linkType: hard
+
+"@trpc/server@npm:^11.0.0-rc.599":
+  version: 11.7.1
+  resolution: "@trpc/server@npm:11.7.1"
+  peerDependencies:
+    typescript: ">=5.7.2"
+  checksum: 10/75ac5bc51fbeb77d2087379d3a03f72bb62dc0ca10e774a2410a1d64f6429a79a3e53b1b78f5dc4dbc93a6b2b4ec133197835d16a9ffc92b93f53c13019f849c
+  languageName: node
+  linkType: hard
+
 "@tybys/wasm-util@npm:^0.10.0":
   version: 0.10.1
   resolution: "@tybys/wasm-util@npm:0.10.1"
@@ -5916,6 +5967,15 @@ __metadata:
   version: 17.0.21
   resolution: "@types/node@npm:17.0.21"
   checksum: 10/2beae12b0240834801d45d1f6afec1905325054ba0768ba8fa60144eea62ac3751cb2b787a32795c1611a870b2cb4bf4d58caf21f20b126b2bb2454fe6e2437c
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.0.0":
+  version: 20.19.24
+  resolution: "@types/node@npm:20.19.24"
+  dependencies:
+    undici-types: "npm:~6.21.0"
+  checksum: 10/d3e2f47b1417d5dc8d8f425d2efecaa1fd8fe201b4e8de3e6fa8a54841487e48d81d9f24caaf329d316248b3eff8852f82faf16c177ba3606b09442e5094fc7e
   languageName: node
   linkType: hard
 
@@ -6430,6 +6490,17 @@ __metadata:
   checksum: 10/3e044fd6d1d26545f235a9fe4d7a534e2029d8e59fa7fd9f2a6eb21230f6b5380ea1eaf55136e60cbf8e613544b3b766e7a6fa2102e2a3a117505466e3025dc2
   languageName: node
   linkType: hard
+
+"api@npm:*, api@workspace:packages/api":
+  version: 0.0.0-use.local
+  resolution: "api@workspace:packages/api"
+  dependencies:
+    "@trpc/server": "npm:^11.0.0-rc.599"
+    "@types/node": "npm:^20.0.0"
+    typescript: "npm:^5.2.2"
+    zod: "npm:^3.22.4"
+  languageName: unknown
+  linkType: soft
 
 "app@npm:*, app@workspace:packages/app":
   version: 0.0.0-use.local
@@ -8483,7 +8554,11 @@ __metadata:
     "@expo/metro-config": "npm:~54.0.7"
     "@lingui/metro-transformer": "npm:^5.5.2"
     "@sentry/react-native": "npm:^7.4.0"
+    "@tanstack/react-query": "npm:^5.62.11"
+    "@trpc/client": "npm:^11.0.0-rc.599"
+    "@trpc/react-query": "npm:^11.0.0-rc.599"
     "@types/react": "npm:~19.1.10"
+    api: "npm:*"
     app: "npm:*"
     babel-plugin-react-compiler: "npm:19.0.0-beta-3229e95-20250315"
     babel-preset-expo: "npm:~54.0.5"
@@ -11455,8 +11530,13 @@ __metadata:
     "@formatjs/intl-localematcher": "npm:^0.6.2"
     "@lingui/swc-plugin": "npm:^5.5.2"
     "@sentry/nextjs": "npm:^10.22.0"
+    "@tanstack/react-query": "npm:^5.62.11"
+    "@trpc/client": "npm:^11.0.0-rc.599"
+    "@trpc/react-query": "npm:^11.0.0-rc.599"
+    "@trpc/server": "npm:^11.0.0-rc.599"
     "@types/negotiator": "npm:^0.6.4"
     "@types/node": "npm:17.0.21"
+    api: "npm:*"
     app: "npm:*"
     babel-plugin-macros: "npm:^3.1.0"
     eslint-config-next: "npm:13.2.0"
@@ -11468,6 +11548,7 @@ __metadata:
     react-native-reanimated: "npm:4.1.3"
     react-native-web: "npm:~0.19.10"
     react-native-worklets: "npm:0.5.1"
+    server-only: "npm:^0.0.1"
   languageName: unknown
   linkType: soft
 
@@ -13219,6 +13300,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"server-only@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "server-only@npm:0.0.1"
+  checksum: 10/c432348956641ea3f460af8dc3765f3a1bdbcf7a1e0205b0756d868e6e6fe8934cdee6bff68401a1dd49ba4a831c75916517a877446d54b334f7de36fa273e53
+  languageName: node
+  linkType: hard
+
 "set-function-length@npm:^1.2.2":
   version: 1.2.2
   resolution: "set-function-length@npm:1.2.2"
@@ -14451,6 +14539,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"undici-types@npm:~6.21.0":
+  version: 6.21.0
+  resolution: "undici-types@npm:6.21.0"
+  checksum: 10/ec8f41aa4359d50f9b59fa61fe3efce3477cc681908c8f84354d8567bb3701fafdddf36ef6bff307024d3feb42c837cf6f670314ba37fc8145e219560e473d14
+  languageName: node
+  linkType: hard
+
 "undici-types@npm:~7.16.0":
   version: 7.16.0
   resolution: "undici-types@npm:7.16.0"
@@ -15111,7 +15206,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.25.76":
+"zod@npm:^3.22.4, zod@npm:^3.25.76":
   version: 3.25.76
   resolution: "zod@npm:3.25.76"
   checksum: 10/f0c963ec40cd96858451d1690404d603d36507c1fc9682f2dae59ab38b578687d542708a7fdbf645f77926f78c9ed558f57c3d3aa226c285f798df0c4da16995

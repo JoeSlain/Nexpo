@@ -21,7 +21,9 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "app/*": ["../../packages/app/*"]
+      "app/*": ["../../packages/app/*"],
+      "api": ["../../packages/api/src"],
+      "api/*": ["../../packages/api/src/*"]
     }
   },
   "include": [
