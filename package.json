@@ -11,6 +11,8 @@
     "@types/negotiator": "^0.6.4",
     "@types/react": "^18.2.21",
     "eslint": "^8.21.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
     "turbo": "^2.4.4",
     "typescript": "^5.2.2"
   },
@@ -22,7 +24,8 @@
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
-    "format:check": "biome format ."
+    "format:check": "biome format .",
+    "prepare": "husky"
   },
   "packageManager": "yarn@4.7.0",
   "eslintConfig": {
@@ -39,5 +42,10 @@
     "useTabs": false,
     "tabWidth": 2,
     "singleQuote": true
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css}": [
+      "biome check --write"
+    ]
   }
 }
