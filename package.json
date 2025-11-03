@@ -22,7 +22,7 @@
     "check-deps:fix": "check-dependency-version-consistency . --fix",
     "native": "cd apps/expo && yarn start",
     "web": "cd apps/next && yarn next",
-    "lingui:extract": "yarn workspace app lingui:extract",
+    "lingui:extract": "yarn workspace app lingui:extract --clean",
     "lingui:compile": "yarn workspace app lingui:compile",
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix",
