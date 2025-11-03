@@ -89,12 +89,75 @@ Visit http://localhost:3000
 
 ```bash
 cd apps/expo
-expo run:ios
+yarn ios
 # or
-expo run:android
+yarn android
 ```
 
-## Step 6: Deploy to Vercel
+## Step 6: Setup EAS (Expo Application Services)
+
+### Install EAS CLI
+
+```bash
+npm install -g eas-cli
+```
+
+### Login to EAS
+
+```bash
+eas login
+```
+
+### Configure EAS Build
+
+The `eas.json` configuration file is already set up with build profiles:
+- **development**: For development client builds
+- **preview**: For internal distribution builds
+- **production**: For production app store builds
+
+You can customize it if needed:
+
+```bash
+cd apps/expo
+npm run eas:configure
+```
+
+### Configure Environment Variables in EAS
+
+Set up your production environment variables in EAS:
+
+```bash
+cd apps/expo
+eas secret:create --scope project --name EXPO_PUBLIC_SUPABASE_URL --value "https://your-project.supabase.co"
+eas secret:create --scope project --name EXPO_PUBLIC_SUPABASE_ANON_KEY --value "your-production-anon-key"
+eas secret:create --scope project --name EXPO_PUBLIC_API_URL --value "https://your-domain.com/api/trpc"
+```
+
+Or configure them in the [EAS dashboard](https://expo.dev/accounts/[your-account]/projects/nexpo/secrets).
+
+### Available EAS Scripts
+
+The project includes several EAS-related scripts in `apps/expo/package.json`:
+
+**Build:**
+- `npm run eas:build:android` - Build for Android
+- `npm run eas:build:ios` - Build for iOS
+- `npm run eas:build:all` - Build for both platforms
+- `npm run eas:build:android:profile` - Build Android with production profile
+- `npm run eas:build:ios:profile` - Build iOS with production profile
+
+**Submit:**
+- `npm run eas:submit:android` - Submit Android build to Play Store
+- `npm run eas:submit:ios` - Submit iOS build to App Store
+
+**Update:**
+- `npm run eas:update` - Publish OTA update (interactive)
+- `npm run eas:update:republish` - Publish update to production branch
+
+**Configuration:**
+- `npm run eas:configure` - Configure EAS Build
+
+## Step 7: Deploy to Vercel
 
 1. Push your code to GitHub
 2. Import your repository in Vercel

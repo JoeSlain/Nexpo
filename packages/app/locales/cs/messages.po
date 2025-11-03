@@ -47,8 +47,10 @@ msgid "Measurement: {0} • Temperature: {1}"
 msgstr "Měření: {0} • Teplota: {1}"
 
 #: features/home/screen.tsx:24
-msgid "This button is from the ui package"
-msgstr "Toto tlačítko je z balíčku ui."
+msgid "This button from ui is red on web and blue on native"
+msgstr ""
+"Tento tlačítko z uživatelského rozhraní je červené na webu a modré v "
+"nativním prostředí."
 
 #: features/home/screen.tsx:28
 msgid "Welcome to Nexpo."

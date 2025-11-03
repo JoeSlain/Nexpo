@@ -21,7 +21,7 @@ export function HomeScreen() {
     >
       <ExampleButton>
         <Text>
-          <Trans>This button is from the ui package</Trans>
+          <Trans>This button from ui is red on web and blue on native</Trans>
         </Text>
       </ExampleButton>
       <H1>

@@ -1,5 +1,5 @@
 /*eslint-disable*/ module.exports = {
   messages: JSON.parse(
-    '{"/+KO0y":["This button is from the ui package"],"G2ydWj":["Currency: ",["0"]," (",["1"],")"],"I8VEUr":["Measurement: ",["0"]," • Temperature: ",["1"]],"MYxLiA":["Welcome to Nexpo."],"TRnbYU":["Here is a basic starter to show you how you can navigate from one screen to another. This screen uses the same code on Next.js and React Native."],"b3OFIc":["Locale Information:"],"br0zfJ":["Language: ",["0"]," (",["1"],")"],"yzF66j":["Link"]}'
+    '{"G2ydWj":["Měna: ",["0"]," (",["1"],")"],"I8VEUr":["Měření: ",["0"]," • Teplota: ",["1"]],"MYxLiA":["Vítejte na Nexpo."],"TRnbYU":["Zde je základní ukázka, jak můžete přecházet z jedné obrazovky na druhou. Tato obrazovka používá stejný kód na Next.js a React Native."],"b3OFIc":["Informace o locale:"],"br0zfJ":["Jazyk: ",["0"]," (",["1"],")"],"o5Lq9n":["Tento tlačítko z uživatelského rozhraní je červené na webu a modré v nativním prostředí."],"yzF66j":["Odkaz"]}'
   ),
 }

@@ -47,8 +47,8 @@ msgid "Measurement: {0} • Temperature: {1}"
 msgstr "Measurement: {0} • Temperature: {1}"
 
 #: features/home/screen.tsx:24
-msgid "This button is from the ui package"
-msgstr "This button is from the ui package"
+msgid "This button from ui is red on web and blue on native"
+msgstr "This button from ui is red on web and blue on native"
 
 #: features/home/screen.tsx:28
 msgid "Welcome to Nexpo."

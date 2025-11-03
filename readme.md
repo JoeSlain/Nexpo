@@ -249,30 +249,103 @@ Or use the deploy button above after updating the repository URL.
 
 Deploy using EAS (Expo Application Services):
 
-1. **Set up EAS Build** (if not already done):
+#### Prerequisites
+
+1. **Install EAS CLI**:
    ```bash
-   cd apps/expo
-   eas build:configure
+   npm install -g eas-cli
    ```
 
-2. **Configure environment variables in EAS**:
+2. **Login to EAS**:
    ```bash
+   eas login
+   ```
+
+#### Configuration
+
+The `eas.json` file is already configured with build profiles:
+- **development**: Development client builds (simulator/APK)
+- **preview**: Internal distribution builds (APK)
+- **production**: Production app store builds (App Bundle/IPA)
+
+3. **Configure environment variables in EAS**:
+   ```bash
+   cd apps/expo
    eas secret:create --scope project --name EXPO_PUBLIC_SUPABASE_URL --value "https://your-project.supabase.co"
    eas secret:create --scope project --name EXPO_PUBLIC_SUPABASE_ANON_KEY --value "your-production-anon-key"
    eas secret:create --scope project --name EXPO_PUBLIC_API_URL --value "https://your-domain.com/api/trpc"
    eas secret:create --scope project --name EXPO_PUBLIC_SENTRY_DSN --value "your-sentry-dsn"  # Optional
    ```
 
-   Or configure them in the EAS dashboard.
+   Or configure them in the [EAS dashboard](https://expo.dev/accounts/[your-account]/projects/nexpo/secrets).
 
-3. **Build for production**:
+4. **Update submit credentials** (optional, for automated submissions):
+   Edit `apps/expo/eas.json` and update the `submit.production` section with your:
+   - Apple ID, App Store Connect App ID, and Team ID (for iOS)
+   - Google Play service account key path (for Android)
+
+#### Build and Submit
+
+5. **Build for production**:
    ```bash
-   # Make sure NODE_ENV=production is set (or use build scripts)
-   eas build --platform ios --profile production
-   eas build --platform android --profile production
+   cd apps/expo
+   
+   # Build for iOS
+   npm run eas:build:ios:profile
+   
+   # Build for Android
+   npm run eas:build:android:profile
+   
+   # Build for both platforms
+   npm run eas:build:all -- --profile production
    ```
 
-   > **Note**: Use the `build:ios` and `build:android` scripts defined in `package.json` which automatically set `NODE_ENV=production` and load the correct environment files.
+6. **Submit to app stores**:
+   ```bash
+   cd apps/expo
+   
+   # Submit iOS build
+   npm run eas:submit:ios
+   
+   # Submit Android build
+   npm run eas:submit:android
+   ```
+
+#### OTA Updates
+
+Publish over-the-air updates without rebuilding:
+
+```bash
+cd apps/expo
+
+# Publish update to production channel
+npm run eas:update:republish
+
+# Or use interactive mode
+npm run eas:update
+```
+
+#### Available EAS Scripts
+
+The project includes several EAS-related scripts in `apps/expo/package.json`:
+
+**Build:**
+- `npm run eas:build:android` - Build for Android
+- `npm run eas:build:ios` - Build for iOS
+- `npm run eas:build:all` - Build for both platforms
+- `npm run eas:build:android:profile` - Build Android with production profile
+- `npm run eas:build:ios:profile` - Build iOS with production profile
+
+**Submit:**
+- `npm run eas:submit:android` - Submit Android build to Play Store
+- `npm run eas:submit:ios` - Submit iOS build to App Store
+
+**Update:**
+- `npm run eas:update` - Publish OTA update (interactive)
+- `npm run eas:update:republish` - Publish update to production branch
+
+**Configuration:**
+- `npm run eas:configure` - Configure EAS Build
 
 ## 🔔 Sentry Configuration
 
@@ -368,6 +441,14 @@ yarn lint:fix
 
 # Format code
 yarn format
+
+# EAS commands (from apps/expo directory)
+cd apps/expo
+npm run eas:build:android      # Build for Android
+npm run eas:build:ios          # Build for iOS
+npm run eas:submit:android     # Submit Android build
+npm run eas:submit:ios         # Submit iOS build
+npm run eas:update             # Publish OTA update
 
 # Lingui commands
 yarn lingui:extract      # Extract translatable messages from code
