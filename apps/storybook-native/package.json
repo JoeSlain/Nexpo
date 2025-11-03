@@ -1,0 +1,45 @@
+{
+  "name": "storybook-native",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "storybook": "storybook dev -p 7007",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@gorhom/bottom-sheet": "^5.2.6",
+    "@react-native-async-storage/async-storage": "^2.1.0",
+    "@storybook/react-native": "^10.0.1",
+    "@tamagui/config": "^1.135.7",
+    "api": "*",
+    "app": "*",
+    "expo": "^54.0.16",
+    "expo-status-bar": "~3.0.8",
+    "react": "19.1.0",
+    "react-native": "0.81.4",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-reanimated": "~4.1.1",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-svg": "^15.8.0",
+    "tamagui": "^1.135.7",
+    "ui": "*"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@expo/metro-config": "~54.0.7",
+    "@types/react": "~19.1.10",
+    "babel-preset-expo": "~54.0.5",
+    "typescript": "~5.9.3"
+  },
+  "expo": {
+    "install": {
+      "exclude": [
+        "react"
+      ]
+    }
+  }
+}

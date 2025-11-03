@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "storybook-native",
+    "slug": "storybook-native",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#ffffff",
+      "resizeMode": "contain"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nexpo.storybook"
+    },
+    "android": {
+      "package": "com.nexpo.storybook"
+    }
+  }
+}

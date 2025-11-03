@@ -18,6 +18,7 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
+    "check-deps": "check-dependency-version-consistency .",
     "native": "cd apps/expo && yarn start",
     "web": "cd apps/next && yarn next",
     "lingui:extract": "yarn workspace app lingui:extract",
@@ -55,5 +56,9 @@
     "*.{js,jsx,ts,tsx,json,css}": [
       "biome check --write"
     ]
+  },
+  "resolutions": {
+    "react": "19.1.0",
+    "react-native-renderer": "19.1.0"
   }
 }
