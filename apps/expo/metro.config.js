@@ -11,12 +11,13 @@ const workspaceRoot = path.resolve(projectRoot, '../..')
 
 const config = getDefaultConfig(projectRoot)
 
-config.watchFolders = [workspaceRoot]
+// Merge watchFolders with Expo's defaults instead of replacing them
+config.watchFolders = [...(config.watchFolders || []), workspaceRoot]
 config.resolver.nodeModulesPaths = [
   path.resolve(projectRoot, 'node_modules'),
   path.resolve(workspaceRoot, 'node_modules'),
 ]
-config.resolver.disableHierarchicalLookup = true
+config.resolver.disableHierarchicalLookup = false
 
 // Add extra node modules paths for workspace packages
 config.resolver.extraNodeModules = {
