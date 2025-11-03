@@ -10,6 +10,7 @@
     "@lingui/babel-plugin-lingui-macro": "^5.5.2",
     "@types/negotiator": "^0.6.4",
     "@types/react": "^18.2.21",
+    "check-dependency-version-consistency": "*",
     "eslint": "^8.21.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
@@ -19,6 +20,7 @@
   },
   "scripts": {
     "check-deps": "check-dependency-version-consistency .",
+    "check-deps:fix": "check-dependency-version-consistency . --fix",
     "native": "cd apps/expo && yarn start",
     "web": "cd apps/next && yarn next",
     "lingui:extract": "yarn workspace app lingui:extract",
