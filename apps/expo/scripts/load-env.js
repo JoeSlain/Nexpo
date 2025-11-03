@@ -51,16 +51,31 @@ if (commandArgs.length === 0) {
   process.exit(1)
 }
 
+// Find dotenv-cli binary in node_modules
+// Check local node_modules first, then root (yarn workspaces may hoist)
+const rootDir = path.resolve(appDir, '../..')
+const localDotenvCli = path.join(appDir, 'node_modules', '.bin', 'dotenv-cli')
+const rootDotenvCli = path.join(rootDir, 'node_modules', '.bin', 'dotenv-cli')
+const dotenvCli = fs.existsSync(localDotenvCli)
+  ? localDotenvCli
+  : fs.existsSync(rootDotenvCli)
+    ? rootDotenvCli
+    : 'npx'
+
 // Build dotenv-cli command
 // dotenv-cli -e file1 -e file2 -- command args
 const dotenvArgs = []
+// If using npx, add dotenv-cli as first arg
+if (dotenvCli === 'npx') {
+  dotenvArgs.push('dotenv-cli')
+}
 envFiles.forEach((file) => {
   dotenvArgs.push('-e', file)
 })
 dotenvArgs.push('--', ...commandArgs)
 
 // Spawn dotenv-cli with the command
-const dotenv = spawn('dotenv-cli', dotenvArgs, {
+const dotenv = spawn(dotenvCli, dotenvArgs, {
   stdio: 'inherit',
   shell: true,
   cwd: appDir,
