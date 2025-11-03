@@ -92,6 +92,17 @@ Required variables:
 - `EXPO_PUBLIC_API_URL` - Your Next.js API URL (for tRPC)
 - `EXPO_PUBLIC_SENTRY_DSN` - (Optional) Sentry DSN for error tracking
 
+#### Root-level Environment Variables
+
+Copy the root `.env.example` file:
+
+```bash
+cp .env.example .env
+```
+
+Required variables:
+- `OPENAI_API_KEY` - (Optional) OpenAI API key for automated translations using `lingui-ai-translate`. Get your key from [platform.openai.com](https://platform.openai.com/api-keys)
+
 ### 3. Setup Supabase
 
 #### Local Development
@@ -223,17 +234,66 @@ This template includes Sentry for error tracking. To enable:
 
 This template uses Lingui for i18n. Supported locales are configured in `packages/app/lingui.config.js`.
 
+### Workflow
+
+The typical i18n workflow consists of three steps:
+
+1. **Extract messages** - Extract translatable strings from your code
+2. **Translate messages** - Translate messages using AI or manual translation
+3. **Compile messages** - Compile translations for runtime use
+
 ### Extract messages
+
+Extract translatable strings from your codebase:
 
 ```bash
 yarn lingui:extract
 ```
 
+This scans your code for `t` macros and other Lingui translation functions and generates `.po` files in `packages/app/locales/`.
+
+### Translate messages
+
+#### Using AI Translation (Recommended)
+
+This template includes `lingui-ai-translate` for automated translations using OpenAI's API.
+
+**Setup:**
+
+1. Get your OpenAI API key from [platform.openai.com](https://platform.openai.com/api-keys)
+2. Add it to your environment variables:
+
+   For root `.env` (used by lingui-ai-translate):
+   ```bash
+   OPENAI_API_KEY=your-openai-api-key-here
+   ```
+
+   Or export it in your shell:
+   ```bash
+   export OPENAI_API_KEY=your-openai-api-key-here
+   ```
+
+3. Run the translation command:
+
+   ```bash
+   yarn lingui:translate
+   ```
+
+This will automatically translate all messages in your `.po` files to all configured locales using OpenAI's API. The translations preserve placeholders and formatting.
+
+#### Manual Translation
+
+You can also manually edit the `.po` files in `packages/app/locales/` to translate messages yourself.
+
 ### Compile messages
+
+After translating, compile the messages for runtime use:
 
 ```bash
 yarn lingui:compile
 ```
+
+This generates optimized `.js` files that are used by your application at runtime.
 
 ## 🛠 Development Commands
 
@@ -255,6 +315,11 @@ yarn lint:fix
 
 # Format code
 yarn format
+
+# Lingui commands
+yarn lingui:extract      # Extract translatable messages from code
+yarn lingui:translate   # Translate messages using AI (requires OPENAI_API_KEY)
+yarn lingui:compile     # Compile translations for runtime use
 
 # Supabase commands
 yarn supabase:start      # Start local Supabase

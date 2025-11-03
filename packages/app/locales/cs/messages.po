@@ -8,44 +8,48 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
-"Language: \n"
+"Language: cs\n"
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: features/home/screen.tsx:50
 #. placeholder {0}: locale.currencySymbol
 #. placeholder {1}: locale.currencyCode
-#: features/home/screen.tsx:50
 msgid "Currency: {0} ({1})"
-msgstr ""
+msgstr "Měna: {0} ({1})"
 
 #: features/home/screen.tsx:32
-msgid "Here is a basic starter to show you how you can navigate from one screen to another. This screen uses the same code on Next.js and React Native."
+msgid ""
+"Here is a basic starter to show you how you can navigate from one screen to "
+"another. This screen uses the same code on Next.js and React Native."
 msgstr ""
+"Zde je základní ukázka, jak můžete přecházet z jedné obrazovky na druhou. "
+"Tato obrazovka používá stejný kód na Next.js a React Native."
 
+#: features/home/screen.tsx:43
 #. placeholder {0}: locale.languageTag
 #. placeholder {1}: locale.languageCode
-#: features/home/screen.tsx:43
 msgid "Language: {0} ({1})"
-msgstr ""
+msgstr "Jazyk: {0} ({1})"
 
 #: features/home/screen.tsx:70
 msgid "Link"
-msgstr ""
+msgstr "Odkaz"
 
 #: features/home/screen.tsx:40
 msgid "Locale Information:"
-msgstr ""
+msgstr "Informace o locale:"
 
+#: features/home/screen.tsx:56
 #. placeholder {0}: locale.measurementSystem
 #. placeholder {1}: locale.temperatureUnit
-#: features/home/screen.tsx:56
 msgid "Measurement: {0} • Temperature: {1}"
-msgstr ""
+msgstr "Měření: {0} • Teplota: {1}"
 
 #: features/home/screen.tsx:24
 msgid "This button is from the ui package"
-msgstr ""
+msgstr "Toto tlačítko je z balíčku ui."
 
 #: features/home/screen.tsx:28
 msgid "Welcome to Nexpo."
-msgstr ""
+msgstr "Vítejte na Nexpo."

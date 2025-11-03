@@ -13,19 +13,23 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: features/home/screen.tsx:50
 #. placeholder {0}: locale.currencySymbol
 #. placeholder {1}: locale.currencyCode
-#: features/home/screen.tsx:50
 msgid "Currency: {0} ({1})"
 msgstr "Devise: {0} ({1})"
 
 #: features/home/screen.tsx:32
-msgid "Here is a basic starter to show you how you can navigate from one screen to another. This screen uses the same code on Next.js and React Native."
-msgstr "Voici un exemple de base pour vous montrer comment naviguer d'un écran à un autre. Cet écran utilise le même code sur Next.js et React Native."
+msgid ""
+"Here is a basic starter to show you how you can navigate from one screen to "
+"another. This screen uses the same code on Next.js and React Native."
+msgstr ""
+"Voici un exemple de base pour vous montrer comment naviguer d'un écran à un "
+"autre. Cet écran utilise le même code sur Next.js et React Native."
 
+#: features/home/screen.tsx:43
 #. placeholder {0}: locale.languageTag
 #. placeholder {1}: locale.languageCode
-#: features/home/screen.tsx:43
 msgid "Language: {0} ({1})"
 msgstr "Langue: {0} ({1})"
 
@@ -37,11 +41,11 @@ msgstr "Lien"
 msgid "Locale Information:"
 msgstr "Informations de la locale:"
 
+#: features/home/screen.tsx:56
 #. placeholder {0}: locale.measurementSystem
 #. placeholder {1}: locale.temperatureUnit
-#: features/home/screen.tsx:56
 msgid "Measurement: {0} • Temperature: {1}"
-msgstr "Mesure: {0} • Température: {1}"
+msgstr "Mesure : {0} • Température : {1}"
 
 #: features/home/screen.tsx:24
 msgid "This button is from the ui package"
