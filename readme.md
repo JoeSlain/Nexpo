@@ -1,22 +1,14 @@
-# Nexpo 🚀
 
-A production-ready monorepo template for building cross-platform applications with Next.js and React Native (Expo), powered by Solito.
+<img width="800" height="364" alt="image" src="https://github.com/user-attachments/assets/b7f3f7bc-0061-4415-94bc-48b2d557f180" />
+
+A production-ready monorepo template for building cross-platform applications with Next.js and React Native (Expo)
 
 ## 🎯 Quick Start
-
-### Option 1: Use as GitHub Template
 
 1. Click "Use this template" on GitHub
 2. Clone your new repository
 3. Follow the [Setup Instructions](#-setup-instructions)
 
-### Option 2: Deploy to Vercel
-
-After enabling the template repository, you can deploy directly to Vercel:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=YOUR_REPO_URL&root-directory=apps/next)
-
-> **Note**: Replace `YOUR_REPO_URL` with your repository URL after making this a template on GitHub.
 
 
 ## 📦 What's Included
