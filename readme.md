@@ -63,13 +63,23 @@ yarn install
 
 ### 2. Configure Environment Variables
 
+Both apps use `dotenv-cli` to automatically load environment variables from their respective `.env` files when running yarn scripts. Environment variables are loaded from `.env` files in each app directory.
+
+#### Root-level Environment Variables
+
+Copy the root `.env.example` file:
+
+```bash
+cp .env.example .env
+```
+
 #### For Next.js App
 
 Copy the example environment file and fill in your values:
 
-```bash
-cp apps/next/.env.example apps/next/.env.local
-```
+
+
+> **Note**: Next.js scripts automatically load environment variables from `.env.local` via `dotenv-cli`.
 
 Required variables:
 - `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL
@@ -82,9 +92,9 @@ Required variables:
 
 #### For Expo App
 
-```bash
-cp apps/expo/.env.example apps/expo/.env
-```
+
+
+> **Note**: Expo scripts automatically load environment variables from `.env` via `dotenv-cli`.
 
 Required variables:
 - `EXPO_PUBLIC_SUPABASE_URL` - Your Supabase project URL
@@ -92,13 +102,7 @@ Required variables:
 - `EXPO_PUBLIC_API_URL` - Your Next.js API URL (for tRPC)
 - `EXPO_PUBLIC_SENTRY_DSN` - (Optional) Sentry DSN for error tracking
 
-#### Root-level Environment Variables
 
-Copy the root `.env.example` file:
-
-```bash
-cp .env.example .env
-```
 
 Required variables:
 - `OPENAI_API_KEY` - (Optional) OpenAI API key for automated translations using `lingui-ai-translate`. Get your key from [platform.openai.com](https://platform.openai.com/api-keys)
@@ -165,13 +169,24 @@ return process.env.EXPO_PUBLIC_API_URL || 'https://your-domain.com/api/trpc'
 
 ### 6. Start Development Servers
 
+Both apps use `dotenv-cli` to automatically load environment variables from their respective `.env` files when running yarn scripts.
+
 #### Web (Next.js)
 
 ```bash
 yarn web
 ```
 
-Runs on http://localhost:3000
+This will:
+- Load environment variables from `apps/next/.env.local`
+- Start the Next.js dev server
+- Run on http://localhost:3000
+
+You can also run directly from the `apps/next` directory:
+```bash
+cd apps/next
+yarn dev
+```
 
 #### Mobile (Expo)
 
@@ -179,9 +194,9 @@ First, build a dev client:
 
 ```bash
 cd apps/expo
-expo run:ios
+yarn ios
 # or
-expo run:android
+yarn android
 ```
 
 Then, from the root:
@@ -189,6 +204,14 @@ Then, from the root:
 ```bash
 yarn native
 ```
+
+Or run directly from the `apps/expo` directory:
+```bash
+cd apps/expo
+yarn start
+```
+
+The Expo scripts automatically load environment variables from `apps/expo/.env`.
 
 ## 🚀 Deployment
 
@@ -301,10 +324,10 @@ This generates optimized `.js` files that are used by your application at runtim
 # Install dependencies
 yarn install
 
-# Start Next.js dev server
+# Start Next.js dev server (loads .env.local automatically)
 yarn web
 
-# Start Expo dev server
+# Start Expo dev server (loads .env automatically)
 yarn native
 
 # Run linter
@@ -328,6 +351,15 @@ yarn supabase:status     # Show connection details
 yarn supabase:reset      # Reset database and run migrations
 yarn supabase:logs       # View logs
 ```
+
+### Environment Variables in Scripts
+
+Both apps use `dotenv-cli` to automatically load environment variables when running yarn scripts:
+
+- **Next.js**: Scripts automatically load from `apps/next/.env.local`
+- **Expo**: Scripts automatically load from `apps/expo/.env`
+
+All `yarn` commands within each app directory will automatically load the appropriate `.env` file, so you don't need to manually source or export environment variables.
 
 ## 📚 Documentation
 

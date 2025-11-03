@@ -31,13 +31,14 @@
     "@types/react": "~19.1.10",
     "babel-plugin-react-compiler": "19.0.0-beta-3229e95-20250315",
     "babel-preset-expo": "~54.0.5",
+    "dotenv-cli": "^7.4.2",
     "react-compiler-runtime": "19.0.0-beta-3229e95-20250315",
     "typescript": "~5.9.2"
   },
   "scripts": {
-    "start": "expo start",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
+    "start": "dotenv -e .env -- expo start",
+    "android": "dotenv -e .env -- expo run:android",
+    "ios": "dotenv -e .env -- expo run:ios",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
