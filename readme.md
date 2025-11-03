@@ -5,12 +5,18 @@ A production-ready monorepo template for building cross-platform applications wi
 
 Based on [Fernando Rojo's work](https://github.com/nandorojo/solito/tree/master/example-monorepos/blank)
 
-## 🎯 Quick Start
 
+
+## 🎯 Quick Start
+### ⚡️ Instantly clone & deploy on vercel
+(You still need to setup supabase manually)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FJoeSlain%2Fnexpo)
+
+### Manual setup
 1. Click "Use this template" on GitHub
 2. Clone your new repository
-3. Follow the [Setup Instructions](#-setup-instructions)
-
+3. Follow the [Setup Instructions](#-setup-instructions) below
 
 
 ## 📦 What's Included
