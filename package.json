@@ -19,10 +19,10 @@
     "typescript": "~5.9.2"
   },
   "scripts": {
-    "check-deps": "check-dependency-version-consistency .",
-    "check-deps:fix": "check-dependency-version-consistency . --fix",
     "native": "cd apps/expo && yarn start",
     "web": "cd apps/next && yarn dev",
+    "storybook:native": "cd apps/storybook-native && yarn storybook",
+    "storybook:web": "cd apps/storybook-web && yarn storybook",
     "lingui:extract": "yarn workspace app lingui:extract --clean",
     "lingui:translate": "lingui-ai-translate -d packages/app/locales",
     "lingui:compile": "yarn workspace app lingui:compile",
@@ -30,6 +30,8 @@
     "lint:fix": "turbo lint:fix",
     "format": "turbo format",
     "format:check": "turbo format:check",
+    "check-deps": "check-dependency-version-consistency .",
+    "check-deps:fix": "check-dependency-version-consistency . --fix",
     "prepare": "husky",
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",

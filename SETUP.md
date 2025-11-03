@@ -10,21 +10,46 @@ yarn install
 
 ## Step 2: Create Environment Files
 
+This project uses environment-specific configuration files for development and production.
+
 ### Next.js App
 
-```bash
-cp apps/next/.env.example apps/next/.env.local
-```
+Environment files are already created in `apps/next/`:
+- `.env.development` - Development environment variables (auto-loaded when `NODE_ENV=development`)
+- `.env.production` - Production environment variables (auto-loaded when `NODE_ENV=production`)
+- `.env.local` - Local overrides (gitignored, create this if you need local-only overrides)
 
-Edit `apps/next/.env.local` and fill in your Supabase credentials.
+1. **Update development values** in `apps/next/.env.development`:
+   - Set `NEXT_PUBLIC_SUPABASE_URL` to `http://127.0.0.1:54321` (local Supabase)
+   - Get your local Supabase anon key by running `yarn supabase:status` and set `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+
+2. **Update production values** in `apps/next/.env.production` (for later):
+   - Replace placeholder values with your actual production Supabase credentials
+
+3. **Create `.env.local`** (optional, for local-only overrides):
+   ```bash
+   touch apps/next/.env.local
+   ```
 
 ### Expo App
 
-```bash
-cp apps/expo/.env.example apps/expo/.env
-```
+Environment files are already created in `apps/expo/`:
+- `.env.development` - Development environment variables
+- `.env.production` - Production environment variables
+- `.env.local` - Local overrides (gitignored, create this if you need local-only overrides)
 
-Edit `apps/expo/.env` and fill in your Supabase credentials and API URL.
+1. **Update development values** in `apps/expo/.env.development`:
+   - Set `EXPO_PUBLIC_SUPABASE_URL` to `http://127.0.0.1:54321` (local Supabase)
+   - Get your local Supabase anon key by running `yarn supabase:status` and set `EXPO_PUBLIC_SUPABASE_ANON_KEY`
+   - Set `EXPO_PUBLIC_API_URL` to `http://localhost:3000/api/trpc` (or your machine's IP for physical devices)
+
+2. **Update production values** in `apps/expo/.env.production` (for later):
+   - Replace placeholder values with your actual production credentials
+
+3. **Create `.env.local`** (optional, for local-only overrides):
+   ```bash
+   touch apps/expo/.env.local
+   ```
 
 ## Step 3: Update Supabase Project ID
 
@@ -48,7 +73,7 @@ Wait for all services to start, then run:
 yarn supabase:status
 ```
 
-Copy the local environment variables and add them to your `.env.local` (Next.js) and `.env` (Expo) files if you want to use local Supabase.
+Copy the local environment variables and add them to your `.env.development` files (or `.env.local` for overrides) if you want to use local Supabase.
 
 ## Step 5: Test Locally
 

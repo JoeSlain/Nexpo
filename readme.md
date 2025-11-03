@@ -57,49 +57,68 @@ yarn install
 
 ### 2. Configure Environment Variables
 
-Both apps use `dotenv-cli` to automatically load environment variables from their respective `.env` files when running yarn scripts. Environment variables are loaded from `.env` files in each app directory.
+This project uses environment-specific configuration files for development and production. Each app has separate `.env.development` and `.env.production` files.
 
-#### Root-level Environment Variables
+#### Environment File Structure
 
-Copy the root `.env.example` file:
+**Next.js (`apps/next/`):**
+- `.env.development` - Development environment variables (auto-loaded when `NODE_ENV=development`)
+- `.env.production` - Production environment variables (auto-loaded when `NODE_ENV=production`)
+- `.env.local` - Local overrides (gitignored, highest priority, never commit this file)
 
-```bash
-cp .env.example .env
-```
+**Expo (`apps/expo/`):**
+- `.env.development` - Development environment variables (loaded via helper script)
+- `.env.production` - Production environment variables (loaded via helper script)
+- `.env.local` - Local overrides (gitignored, highest priority, never commit this file)
 
-#### For Next.js App
+> **Note**: Next.js automatically loads environment files based on `NODE_ENV`. Expo uses a custom helper script (`scripts/load-env.js`) to achieve the same behavior.
 
-Copy the example environment file and fill in your values:
+#### Setup Instructions
 
+1. **Copy the environment files** (they're already created with default values):
 
+   ```bash
+   # Files are already created, but you can copy from root template if needed
+   # cp .env.example apps/next/.env.development
+   # cp .env.example apps/expo/.env.development
+   ```
 
-> **Note**: Next.js scripts automatically load environment variables from `.env.local` via `dotenv-cli`.
+2. **Update development values** in `apps/next/.env.development` and `apps/expo/.env.development`:
+   - Set your local Supabase URL: `http://127.0.0.1:54321`
+   - Get your local Supabase anon key by running `yarn supabase:status`
+   - For Expo, set `EXPO_PUBLIC_API_URL` to `http://localhost:3000/api/trpc` (or your machine's IP for physical devices)
 
-Required variables:
+3. **Update production values** in `apps/next/.env.production` and `apps/expo/.env.production`:
+   - Replace placeholder values with your actual production Supabase credentials
+   - Set production API URLs
+   - Configure production Sentry DSNs
+
+4. **Create `.env.local` files** (optional, for local overrides):
+   ```bash
+   # These files are gitignored and should contain only your local secrets
+   touch apps/next/.env.local
+   touch apps/expo/.env.local
+   ```
+
+#### Required Variables
+
+**Next.js:**
 - `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Your Supabase anon/public key
-- `SUPABASE_SERVICE_ROLE_KEY` - Your Supabase service role key (for server-side operations)
-- `NEXT_PUBLIC_SENTRY_DSN` - (Optional) Sentry DSN for error tracking
+- `SUPABASE_SERVICE_ROLE_KEY` - (Optional) For server-side operations with elevated permissions
+- `NEXT_PUBLIC_SENTRY_DSN` - (Optional) Sentry DSN for client-side error tracking
 - `SENTRY_DSN` - (Optional) Server-side Sentry DSN
 - `SENTRY_ORG` - (Optional) Sentry organization slug
 - `SENTRY_PROJECT` - (Optional) Sentry project slug
 
-#### For Expo App
-
-
-
-> **Note**: Expo scripts automatically load environment variables from `.env` via `dotenv-cli`.
-
-Required variables:
+**Expo:**
 - `EXPO_PUBLIC_SUPABASE_URL` - Your Supabase project URL
 - `EXPO_PUBLIC_SUPABASE_ANON_KEY` - Your Supabase anon/public key
 - `EXPO_PUBLIC_API_URL` - Your Next.js API URL (for tRPC)
 - `EXPO_PUBLIC_SENTRY_DSN` - (Optional) Sentry DSN for error tracking
 
-
-
-Required variables:
-- `OPENAI_API_KEY` - (Optional) OpenAI API key for automated translations using `lingui-ai-translate`. Get your key from [platform.openai.com](https://platform.openai.com/api-keys)
+**Root (for lingui-ai-translate):**
+- `OPENAI_API_KEY` - (Optional) OpenAI API key for automated translations. Get your key from [platform.openai.com](https://platform.openai.com/api-keys)
 
 ### 3. Setup Supabase
 
@@ -163,8 +182,6 @@ return process.env.EXPO_PUBLIC_API_URL || 'https://your-domain.com/api/trpc'
 
 ### 6. Start Development Servers
 
-Both apps use `dotenv-cli` to automatically load environment variables from their respective `.env` files when running yarn scripts.
-
 #### Web (Next.js)
 
 ```bash
@@ -172,7 +189,7 @@ yarn web
 ```
 
 This will:
-- Load environment variables from `apps/next/.env.local`
+- Automatically load `.env.development` and `.env.local` (if exists) based on `NODE_ENV=development`
 - Start the Next.js dev server
 - Run on http://localhost:3000
 
@@ -181,6 +198,8 @@ You can also run directly from the `apps/next` directory:
 cd apps/next
 yarn dev
 ```
+
+> **Note**: Next.js automatically loads environment files based on `NODE_ENV`. No `dotenv-cli` needed.
 
 #### Mobile (Expo)
 
@@ -205,7 +224,7 @@ cd apps/expo
 yarn start
 ```
 
-The Expo scripts automatically load environment variables from `apps/expo/.env`.
+The Expo scripts automatically load `.env.development` and `.env.local` (if exists) via the `load-env.js` helper script.
 
 ## 🚀 Deployment
 
@@ -214,10 +233,12 @@ The Expo scripts automatically load environment variables from `apps/expo/.env`.
 1. Connect your repository to Vercel
 2. Set the root directory to `apps/next`
 3. Configure environment variables in Vercel dashboard:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `SUPABASE_SERVICE_ROLE_KEY`
-   - `SENTRY_*` (if using Sentry)
+   - `NEXT_PUBLIC_SUPABASE_URL` - Your production Supabase URL
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Your production Supabase anon key
+   - `SUPABASE_SERVICE_ROLE_KEY` - Your production service role key
+   - `SENTRY_*` - (Optional) Sentry configuration for production
+
+   > **Note**: Vercel automatically sets `NODE_ENV=production` during build, so Next.js will load `.env.production` automatically. However, you should set production values in Vercel's environment variables dashboard for security.
 
 4. Vercel will automatically detect:
    - Framework: Next.js
@@ -230,13 +251,30 @@ Or use the deploy button above after updating the repository URL.
 
 Deploy using EAS (Expo Application Services):
 
-```bash
-cd apps/expo
-eas build --platform ios
-eas build --platform android
-```
+1. **Set up EAS Build** (if not already done):
+   ```bash
+   cd apps/expo
+   eas build:configure
+   ```
 
-Configure `EXPO_PUBLIC_API_URL` in EAS environment variables to point to your deployed Next.js API.
+2. **Configure environment variables in EAS**:
+   ```bash
+   eas secret:create --scope project --name EXPO_PUBLIC_SUPABASE_URL --value "https://your-project.supabase.co"
+   eas secret:create --scope project --name EXPO_PUBLIC_SUPABASE_ANON_KEY --value "your-production-anon-key"
+   eas secret:create --scope project --name EXPO_PUBLIC_API_URL --value "https://your-domain.com/api/trpc"
+   eas secret:create --scope project --name EXPO_PUBLIC_SENTRY_DSN --value "your-sentry-dsn"  # Optional
+   ```
+
+   Or configure them in the EAS dashboard.
+
+3. **Build for production**:
+   ```bash
+   # Make sure NODE_ENV=production is set (or use build scripts)
+   eas build --platform ios --profile production
+   eas build --platform android --profile production
+   ```
+
+   > **Note**: Use the `build:ios` and `build:android` scripts defined in `package.json` which automatically set `NODE_ENV=production` and load the correct environment files.
 
 ## 🔔 Sentry Configuration
 
@@ -348,12 +386,19 @@ yarn supabase:logs       # View logs
 
 ### Environment Variables in Scripts
 
-Both apps use `dotenv-cli` to automatically load environment variables when running yarn scripts:
+**Next.js:**
+- Automatically loads `.env.development` when `NODE_ENV=development` (default for `yarn dev`)
+- Automatically loads `.env.production` when `NODE_ENV=production` (default for `yarn build` and `yarn start`)
+- Always loads `.env.local` last (highest priority, gitignored)
+- No `dotenv-cli` needed - Next.js handles this natively
 
-- **Next.js**: Scripts automatically load from `apps/next/.env.local`
-- **Expo**: Scripts automatically load from `apps/expo/.env`
+**Expo:**
+- Uses `scripts/load-env.js` helper to load environment files based on `NODE_ENV`
+- Loads `.env.development` when `NODE_ENV=development` (default for `yarn start`, `yarn ios`, `yarn android`)
+- Loads `.env.production` when `NODE_ENV=production` (for `yarn build:ios`, `yarn build:android`)
+- Always loads `.env.local` last (highest priority, gitignored)
 
-All `yarn` commands within each app directory will automatically load the appropriate `.env` file, so you don't need to manually source or export environment variables.
+All `yarn` commands within each app directory automatically load the appropriate environment files based on `NODE_ENV`, so you don't need to manually source or export environment variables.
 
 ## 📚 Documentation
 

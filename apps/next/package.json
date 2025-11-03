@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "dotenv -e .env.local -- next dev",
-    "build": "dotenv -e .env.local -- next build",
-    "start": "dotenv -e .env.local -- next start",
+    "dev": "NODE_ENV=development next dev",
+    "build": "NODE_ENV=production next build",
+    "start": "NODE_ENV=production next start",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
@@ -36,7 +36,6 @@
     "@types/negotiator": "^0.6.4",
     "@types/node": "^20.0.0",
     "babel-plugin-macros": "^3.1.0",
-    "dotenv-cli": "^7.4.2",
     "server-only": "^0.0.1"
   }
 }
