@@ -45,7 +45,7 @@ Based on [Fernando Rojo's work](https://github.com/nandorojo/solito/tree/master/
 
 ### Prerequisites
 
-- Node.js 18+ and Yarn 4.7.0+
+- Node.js 20+ and Yarn 4.7.0+
 - Docker (for local Supabase development)
 - Git
 
