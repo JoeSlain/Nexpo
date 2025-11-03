@@ -60,7 +60,7 @@ export function HomeScreen() {
       </View>
       <View style={{ flexDirection: 'row', gap: 32, flexWrap: 'wrap', justifyContent: 'center' }}>
         <TextLink
-          href="/users/fernando"
+          href="/users/test"
           style={{
             fontSize: 16,
             fontWeight: 'bold',

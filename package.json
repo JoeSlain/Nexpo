@@ -9,13 +9,13 @@
     "@biomejs/biome": "^2.3.2",
     "@lingui/babel-plugin-lingui-macro": "^5.5.2",
     "@types/negotiator": "^0.6.4",
-    "@types/react": "^18.2.21",
+    "@types/react": "~19.1.10",
     "check-dependency-version-consistency": "*",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
     "supabase": "2.54.11",
     "turbo": "^2.4.4",
-    "typescript": "^5.2.2"
+    "typescript": "~5.9.2"
   },
   "scripts": {
     "check-deps": "check-dependency-version-consistency .",

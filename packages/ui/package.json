@@ -13,8 +13,8 @@
     "react-native": "^0.81.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.21",
-    "typescript": "^5.2.2"
+    "@types/react": "~19.1.10",
+    "typescript": "~5.9.2"
   },
   "scripts": {
     "lint": "biome check .",

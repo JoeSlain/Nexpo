@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@tamagui/config": "^1.135.7",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "tamagui": "^1.135.7"
   },
   "devDependencies": {
@@ -23,8 +23,8 @@
     "@storybook/addon-onboarding": "^10.0.2",
     "@storybook/addon-vitest": "^10.0.2",
     "@storybook/react-vite": "^10.0.2",
-    "@types/node": "^24.6.0",
-    "@types/react": "^19.1.16",
+    "@types/node": "^20.0.0",
+    "@types/react": "~19.1.10",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.4",
     "@vitest/browser-playwright": "^4.0.6",
@@ -32,7 +32,7 @@
     "globals": "^16.4.0",
     "playwright": "^1.56.1",
     "storybook": "^10.0.2",
-    "typescript": "~5.9.3",
+    "typescript": "~5.9.2",
     "vite": "^7.1.7",
     "vitest": "^4.0.6"
   }
