@@ -90,7 +90,6 @@ export const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     try {
       // Static requires for Metro bundler compatibility
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
       if (linguiLocale === 'cs') {
         messages = require('../../locales/cs/messages').messages || {}
       } else if (linguiLocale === 'fr') {

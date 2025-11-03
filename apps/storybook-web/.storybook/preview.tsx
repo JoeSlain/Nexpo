@@ -1,6 +1,5 @@
 import type { Preview } from '@storybook/react-vite'
 // React import needed for JSX in decorators (even with new JSX transform)
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 import { TamaguiProvider } from 'tamagui'
 import { config } from '../../../packages/app/tamagui.config'

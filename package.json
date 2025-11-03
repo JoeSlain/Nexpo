@@ -11,7 +11,6 @@
     "@types/negotiator": "^0.6.4",
     "@types/react": "^18.2.21",
     "check-dependency-version-consistency": "*",
-    "eslint": "^8.21.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
     "supabase": "2.54.11",
@@ -25,10 +24,10 @@
     "web": "cd apps/next && yarn next",
     "lingui:extract": "yarn workspace app lingui:extract",
     "lingui:compile": "yarn workspace app lingui:compile",
-    "lint": "biome check .",
-    "lint:fix": "biome check --write .",
-    "format": "biome format --write .",
-    "format:check": "biome format .",
+    "lint": "turbo lint",
+    "lint:fix": "turbo lint:fix",
+    "format": "turbo format",
+    "format:check": "turbo format:check",
     "prepare": "husky",
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",
@@ -39,21 +38,6 @@
     "supabase:migration:up": "supabase migration up"
   },
   "packageManager": "yarn@4.7.0",
-  "eslintConfig": {
-    "extends": "next",
-    "settings": {
-      "next": {
-        "rootDir": "apps/next/"
-      }
-    },
-    "root": true
-  },
-  "prettier": {
-    "semi": false,
-    "useTabs": false,
-    "tabWidth": 2,
-    "singleQuote": true
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css}": [
       "biome check --write"

@@ -15,5 +15,11 @@
   "devDependencies": {
     "@types/react": "^18.2.21",
     "typescript": "^5.2.2"
+  },
+  "scripts": {
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format ."
   }
 }

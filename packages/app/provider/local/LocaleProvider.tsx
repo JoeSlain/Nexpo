@@ -173,7 +173,6 @@ export const LocaleProvider: FC<{
 
     try {
       // Dynamically load messages based on locale
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
       messages = require(`../../locales/${linguiLocale}/messages`).messages || {}
     } catch {
       // Messages not compiled yet, use empty object

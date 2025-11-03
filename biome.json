@@ -6,7 +6,8 @@
     "useIgnoreFile": true
   },
   "files": {
-    "ignoreUnknown": false
+    "ignoreUnknown": false,
+    "includes": ["apps/**", "packages/**", "!locales"]
   },
   "formatter": {
     "enabled": true,

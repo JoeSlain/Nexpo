@@ -14,7 +14,7 @@ A production-ready monorepo template for building cross-platform applications wi
 
 After enabling the template repository, you can deploy directly to Vercel:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=YOUR_REPO_URL&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,SUPABASE_SERVICE_ROLE_KEY&root-directory=apps/next)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=YOUR_REPO_URL&root-directory=apps/next)
 
 > **Note**: Replace `YOUR_REPO_URL` with your repository URL after making this a template on GitHub.
 

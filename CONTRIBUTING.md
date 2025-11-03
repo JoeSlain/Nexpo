@@ -37,7 +37,6 @@ To suggest a new feature, use the [Feature Request template](.github/ISSUE_TEMPL
 This project uses:
 - **Biome** for linting and formatting
 - **TypeScript** for type safety
-- **ESLint** for additional linting (Next.js)
 
 Run the linter and formatter before committing:
 ```bash
