@@ -48,10 +48,18 @@ function getUrl() {
   // Client-side
   // Check if we're in Expo (React Native) - __DEV__ is defined in React Native
   if (typeof __DEV__ !== 'undefined' && __DEV__) {
-    // Expo/React Native - in development use localhost
-    // NOTE: For physical devices, you may need to use your machine's IP
+    // Expo/React Native - use environment variable if set, otherwise fallback to localhost
+    if (process.env.EXPO_PUBLIC_API_URL) {
+      return process.env.EXPO_PUBLIC_API_URL
+    }
+    // Development fallback - for physical devices, set EXPO_PUBLIC_API_URL to your machine's IP
     // e.g., 'http://192.168.1.100:3000/api/trpc'
     return 'http://localhost:3000/api/trpc'
+  }
+
+  // Check if EXPO_PUBLIC_API_URL is set (production Expo)
+  if (process.env.EXPO_PUBLIC_API_URL) {
+    return process.env.EXPO_PUBLIC_API_URL
   }
 
   // Next.js browser - use relative URL

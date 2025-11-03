@@ -81,25 +81,17 @@ This project uses environment-specific configuration files for development and p
 
 #### Setup Instructions
 
-1. **Copy the environment files** (they're already created with default values):
-
-   ```bash
-   # Files are already created, but you can copy from root template if needed
-   # cp .env.example apps/next/.env.development
-   # cp .env.example apps/expo/.env.development
-   ```
-
-2. **Update development values** in `apps/next/.env.development` and `apps/expo/.env.development`:
+1. **Update development values** in `apps/next/.env.development` and `apps/expo/.env.development`:
    - Set your local Supabase URL: `http://127.0.0.1:54321`
    - Get your local Supabase anon key by running `yarn supabase:status`
    - For Expo, set `EXPO_PUBLIC_API_URL` to `http://localhost:3000/api/trpc` (or your machine's IP for physical devices)
 
-3. **Update production values** in `apps/next/.env.production` and `apps/expo/.env.production`:
+2. **Update production values** in `apps/next/.env.production` and `apps/expo/.env.production`:
    - Replace placeholder values with your actual production Supabase credentials
    - Set production API URLs
    - Configure production Sentry DSNs
 
-4. **Create `.env.local` files** (optional, for local overrides):
+3. **Create `.env.local` files** (optional, for local overrides):
    ```bash
    # These files are gitignored and should contain only your local secrets
    touch apps/next/.env.local
