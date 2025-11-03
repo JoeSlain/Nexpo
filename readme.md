@@ -3,6 +3,8 @@
 
 A production-ready monorepo template for building cross-platform applications with Next.js and React Native (Expo)
 
+Based on [Fernando Rojo's work](https://github.com/nandorojo/solito/tree/master/example-monorepos/blank)
+
 ## 🎯 Quick Start
 
 1. Click "Use this template" on GitHub
