@@ -57,6 +57,9 @@ web-build/
 *storybook.log
 storybook-static
 
+.env
+.env.local
+
 
 
 
