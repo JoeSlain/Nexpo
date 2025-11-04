@@ -43,10 +43,10 @@ type SupabaseAuthContextType = {
 
 const SupabaseAuthContext = createContext<SupabaseAuthContextType | null>(null)
 
-export const useSupabaseAuth = () => {
+export const useAuth = () => {
   const context = useContext(SupabaseAuthContext)
   if (!context) {
-    throw new Error('useSupabaseAuth must be used within SupabaseAuthProvider')
+    throw new Error('useAuth must be used within SupabaseAuthProvider')
   }
   return context
 }

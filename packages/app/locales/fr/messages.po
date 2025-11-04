@@ -13,44 +13,156 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: features/home/screen.tsx:50
-#. placeholder {0}: locale.currencySymbol
-#. placeholder {1}: locale.currencyCode
-msgid "Currency: {0} ({1})"
-msgstr "Devise: {0} ({1})"
+#: features/home/auth-test-button.tsx:65
+#: features/home/login-test.tsx:152
+#. placeholder {0}: isSigningIn ? 'Signing In...' : 'Sign In'
+#. placeholder {0}: isTesting ? 'Testing...' : user ? 'Test Auth (Authenticated)' : 'Test Auth (Not Authenticated)'
+msgid "{0}"
+msgstr "{0}"
 
-#: features/home/screen.tsx:32
+#: features/home/screen.tsx:81
 msgid ""
-"Here is a basic starter to show you how you can navigate from one screen to "
-"another. This screen uses the same code on Next.js and React Native."
+"A production-ready monorepo template for building cross-platform "
+"applications with Next.js and React Native (Expo)"
 msgstr ""
-"Voici un exemple de base pour vous montrer comment naviguer d'un écran à un "
-"autre. Cet écran utilise le même code sur Next.js et React Native."
+"Un modèle de monorepo prêt pour la production pour créer des applications "
+"multiplateformes avec Next.js et React Native (Expo)"
 
-#: features/home/screen.tsx:43
-#. placeholder {0}: locale.languageTag
-#. placeholder {1}: locale.languageCode
-msgid "Language: {0} ({1})"
-msgstr "Langue: {0} ({1})"
+#: features/home/screen.tsx:204
+msgid "Check the README.md for setup instructions and documentation"
+msgstr ""
+"Consultez le README.md pour les instructions d'installation et la "
+"documentation."
 
-#: features/home/screen.tsx:70
-msgid "Link"
-msgstr "Lien"
+#: features/home/auth-test-button.tsx:75
+msgid ""
+"Click to test the protected tRPC procedure. This will work whether you're "
+"authenticated or not, but will show different results."
+msgstr ""
+"Cliquez pour tester la procédure tRPC protégée. Cela fonctionnera que vous "
+"soyez authentifié ou non, mais affichera des résultats différents."
 
-#: features/home/screen.tsx:40
-msgid "Locale Information:"
-msgstr "Informations de la locale:"
+#: features/home/screen.tsx:69
+msgid "Cross-platform monorepo template"
+msgstr "Modèle de monorepo multiplateforme"
 
-#: features/home/screen.tsx:56
-#. placeholder {0}: locale.measurementSystem
-#. placeholder {1}: locale.temperatureUnit
-msgid "Measurement: {0} • Temperature: {1}"
-msgstr "Mesure : {0} • Température : {1}"
+#: features/home/locale-demo.tsx:42
+msgid "Current Locale"
+msgstr "Locale actuel"
 
-#: features/home/screen.tsx:24
-msgid "This button from ui is red on web and blue on native"
-msgstr "Ce bouton de l'UI est rouge sur le web et bleu sur le natif."
+#: features/home/auth-test-button.tsx:56
+#. placeholder {0}: user ? 'Authenticated' : 'Not Authenticated'
+msgid "Current Status: {0}"
+msgstr "Statut actuel : {0}"
 
-#: features/home/screen.tsx:28
-msgid "Welcome to Nexpo."
-msgstr "Bienvenue sur Nexpo."
+#: features/home/screen.tsx:154
+msgid "Demo Features"
+msgstr "Fonctionnalités de démonstration"
+
+#: features/home/login-test.tsx:107
+msgid "Email"
+msgstr "E-mail"
+
+#: features/home/login-test.tsx:75
+#. placeholder {0}: user.email
+msgid "Email: {0}"
+msgstr "Email : {0}"
+
+#: features/home/locale-demo.tsx:128
+msgid "Example Translated Text"
+msgstr "Texte traduit exemple"
+
+#: features/home/screen.tsx:181
+msgid "Internationalization (i18n)"
+msgstr "Internationalisation (i18n)"
+
+#: features/home/locale-demo.tsx:29
+msgid "Internationalization (i18n) Demo"
+msgstr "Démonstration d'internationalisation (i18n)"
+
+#: features/home/locale-demo.tsx:47
+msgid "Language"
+msgstr "Langue"
+
+#: features/home/locale-demo.tsx:66
+msgid "Language Code"
+msgstr "Code de langue"
+
+#: features/home/locale-demo.tsx:58
+msgid "Language Tag"
+msgstr "Étiquette de langue"
+
+#: features/home/login-test.tsx:129
+msgid "Password"
+msgstr "Mot de passe"
+
+#: features/home/login-test.tsx:85
+msgid "Sign Out"
+msgstr "Déconnexion"
+
+#: features/home/login-test.tsx:72
+msgid "Signed In"
+msgstr "Connecté"
+
+#: features/home/login-test.tsx:101
+msgid "Supabase Auth Test"
+msgstr "Test Auth Supabase"
+
+#: features/home/locale-demo.tsx:87
+msgid "Switch Language"
+msgstr "Changer de langue"
+
+#: features/home/auth-test-button.tsx:53
+msgid "Test Protected tRPC Procedure"
+msgstr "Tester la procédure tRPC protégée."
+
+#: features/home/screen.tsx:184
+msgid ""
+"Test the useLocale hook to switch languages and see how translations work "
+"in real-time"
+msgstr ""
+"Testez le hook useLocale pour changer de langue et voir comment les "
+"traductions fonctionnent en temps réel."
+
+#: features/home/locale-demo.tsx:74
+msgid "Text Direction"
+msgstr "Direction du texte"
+
+#: features/home/locale-demo.tsx:131
+msgid ""
+"This text changes based on the selected locale. The useLocale hook provides "
+"access to locale information and works seamlessly with Lingui for "
+"translations."
+msgstr ""
+"Ce texte change en fonction de la locale sélectionnée. Le hook useLocale "
+"fournit l'accès aux informations de locale et fonctionne parfaitement avec "
+"Lingui pour les traductions."
+
+#: features/home/screen.tsx:157
+msgid ""
+"Try out authentication and protected API endpoints to see the template in "
+"action"
+msgstr ""
+"Essayez l'authentification et les points de terminaison API protégés pour "
+"voir le modèle en action."
+
+#: features/home/locale-demo.tsx:143
+msgid "Usage Example"
+msgstr "Exemple d'utilisation"
+
+#: features/home/locale-demo.tsx:32
+msgid ""
+"Use the useLocale hook to access locale information and switch languages "
+"dynamically"
+msgstr ""
+"Utilisez le hook useLocale pour accéder aux informations de locale et "
+"changer de langue dynamiquement."
+
+#: features/home/login-test.tsx:79
+#. placeholder {0}: user.id.slice(0, 8)
+msgid "User ID: {0}..."
+msgstr "ID utilisateur : {0}..."
+
+#: features/home/screen.tsx:97
+msgid "What's Included"
+msgstr "Ce qui est inclus"

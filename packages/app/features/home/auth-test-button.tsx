@@ -1,14 +1,14 @@
 'use client'
 
 import { Trans } from '@lingui/react/macro'
-import { useSupabaseAuth } from 'app/provider/supabase'
+import { useAuth } from 'app/provider/supabase'
 import { trpc } from 'app/provider/trpc'
 import { useState } from 'react'
 import { Alert, View } from 'react-native'
 import { Button, Text } from 'tamagui'
 
 export function AuthTestButton() {
-  const { user } = useSupabaseAuth()
+  const { user } = useAuth()
   const [isTesting, setIsTesting] = useState(false)
   const utils = trpc.useUtils()
 

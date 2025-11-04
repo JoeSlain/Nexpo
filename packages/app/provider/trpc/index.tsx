@@ -5,7 +5,7 @@ import { httpBatchLink } from '@trpc/client'
 import { createTRPCReact } from '@trpc/react-query'
 import type { AppRouter } from 'api'
 import { useState } from 'react'
-import { useSupabaseAuth } from '../supabase'
+import { useAuth } from '../supabase'
 
 export const trpc = createTRPCReact<AppRouter>()
 
@@ -73,7 +73,7 @@ export function TRPCProvider({ children }: { children: React.ReactNode }) {
   //       suspend because React will throw away the client on the initial
   //       render if it suspends and there is no boundary
   const queryClient = getQueryClient()
-  const { session, supabase } = useSupabaseAuth()
+  const { session, supabase } = useAuth()
 
   const [trpcClient] = useState(() =>
     trpc.createClient({

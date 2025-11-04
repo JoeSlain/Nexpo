@@ -1,13 +1,13 @@
 'use client'
 
 import { Trans } from '@lingui/react/macro'
-import { useSupabaseAuth } from 'app/provider/supabase'
+import { useAuth } from 'app/provider/supabase'
 import { useState } from 'react'
 import { Alert, TextInput, View } from 'react-native'
 import { Button, Text } from 'tamagui'
 
 export function LoginTest() {
-  const { user, session, loading, supabase } = useSupabaseAuth()
+  const { user, loading, supabase } = useAuth()
   const [email, setEmail] = useState('test@test.com')
   const [password, setPassword] = useState('password')
   const [isSigningIn, setIsSigningIn] = useState(false)
@@ -20,7 +20,7 @@ export function LoginTest() {
 
     setIsSigningIn(true)
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       })
@@ -30,7 +30,7 @@ export function LoginTest() {
       } else {
         Alert.alert('Success', 'Signed in successfully!')
       }
-    } catch (error) {
+    } catch (_error) {
       Alert.alert('Error', 'An unexpected error occurred')
     } finally {
       setIsSigningIn(false)
@@ -43,7 +43,7 @@ export function LoginTest() {
       if (error) {
         Alert.alert('Sign Out Error', error.message)
       }
-    } catch (error) {
+    } catch (_error) {
       Alert.alert('Error', 'An unexpected error occurred')
     }
   }
