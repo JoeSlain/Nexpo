@@ -1,5 +1,5 @@
 
-<img width="800" height="364" alt="image" src="https://github.com/user-attachments/assets/b7f3f7bc-0061-4415-94bc-48b2d557f180" />
+<img width="800" height="364" alt="NEXPO banner" src="https://github.com/user-attachments/assets/9ab52f3e-fe95-40ed-9a54-a7e5e80b555f" />
 
 A production-ready monorepo template for building cross-platform applications with Next.js and React Native (Expo)
 
