@@ -1,1 +1,2 @@
+yarn check-deps
 yarn lint-staged

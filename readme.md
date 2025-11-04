@@ -421,6 +421,44 @@ yarn lingui:compile
 
 This generates optimized `.js` files that are used by your application at runtime.
 
+## 🆕 Add new dependencies
+
+### Pure JS dependencies
+
+If you're installing a JavaScript-only dependency that will be used across platforms, install it in `packages/app`:
+
+```bash
+cd packages/app
+yarn add date-fns
+cd ../..
+yarn
+```
+
+### Native dependencies
+
+If you're installing a library with any native code, you must install it in `apps/expo`:
+
+```bash
+cd apps/expo
+yarn add react-native-reanimated
+cd ../..
+yarn
+```
+
+You can also install the native library inside of `packages/app` if you want to get autoimport for that package inside of the app folder. However, you need to be careful and install the exact same version in both packages. If the versions mismatch at all, you'll potentially get terrible bugs. This is a classic monorepo issue.
+
+To check for and fix version mismatches, use the `check-deps` command:
+
+```bash
+# Check for version mismatches
+yarn check-deps
+
+# Automatically fix version mismatches
+yarn check-deps:fix
+```
+
+Always run `yarn check-deps` after installing dependencies to ensure all packages are using compatible versions.
+
 ## 🛠 Development Commands
 
 ```bash
@@ -461,6 +499,10 @@ yarn supabase:stop       # Stop local Supabase
 yarn supabase:status     # Show connection details
 yarn supabase:reset      # Reset database and run migrations
 yarn supabase:logs       # View logs
+
+# Dependency management
+yarn check-deps          # Check for version mismatches across packages
+yarn check-deps:fix      # Automatically fix version mismatches
 ```
 
 ### Environment Variables in Scripts
