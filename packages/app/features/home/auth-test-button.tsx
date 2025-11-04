@@ -22,6 +22,7 @@ export function AuthTestButton() {
         `Authenticated!\n\nUser ID: ${result.user.id}\nEmail: ${result.user.email}\n\nMessage: ${result.message}`,
         [{ text: 'OK' }]
       )
+      setIsTesting(false)
     } catch (error: unknown) {
       const errorObj = error as { message?: string; data?: { code?: string } }
       const errorMessage = errorObj?.message || 'Unknown error occurred'
@@ -35,7 +36,6 @@ export function AuthTestButton() {
           : errorMessage,
         [{ text: 'OK' }]
       )
-    } finally {
       setIsTesting(false)
     }
   }

@@ -30,9 +30,9 @@ export function LoginTest() {
       } else {
         Alert.alert('Success', 'Signed in successfully!')
       }
+      setIsSigningIn(false)
     } catch (_error) {
       Alert.alert('Error', 'An unexpected error occurred')
-    } finally {
       setIsSigningIn(false)
     }
   }
@@ -147,7 +147,7 @@ export function LoginTest() {
         </View>
       </View>
 
-      <Button onPress={handleSignIn} backgroundColor="#2563eb" disabled={isSigningIn}>
+      <Button onPress={handleSignIn} style={{ backgroundColor: '#2563eb' }} disabled={isSigningIn}>
         <Text color="white">
           <Trans>{isSigningIn ? 'Signing In...' : 'Sign In'}</Trans>
         </Text>
