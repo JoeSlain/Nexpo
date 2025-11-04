@@ -4,8 +4,9 @@
     "slug": "storybook-native",
     "version": "1.0.0",
     "orientation": "portrait",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "system",
     "splash": {
+      "image": "./assets/logo.png",
       "backgroundColor": "#ffffff",
       "resizeMode": "contain"
     },

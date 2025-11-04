@@ -3,7 +3,7 @@
 import { Trans } from '@lingui/react/macro'
 import { useSupabaseAuth } from 'app/provider/supabase'
 import { useState } from 'react'
-import { Alert, TextInput, TouchableOpacity, View } from 'react-native'
+import { Alert, TextInput, View } from 'react-native'
 import { Button, Text } from 'tamagui'
 
 export function LoginTest() {
@@ -80,7 +80,7 @@ export function LoginTest() {
             </Text>
           )}
         </View>
-        <Button onPress={handleSignOut} backgroundColor="#dc2626">
+        <Button onPress={handleSignOut}>
           <Text color="white">
             <Trans>Sign Out</Trans>
           </Text>
@@ -94,9 +94,7 @@ export function LoginTest() {
       style={{
         padding: 16,
         gap: 16,
-        maxWidth: 400,
         width: '100%',
-        alignItems: 'center',
       }}
     >
       <Text style={{ fontSize: 18, fontWeight: 'bold', textAlign: 'center' }}>

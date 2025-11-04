@@ -5,6 +5,11 @@
     "version": "1.0.0",
     "scheme": "nexpo",
     "platforms": ["ios", "android"],
+    "splash": {
+      "image": "./assets/logo.png",
+      "backgroundColor": "#ffffff",
+      "resizeMode": "contain"
+    },
     "ios": {
       "bundleIdentifier": "com.nexpo.app"
     },

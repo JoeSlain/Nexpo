@@ -5,19 +5,22 @@ import { LocaleProvider } from './local/LocaleProvider'
 import { NavigationProvider } from './navigation'
 import { SupabaseAuthProvider } from './supabase'
 import TamaguiProvider from './tamagui'
+import { ThemeProvider } from './theme'
 import { TRPCProvider } from './trpc'
 
 export function Provider({ children, locale }: { children: React.ReactNode; locale?: string }) {
   return (
     <SupabaseAuthProvider>
       <TRPCProvider>
-        <LocaleProvider initialLocale={locale}>
-          <SafeArea>
-            <TamaguiProvider>
-              <NavigationProvider>{children}</NavigationProvider>
-            </TamaguiProvider>
-          </SafeArea>
-        </LocaleProvider>
+        <ThemeProvider>
+          <LocaleProvider initialLocale={locale}>
+            <SafeArea>
+              <TamaguiProvider>
+                <NavigationProvider>{children}</NavigationProvider>
+              </TamaguiProvider>
+            </SafeArea>
+          </LocaleProvider>
+        </ThemeProvider>
       </TRPCProvider>
     </SupabaseAuthProvider>
   )
