@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { createServerClient } from './supabase'
-import { publicProcedure, router } from './trpc'
+import { protectedProcedure, publicProcedure, router } from './trpc'
 
 // Example types - replace with your actual types
 type User = { id: string; name: string }
@@ -55,6 +55,22 @@ export const appRouter = router({
       const name = opts.input?.name ?? 'world'
       return { greeting: `Hello ${name}!` }
     }),
+
+  /**
+   * Protected procedure to test Supabase authentication
+   * Returns the authenticated user's information
+   */
+  testAuth: protectedProcedure.query(async ({ ctx }) => {
+    return {
+      authenticated: true,
+      user: {
+        id: ctx.user.id,
+        email: ctx.user.email,
+        metadata: ctx.user.user_metadata,
+      },
+      message: 'Authentication successful! You are authenticated.',
+    }
+  }),
 })
 
 // Export type router type signature,

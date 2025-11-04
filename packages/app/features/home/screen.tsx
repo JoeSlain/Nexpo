@@ -1,79 +1,60 @@
-'use client'
-
 import { Trans } from '@lingui/react/macro'
-import { useLocale } from 'app/provider/local/LocaleProvider'
-import { View } from 'react-native'
-import { TextLink } from 'solito/link'
-import { Text } from 'tamagui'
-import { ExampleButton } from 'ui'
-export function HomeScreen() {
-  const { locale } = useLocale()
+import logo from 'app/assets/logo.png'
+import { ScrollView, View } from 'react-native'
+import { Image, Text } from 'tamagui'
+import { AuthTestButton } from './auth-test-button'
+import { LoginTest } from './login-test'
 
+export function HomeScreen() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 16,
+    <ScrollView
+      contentContainerStyle={{
+        flexGrow: 1,
+        padding: 24,
         gap: 32,
+        alignItems: 'center',
+        maxWidth: 800,
+        width: '100%',
+        alignSelf: 'center',
       }}
     >
-      <ExampleButton>
-        <Text>
-          <Trans>This button from ui is red on web and blue on native</Trans>
-        </Text>
-      </ExampleButton>
-      <H1>
-        <Trans>Welcome to Nexpo.</Trans>
-      </H1>
-      <View style={{ maxWidth: 600, gap: 16 }}>
-        <Text style={{ textAlign: 'center' }}>
-          <Trans>
-            Here is a basic starter to show you how you can navigate from one screen to another.
-            This screen uses the same code on Next.js and React Native.
-          </Trans>
-        </Text>
-      </View>
-      <View style={{ maxWidth: 600, gap: 8, marginTop: 16 }}>
-        <Text style={{ textAlign: 'center', fontSize: 14, fontWeight: '600' }}>
-          <Trans>Locale Information:</Trans>
-        </Text>
-        <Text style={{ textAlign: 'center', fontSize: 12 }}>
-          <Trans>
-            Language: {locale.languageTag} ({locale.languageCode})
-          </Trans>
-          {locale.regionCode && ` - Region: ${locale.regionCode}`}
-        </Text>
-        {locale.currencyCode && (
-          <Text style={{ textAlign: 'center', fontSize: 12 }}>
-            <Trans>
-              Currency: {locale.currencySymbol} ({locale.currencyCode})
-            </Trans>
-          </Text>
+      {/* Logo and NEXPO Header */}
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 16,
+          marginTop: 20,
+          marginBottom: 8,
+        }}
+      >
+        {typeof logo === 'number' ? (
+          // React Native: logo is a number (require id)
+          <Image source={logo} width={128} height={128} objectFit="contain" alt="NEXPO Logo" />
+        ) : (
+          // Web (Next.js): logo is an object with src property
+          <Image src={logo.src} width={128} height={128} objectFit="contain" alt="NEXPO Logo" />
         )}
-        <Text style={{ textAlign: 'center', fontSize: 12 }}>
-          <Trans>
-            Measurement: {locale.measurementSystem} • Temperature: {locale.temperatureUnit}
-          </Trans>
-        </Text>
+        <Text style={{ fontSize: 48, fontWeight: '800', letterSpacing: 2 }}>NEXPO</Text>
       </View>
-      <View style={{ flexDirection: 'row', gap: 32, flexWrap: 'wrap', justifyContent: 'center' }}>
-        <TextLink
-          href="/users/test"
-          style={{
-            fontSize: 16,
-            fontWeight: 'bold',
-            color: 'blue',
-          }}
-        >
-          <Trans>Link</Trans>
-        </TextLink>
-      </View>
-    </View>
-  )
-}
 
-const H1 = ({ children }: { children: React.ReactNode }) => {
-  return <Text style={{ fontWeight: '800', fontSize: 24 }}>{children}</Text>
+      <Text style={{ fontSize: 16, textAlign: 'center', color: '#666', marginBottom: 16 }}>
+        <Trans>Test authentication and protected endpoints</Trans>
+      </Text>
+
+      {/* Auth Testing Section */}
+      <View
+        style={{
+          width: '100%',
+          gap: 24,
+          maxWidth: 500,
+          alignItems: 'center',
+        }}
+      >
+        <LoginTest />
+        <AuthTestButton />
+      </View>
+    </ScrollView>
+  )
 }

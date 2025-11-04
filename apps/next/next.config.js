@@ -33,6 +33,18 @@ const withWebpack = {
       ...(config.resolve?.extensions ?? []),
     ]
 
+    // Handle image imports from shared packages
+    if (!config.module) {
+      config.module = {}
+    }
+    if (!config.module.rules) {
+      config.module.rules = []
+    }
+    config.module.rules.push({
+      test: /\.(png|jpe?g|gif|svg|webp)$/i,
+      type: 'asset/resource',
+    })
+
     // Exclude Node.js built-in modules from client bundle
     if (!isServer) {
       config.resolve.fallback = {

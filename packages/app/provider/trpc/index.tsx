@@ -5,6 +5,7 @@ import { httpBatchLink } from '@trpc/client'
 import { createTRPCReact } from '@trpc/react-query'
 import type { AppRouter } from 'api'
 import { useState } from 'react'
+import { useSupabaseAuth } from '../supabase'
 
 export const trpc = createTRPCReact<AppRouter>()
 
@@ -72,11 +73,36 @@ export function TRPCProvider({ children }: { children: React.ReactNode }) {
   //       suspend because React will throw away the client on the initial
   //       render if it suspends and there is no boundary
   const queryClient = getQueryClient()
+  const { session, supabase } = useSupabaseAuth()
+
   const [trpcClient] = useState(() =>
     trpc.createClient({
       links: [
         httpBatchLink({
           url: getUrl(),
+          headers: async () => {
+            const headers: Record<string, string> = {}
+
+            // Get current session - try from context first, then fetch if needed
+            let currentSession = session
+            if (!currentSession) {
+              try {
+                const {
+                  data: { session: fetchedSession },
+                } = await supabase.auth.getSession()
+                currentSession = fetchedSession
+              } catch (error) {
+                // Session fetch failed, continue without auth
+                console.error('Failed to get session for tRPC request:', error)
+              }
+            }
+
+            if (currentSession?.access_token) {
+              headers.authorization = `Bearer ${currentSession.access_token}`
+            }
+
+            return headers
+          },
         }),
       ],
     })

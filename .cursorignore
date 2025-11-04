@@ -1,1 +1,3 @@
 !.env.example
+!apps/expo/.env.development
+!apps/next/.env.development
