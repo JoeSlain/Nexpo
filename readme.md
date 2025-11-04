@@ -29,6 +29,7 @@ Based on [Fernando Rojo's work](https://github.com/nandorojo/solito/tree/master/
 - **Supabase** - Backend as a service (database, auth, storage)
 - **Lingui** - Internationalization (i18n)
 - **Tamagui** - Universal design system
+- **Storybook** - Component development and testing (web & native)
 - **Sentry** - Error tracking and monitoring
 - **Turborepo** - Monorepo build system
 - **Biome** - Fast formatter and linter
@@ -40,7 +41,9 @@ Based on [Fernando Rojo's work](https://github.com/nandorojo/solito/tree/master/
 .
 ├── apps/
 │   ├── expo/          # React Native app (Expo)
-│   └── next/           # Next.js web app
+│   ├── next/           # Next.js web app
+│   ├── storybook-native/  # React Native Storybook
+│   └── storybook-web/     # Web Storybook
 ├── packages/
 │   ├── app/            # Shared app code (features, providers, navigation)
 │   └── api/            # tRPC router and Supabase server client
@@ -421,6 +424,76 @@ yarn lingui:compile
 
 This generates optimized `.js` files that are used by your application at runtime.
 
+## 📚 Storybook
+
+This template includes Storybook for both web and React Native, allowing you to develop and test UI components in isolation.
+
+### Web Storybook
+
+Start the web Storybook to view and test components in a browser environment:
+
+```bash
+yarn storybook:web
+```
+
+This will start Storybook on http://localhost:6006
+
+### React Native Storybook
+
+Start the React Native Storybook to view and test components in a mobile environment:
+
+```bash
+yarn storybook:native
+```
+
+This will start Storybook on http://localhost:7007 and open the Expo app with Storybook UI integrated.
+
+You can also run it directly from the `apps/storybook-native` directory:
+
+```bash
+cd apps/storybook-native
+yarn storybook
+# or run the Expo app directly
+yarn ios
+# or
+yarn android
+```
+
+### Story Locations
+
+Stories are automatically loaded from:
+- `apps/storybook-web/src/**/*.stories.tsx` (web stories)
+- `apps/storybook-native/src/**/*.stories.tsx` (native stories)
+- `packages/ui/src/**/*.stories.tsx` (shared UI package stories)
+
+### Features
+
+- **Tamagui Integration** - Both Storybook apps use the shared Tamagui config from `packages/app/tamagui.config.ts`
+- **Monorepo Support** - Stories from shared packages are automatically loaded
+- **TypeScript Support** - Full TypeScript support for stories
+- **Addons** - Web Storybook includes accessibility, docs, and testing addons
+
+### Writing Stories
+
+When writing stories that should work in both web and React Native:
+
+```tsx
+import type { Meta, StoryObj } from '@storybook/react' // web
+// or '@storybook/react-native' for native-only stories
+
+import { YourComponent } from './YourComponent'
+
+const meta = {
+  title: 'UI/YourComponent',
+  component: YourComponent,
+  // ... rest of config
+} satisfies Meta<typeof YourComponent>
+
+export default meta
+```
+
+For platform-specific stories, use platform-specific story files or conditional imports.
+
 ## 🆕 Add new dependencies
 
 ### Pure JS dependencies
@@ -470,6 +543,10 @@ yarn web
 
 # Start Expo dev server (loads .env automatically)
 yarn native
+
+# Start Storybook
+yarn storybook:web      # Web Storybook (port 6006)
+yarn storybook:native  # React Native Storybook (port 7007)
 
 # Run linter
 yarn lint
