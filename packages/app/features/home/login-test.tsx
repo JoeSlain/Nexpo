@@ -2,15 +2,23 @@
 
 import { Trans } from '@lingui/react/macro'
 import { useAuth } from 'app/provider/supabase'
+import { useTheme } from 'app/provider/theme'
 import { useState } from 'react'
 import { Alert, TextInput, View } from 'react-native'
 import { Button, Text } from 'tamagui'
 
 export function LoginTest() {
   const { user, loading, supabase } = useAuth()
+  const { resolvedTheme } = useTheme()
   const [email, setEmail] = useState('test@test.com')
   const [password, setPassword] = useState('password')
   const [isSigningIn, setIsSigningIn] = useState(false)
+
+  const isDark = resolvedTheme === 'dark'
+  const inputTextColor = isDark ? '#ffffff' : '#000000'
+  const inputBorderColor = isDark ? '#666' : '#ccc'
+  const placeholderColor = isDark ? '#999' : '#999'
+  const secondaryTextColor = isDark ? '#aaa' : '#666'
 
   const handleSignIn = async () => {
     if (!email || !password) {
@@ -65,17 +73,25 @@ export function LoginTest() {
           maxWidth: 400,
           width: '100%',
           alignItems: 'center',
+          alignSelf: 'center',
         }}
       >
         <View style={{ gap: 8, alignItems: 'center', width: '100%' }}>
           <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
             <Trans>Signed In</Trans>
           </Text>
-          <Text style={{ fontSize: 14, textAlign: 'center' }}>
+          <Text style={{ fontSize: 14, textAlign: 'center', width: '100%' }}>
             <Trans>Email: {user.email}</Trans>
           </Text>
           {user.id && (
-            <Text style={{ fontSize: 12, color: '#666', textAlign: 'center' }}>
+            <Text
+              style={{
+                fontSize: 12,
+                color: secondaryTextColor,
+                textAlign: 'center',
+                width: '100%',
+              }}
+            >
               <Trans>User ID: {user.id.slice(0, 8)}...</Trans>
             </Text>
           )}
@@ -109,12 +125,14 @@ export function LoginTest() {
           <TextInput
             style={{
               borderWidth: 1,
-              borderColor: '#ccc',
+              borderColor: inputBorderColor,
               borderRadius: 8,
               padding: 12,
               fontSize: 16,
+              color: inputTextColor,
             }}
             placeholder="email@example.com"
+            placeholderTextColor={placeholderColor}
             value={email}
             onChangeText={setEmail}
             autoCapitalize="none"
@@ -131,12 +149,14 @@ export function LoginTest() {
           <TextInput
             style={{
               borderWidth: 1,
-              borderColor: '#ccc',
+              borderColor: inputBorderColor,
               borderRadius: 8,
               padding: 12,
               fontSize: 16,
+              color: inputTextColor,
             }}
             placeholder="password"
+            placeholderTextColor={placeholderColor}
             value={password}
             onChangeText={setPassword}
             secureTextEntry
