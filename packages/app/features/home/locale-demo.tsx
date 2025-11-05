@@ -3,7 +3,7 @@
 import { Trans } from '@lingui/react/macro'
 import { useLocale } from 'app/provider/local/LocaleProvider'
 import { View } from 'react-native'
-import { Button, Card, Text, XStack, YStack } from 'tamagui'
+import { Card, Text, XStack, YStack } from 'tamagui'
 
 const SUPPORTED_LOCALES = [
   { code: 'en', name: 'English', flag: '🇬🇧' },

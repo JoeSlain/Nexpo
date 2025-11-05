@@ -43,12 +43,26 @@ function getSystemTheme(): Theme {
 
 // Hook to listen to system theme changes (web only)
 function useSystemTheme() {
-  const [systemTheme, setSystemTheme] = useState<Theme>(getSystemTheme)
+  // Always start with 'light' to match server render and avoid hydration mismatch
+  // Will update to actual system preference after hydration
+  const [systemTheme, setSystemTheme] = useState<Theme>(() => {
+    // On server, always return 'light'
+    if (typeof window === 'undefined') {
+      return 'light'
+    }
+    // On client first render, also return 'light' to match server
+    // Will update in useEffect after hydration
+    return 'light'
+  })
 
   useEffect(() => {
     if (typeof window === 'undefined' || typeof window.matchMedia === 'undefined') {
       return
     }
+
+    // Update to actual system preference after hydration
+    const actualSystemTheme = getSystemTheme()
+    setSystemTheme(actualSystemTheme)
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     const handleChange = (e: MediaQueryListEvent) => {
@@ -72,20 +86,24 @@ function useSystemTheme() {
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const systemTheme = useSystemTheme()
 
-  // Initialize with system theme for SSR consistency
-  // Then update from localStorage after hydration
+  // Initialize with 'system' for SSR consistency
+  // This ensures both server and client start with the same value
   const [theme, setThemeState] = useState<Theme | 'system'>(() => {
-    // For SSR, always start with 'system' to avoid hydration mismatch
-    if (typeof window === 'undefined') {
-      return 'system'
-    }
-    // On client, try to load from localStorage
-    const stored = localStorage.getItem('theme') as Theme | 'system' | null
-    if (stored && (stored === 'light' || stored === 'dark' || stored === 'system')) {
-      return stored
-    }
+    // Always start with 'system' on first render (both server and client)
+    // Will update from localStorage after hydration
     return 'system'
   })
+
+  // Update theme from localStorage after hydration
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+    const stored = localStorage.getItem('theme') as Theme | 'system' | null
+    if (stored && (stored === 'light' || stored === 'dark' || stored === 'system')) {
+      setThemeState(stored)
+    }
+  }, [])
 
   const setTheme = (newTheme: Theme | 'system') => {
     setThemeState(newTheme)
@@ -94,6 +112,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  // resolvedTheme will be 'light' initially (matching server), then update after hydration
   const resolvedTheme: Theme = theme === 'system' ? systemTheme : theme
 
   return (

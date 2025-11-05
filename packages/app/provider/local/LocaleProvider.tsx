@@ -1,5 +1,8 @@
+'use client'
+
 import { setupI18n } from '@lingui/core'
 import { I18nProvider, type TransRenderProps } from '@lingui/react'
+import { useParams, usePathname, useRouter } from 'next/navigation'
 import type { FC, ReactNode } from 'react'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { DEFAULT_LOCALE, isSupportedLocale } from '../../config/locales.js'
@@ -96,6 +99,11 @@ export const LocaleProvider: FC<{
   children: ReactNode
   initialLocale?: string // Optional locale from route params (e.g., 'en', 'fr')
 }> = ({ children, initialLocale }) => {
+  // Get Next.js navigation hooks for web
+  const router = useRouter()
+  const pathname = usePathname()
+  const params = useParams()
+
   // Use a consistent default locale for SSR/hydration to avoid mismatches
   const defaultLocale: LocaleInfo = {
     languageTag: 'en',
@@ -191,12 +199,29 @@ export const LocaleProvider: FC<{
 
   // Wrapper for `setLocale`
   const setLocale = (languageTag: string) => {
+    const languageCode = languageTag.split('-')[0] || null
     const updatedLocale: LocaleInfo = {
       ...locale,
       languageTag,
-      languageCode: languageTag.split('-')[0] || null,
+      languageCode,
     }
     setLocaleState(updatedLocale)
+
+    // On web (Next.js), update the URL to match the new locale
+    if (languageCode) {
+      const currentLang = (params?.lang as string) || initialLocale?.split('-')[0]
+
+      if (currentLang && isSupportedLocale(currentLang)) {
+        // Replace the language segment in the pathname
+        // pathname should be like "/fr" or "/fr/users" - replace "/fr" with "/en"
+        const newPath = pathname.replace(`/${currentLang}`, `/${languageCode}`)
+        router.push(newPath)
+      } else {
+        // No language in params yet, prepend the new language
+        const newPath = pathname === '/' ? `/${languageCode}` : `/${languageCode}${pathname}`
+        router.push(newPath)
+      }
+    }
 
     // The i18n instance will be recreated via useMemo when linguiLocale changes
     // which happens when locale.languageCode changes

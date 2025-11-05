@@ -87,10 +87,12 @@ export function AuthTestButton() {
             paddingHorizontal: 8,
           }}
         >
-          <Trans>
-            Click to test the protected tRPC procedure. This will work whether you're authenticated
-            or not, but will show different results.
-          </Trans>
+          <Text>
+            <Trans>
+              Click to test the protected tRPC procedure. This will work whether you're
+              authenticated or not, but will show different results.
+            </Trans>
+          </Text>
         </Text>
       </View>
     </View>
