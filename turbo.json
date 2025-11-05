@@ -21,6 +21,18 @@
     "format:check": {
       "dependsOn": ["^format:check"],
       "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "test:watch": {
+      "dependsOn": ["^build"],
+      "cache": false
+    },
+    "test:coverage": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"]
     }
   }
 }

@@ -2,6 +2,7 @@
   "name": "api",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "dependencies": {
@@ -11,12 +12,19 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "typescript": "~5.9.2"
+    "@vitest/coverage-v8": "^4.0.6",
+    "@vitest/ui": "^2.1.8",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.6"
   },
   "scripts": {
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
-    "format:check": "biome format ."
+    "format:check": "biome format .",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
   }
 }

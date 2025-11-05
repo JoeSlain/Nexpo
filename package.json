@@ -39,7 +39,13 @@
     "supabase:status": "supabase status",
     "supabase:logs": "supabase logs",
     "supabase:migration:new": "supabase migration new",
-    "supabase:migration:up": "supabase migration up"
+    "supabase:migration:up": "supabase migration up",
+    "supabase:test": "supabase test db",
+    "test": "turbo test",
+    "test:db": "supabase test db",
+    "test:api": "turbo test --filter=api",
+    "test:watch": "turbo test:watch",
+    "test:coverage": "turbo test:coverage"
   },
   "packageManager": "yarn@4.7.0",
   "lint-staged": {

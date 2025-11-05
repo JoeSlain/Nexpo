@@ -38,7 +38,7 @@ export const appRouter = router({
     const supabase = createServerClient()
     const { data, error } = await supabase
       .from('users')
-      .insert({ name: input })
+      .insert({ name: input.name })
       .select('id, name')
       .single()
 
@@ -76,9 +76,6 @@ export const appRouter = router({
 // Export type router type signature,
 // NOT the router itself.
 export type AppRouter = typeof appRouter
-
-// Export the router for server-side usage
-export { appRouter }
 
 export type { SupabaseClient } from './supabase'
 // Export Supabase utilities
