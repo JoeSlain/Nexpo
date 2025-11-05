@@ -96,7 +96,7 @@ export function LoginTest() {
             </Text>
           )}
         </View>
-        <Button onPress={handleSignOut}>
+        <Button onPress={handleSignOut} testID="sign-out-button">
           <Text color="white">
             <Trans>Sign Out</Trans>
           </Text>
@@ -139,6 +139,7 @@ export function LoginTest() {
             keyboardType="email-address"
             autoComplete="email"
             editable={!isSigningIn}
+            testID="email-input"
           />
         </View>
 
@@ -163,11 +164,17 @@ export function LoginTest() {
             autoCapitalize="none"
             autoComplete="password"
             editable={!isSigningIn}
+            testID="password-input"
           />
         </View>
       </View>
 
-      <Button onPress={handleSignIn} style={{ backgroundColor: '#2563eb' }} disabled={isSigningIn}>
+      <Button
+        onPress={handleSignIn}
+        style={{ backgroundColor: '#2563eb' }}
+        disabled={isSigningIn}
+        testID="sign-in-button"
+      >
         <Text color="white">
           <Trans>{isSigningIn ? 'Signing In...' : 'Sign In'}</Trans>
         </Text>

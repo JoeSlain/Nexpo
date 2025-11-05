@@ -1,0 +1,73 @@
+appId: com.nexpo.app
+env:
+    TEST_USER_EMAIL: test@test.com
+    TEST_USER_PASSWORD: password
+---
+# Test: Full User Flow
+# Comprehensive integration test combining multiple features
+# Tests: Navigation → Authentication → Theme Toggle → Locale Switch
+
+- launchApp
+
+# 1. Verify home screen loads
+- assertVisible: "NEXPO"
+- assertVisible: "Cross-platform monorepo template"
+
+# 2. Test theme toggle
+- tapOn:
+    id: "theme-toggle-button"
+- waitForAnimationToEnd
+- assertVisible: "NEXPO"
+
+# 3. Test authentication sign in
+- scrollUntilVisible:
+    element: "Supabase Auth Test"
+    direction: DOWN
+- tapOn:
+    id: "sign-in-button"
+- waitForAnimationToEnd
+# Tap OK on the success alert
+- assertVisible: "Success"
+- assertVisible: "Signed in successfully!"
+- tapOn: "OK"
+- waitForAnimationToEnd
+- assertVisible: "Signed In"
+- assertVisible: "Email: ${TEST_USER_EMAIL}"
+
+# 4. Test protected endpoint while authenticated
+- scrollUntilVisible:
+    element: "Test Protected tRPC Procedure"
+    direction: DOWN
+- assertVisible: "Current Status: Authenticated"
+- tapOn:
+    id: "auth-test-button"
+- waitForAnimationToEnd
+- assertVisible: "Success"
+- tapOn: "OK"
+
+# 5. Test locale switching
+- scrollUntilVisible:
+    element: "Example Translated Text:"
+    direction: DOWN
+- tapOn:
+    id: "locale-cs-card"
+- waitForAnimationToEnd
+- assertVisible: "🇨🇿"
+- tapOn:
+    id: "locale-fr-card"
+- waitForAnimationToEnd
+- assertVisible: "🇫🇷"
+- tapOn:
+    id: "locale-en-card"
+- waitForAnimationToEnd
+- assertVisible: "🇬🇧"
+
+# 6. Test sign out
+- scrollUntilVisible:
+    element: "Sign Out"
+    direction: UP
+- tapOn:
+    id: "sign-out-button"
+- waitForAnimationToEnd
+- assertVisible: "Sign In"
+

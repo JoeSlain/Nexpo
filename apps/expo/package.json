@@ -39,8 +39,8 @@
     "start": "NODE_ENV=development node scripts/load-env.js expo start",
     "android": "NODE_ENV=development node scripts/load-env.js expo run:android",
     "ios": "NODE_ENV=development node scripts/load-env.js expo run:ios",
-    "build:android": "NODE_ENV=production node scripts/load-env.js expo run:android --release-channel production",
-    "build:ios": "NODE_ENV=production node scripts/load-env.js expo run:ios --release-channel production",
+    "build:android": "NODE_ENV=production node scripts/load-env.js expo run:android",
+    "build:ios": "NODE_ENV=production node scripts/load-env.js expo run:ios",
     "eas:build:android": "eas build --platform android",
     "eas:build:ios": "eas build --platform ios",
     "eas:build:all": "eas build --platform all",
@@ -54,7 +54,9 @@
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
-    "format:check": "biome format ."
+    "format:check": "biome format .",
+    "test:e2e": "maestro test .maestro/navigation .maestro/auth .maestro/theme .maestro/locale .maestro/integration",
+    "test:e2e:device:list": "xcrun simctl list devices && adb devices"
   },
   "main": "index.js",
   "version": "1.0.0",

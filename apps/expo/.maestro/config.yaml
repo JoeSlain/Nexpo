@@ -1,0 +1,7 @@
+# Maestro Configuration
+# This file contains global configuration for Maestro e2e tests
+# Individual test files specify their own appId
+
+tags:
+  - e2e
+  - expo

@@ -63,6 +63,7 @@ export function AuthTestButton() {
         <Button
           onPress={handleTestAuth}
           disabled={isTesting}
+          testID="auth-test-button"
           style={{
             minWidth: 200,
             backgroundColor: user ? '#059669' : '#dc2626',

@@ -1,0 +1,19 @@
+appId: com.nexpo.app
+---
+# Test: Theme Toggle
+# Tests the theme toggle functionality (dark/light mode)
+
+- launchApp
+# Locate and tap the theme toggle button (circular button with sun/moon icon)
+- tapOn:
+    id: "theme-toggle-button"
+# Wait for theme change animation
+- waitForAnimationToEnd
+# Verify theme toggle button is still visible (icon changes)
+- assertVisible: "NEXPO"
+# Toggle back to original state
+- tapOn:
+    id: "theme-toggle-button"
+- waitForAnimationToEnd
+- assertVisible: "NEXPO"
+

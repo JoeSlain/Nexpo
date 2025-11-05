@@ -1,0 +1,36 @@
+appId: com.nexpo.app
+---
+# Test: Locale Switching
+# Tests the internationalization (i18n) locale switching functionality
+
+- launchApp
+- scrollUntilVisible:
+    element: "Internationalization (i18n)"
+    direction: DOWN
+# Verify current locale display
+- scrollUntilVisible:
+    element: "Language Tag:"
+    direction: DOWN
+- assertVisible: "Language:"
+- assertVisible: "Current Locale"
+# Test switching to Czech (cs)
+- tapOn:
+    id: "locale-cs-card"
+- waitForAnimationToEnd
+# Verify locale changed (Czech flag visible)
+- assertVisible: "🇨🇿"
+# Test switching to French (fr)
+- tapOn:
+    id: "locale-fr-card"
+- waitForAnimationToEnd
+# Verify locale changed (French flag visible)
+- assertVisible: "🇫🇷"
+# Test switching back to English (en)
+- tapOn:
+    id: "locale-en-card"
+- waitForAnimationToEnd
+# Verify locale changed back (English flag visible)
+- assertVisible: "🇬🇧"
+# Verify translated text example is visible
+- assertVisible: "Example Translated Text:"
+

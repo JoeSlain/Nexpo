@@ -1,0 +1,15 @@
+appId: com.nexpo.app
+---
+# Test: Home Screen Navigation
+# Verifies that the home screen loads correctly and displays key elements
+
+- launchApp
+- assertVisible: "NEXPO"
+- assertVisible: "Cross-platform monorepo template"
+- assertVisible: "What's Included"
+- scrollUntilVisible:
+    element: "Demo Features"
+    direction: DOWN
+- scrollUntilVisible:
+    element: "Internationalization (i18n)"
+    direction: DOWN

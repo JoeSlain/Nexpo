@@ -104,6 +104,7 @@ export function LocaleDemo() {
                 pressStyle={isActive ? { backgroundColor: '$blue10' } : undefined}
                 onPress={() => setLocale(loc.code)}
                 backgroundColor={isActive ? '$blue10' : undefined}
+                testID={`locale-${loc.code}-card`}
                 style={{
                   width: 90,
                   minHeight: 90,

@@ -1,0 +1,44 @@
+appId: com.nexpo.app
+---
+# Test: Protected tRPC Endpoint
+# Tests the protected endpoint button functionality
+# This test verifies both authenticated and unauthenticated states
+
+- launchApp
+- scrollUntilVisible:
+    element: "Test Protected tRPC Procedure"
+    direction: DOWN
+# Test unauthenticated state first
+- assertVisible: "Current Status: Not Authenticated"
+- tapOn: "Test Auth (Not Authenticated)"
+- waitForAnimationToEnd
+# Verify alert shows unauthenticated message
+- assertVisible: "Not Authenticated"
+- tapOn: "OK"
+# Now sign in and test authenticated state
+- scrollUntilVisible:
+    element: "Supabase Auth Test"
+    direction: UP
+
+- tapOn:
+    id: "sign-in-button"
+- waitForAnimationToEnd
+# Tap OK on the success alert
+- assertVisible: "Success"
+- assertVisible: "Signed in successfully!"
+- tapOn: "OK"
+- waitForAnimationToEnd
+# Scroll back to protected endpoint test
+- scrollUntilVisible:
+    element: "Test Protected tRPC Procedure"
+    direction: DOWN
+- assertVisible: "Current Status: Authenticated"
+- tapOn:
+    id: "auth-test-button"
+- waitForAnimationToEnd
+# Verify success alert
+- assertVisible: "Success"
+# Note: The message contains "Authenticated!" but also includes user details
+# Just verify the alert exists and tap OK
+- tapOn: "OK"
+

@@ -42,7 +42,7 @@ export function HomeScreen() {
                 justifyContent: 'flex-end',
               }}
             >
-              <Button onPress={toggleTheme} size="$3" circular>
+              <Button onPress={toggleTheme} size="$3" circular testID="theme-toggle-button">
                 <Text color="white" fontWeight="600">
                   {resolvedTheme === 'dark' ? '☀️' : '🌙'}
                 </Text>
