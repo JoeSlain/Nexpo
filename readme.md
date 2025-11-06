@@ -886,3 +886,56 @@ rm -rf apps/next/.next
 rm -rf node_modules apps/*/node_modules packages/*/node_modules
 yarn install
 ```
+
+## 🗺 Roadmap
+
+Future enhancements planned for this template:
+
+### CI/CD Integration
+
+- **GitHub Actions workflows** for automated:
+  - Linting and code quality checks
+  - Running test suites (database, API, E2E)
+  - Automated deployments to Vercel and EAS
+  - Dependency security scanning
+  - Build verification across all packages
+
+### Analytics/Telemetry
+
+- Optional integration with analytics platforms:
+  - **PostHog** - Product analytics and feature flags
+  - **Amplitude** - User behavior analytics
+  - Configurable opt-in/opt-out for privacy compliance
+
+### Docs Automation
+
+- Developer documentation integration:
+  - **Docusaurus** or **Mintlify** integration
+  - Automated API documentation from tRPC routes
+  - Component documentation from Storybook
+  - Automated deployment of docs site
+
+### Performance Profiling
+
+- Built-in performance monitoring and profiling:
+  - Web Vitals tracking
+  - React Native performance profiling
+  - Bundle size analysis
+  - Performance regression detection
+
+### Package Version Sync Tooling
+
+- Monorepo version management:
+  - **Changesets** integration for versioning
+  - Automated changelog generation
+  - Coordinated package releases
+  - Dependency version synchronization
+
+### Template Customization CLI
+
+- Interactive CLI tool to customize the template:
+  - **Linter/Formatter options**: Choose between Biome, ESLint/Prettier, or other tools
+  - **Error tracking**: Optionally include or exclude Sentry
+  - **Authentication**: Choose between Supabase Auth, Better Auth, or other providers
+  - **Database**: Select Supabase, regular PostgreSQL, or other database solutions
+  - **Additional features**: Selectively add Storybook, testing frameworks, etc.
