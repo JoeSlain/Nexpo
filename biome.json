@@ -14,7 +14,8 @@
       "!locales",
       "!**/__mocks__",
       "!**/__tests__",
-      "!apps/next/next-env.d.ts"
+      "!apps/next/next-env.d.ts",
+      "!**/coverage"
     ]
   },
   "formatter": {

@@ -87,3 +87,6 @@ supabase/.temp/
 # Environment files with local overrides (may contain secrets)
 apps/next/.env.local
 apps/expo/.env.local
+
+# Coverage
+**/coverage
