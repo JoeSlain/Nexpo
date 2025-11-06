@@ -30,6 +30,7 @@ Based on [Fernando Rojo's work](https://github.com/nandorojo/solito/tree/master/
 - **Lingui** - Internationalization (i18n)
 - **Tamagui** - Universal design system
 - **Storybook** - Component development and testing (web & native)
+- **Testing** - End-to-end (Playwright for web, Maestro for mobile), database (pgTAP), and API/integration (Vitest) tests
 - **Sentry** - Error tracking and monitoring
 - **Turborepo** - Monorepo build system
 - **Biome** - Fast formatter and linter
@@ -494,6 +495,219 @@ export default meta
 
 For platform-specific stories, use platform-specific story files or conditional imports.
 
+## 🧪 Testing
+
+This template includes comprehensive testing infrastructure covering end-to-end tests (web and mobile), database tests, and API/integration tests.
+
+### Test Types
+
+#### End-to-End (E2E) Tests - Web (Playwright)
+
+Playwright-based end-to-end tests for the Next.js web application.
+
+**Location:** `apps/next/e2e/`
+
+**Coverage:**
+- Home page across all locales
+- User pages
+- API routes
+- Navigation and routing
+- Accessibility features
+
+**Run tests:**
+```bash
+# From root
+yarn test:e2e
+
+# From apps/next directory
+cd apps/next
+yarn test:e2e
+
+# Interactive UI mode
+yarn test:e2e:ui
+
+# Headed mode (see browser)
+yarn test:e2e:headed
+```
+
+**Documentation:** See [apps/next/e2e/README.md](./apps/next/e2e/README.md) for detailed E2E testing guide.
+
+#### End-to-End (E2E) Tests - Mobile (Maestro)
+
+Maestro-based end-to-end tests for the Expo/React Native mobile application.
+
+**Location:** `apps/expo/.maestro/`
+
+**Coverage:**
+- Navigation (home screen, user detail screen)
+- Authentication (sign in, sign out, protected endpoints)
+- Theme (dark/light mode toggle)
+- Locale (internationalization and locale switching)
+- Integration (full user flows)
+
+**Prerequisites:**
+1. **Install Maestro CLI**:
+   ```bash
+   # macOS
+   brew tap mobile-dev-inc/tap
+   brew install maestro
+   ```
+   See [Maestro installation guide](https://maestro.mobile.dev/cli/installation) for other platforms.
+
+2. **Build and install the app** (development build requires Metro bundler):
+   ```bash
+   cd apps/expo
+   # Terminal 1: Start Metro bundler
+   yarn start
+   
+   # Terminal 2: Build and install app
+   yarn ios  # or yarn android
+   ```
+
+**Run tests:**
+```bash
+# From root directory
+yarn test:e2e:mobile
+
+# From apps/expo directory
+cd apps/expo
+yarn test:e2e
+
+# List available devices
+yarn test:e2e:device:list
+
+# Run a specific test file
+maestro test .maestro/navigation/home-screen.yaml
+```
+
+**Important:** For development builds, ensure Metro bundler is running before executing Maestro tests.
+Also make sure to run your web and supabase instance to avoir network errors.
+
+**Documentation:** See [apps/expo/.maestro/README.md](./apps/expo/.maestro/README.md) for detailed Maestro testing guide.
+
+#### Database Tests
+
+pgTAP-based tests for database schema, security, and functionality.
+
+**Location:** `supabase/tests/database/`
+
+**Coverage:**
+- Schema structure (tables, columns, types, constraints)
+- Row Level Security (RLS) policies
+- Database triggers
+- Database functions
+
+**Run tests:**
+```bash
+# From root
+yarn test:db
+
+# Or directly
+supabase test db
+```
+
+**Prerequisites:**
+- Supabase CLI must be installed
+- Local Supabase must be running (`yarn supabase:start`)
+
+**Documentation:** See [supabase/tests/README.md](./supabase/tests/README.md) for detailed database testing guide.
+
+#### API/Integration Tests
+
+Vitest-based tests for tRPC procedures and API endpoints.
+
+**Location:** `packages/api/src/__tests__/`
+
+**Coverage:**
+- tRPC procedures (hello, userList, userById, userCreate, testAuth)
+- Authentication flows
+- Error handling
+- API integration
+
+**Run tests:**
+```bash
+# From root
+yarn test:api
+
+# From packages/api directory
+cd packages/api
+yarn test
+
+# Watch mode
+yarn test:watch
+
+# Interactive UI
+yarn test:ui
+
+# Coverage report
+yarn test:coverage
+```
+
+**Documentation:** See [packages/api/README_TESTING.md](./packages/api/README_TESTING.md) for detailed API testing guide.
+
+### Running All Tests
+
+Run all tests (database, API, and E2E) from the root:
+
+```bash
+# Run all tests (database, API, and web E2E)
+yarn test
+
+# Watch mode
+yarn test:watch
+
+# Coverage report
+yarn test:coverage
+
+# Mobile E2E tests (from apps/expo directory)
+cd apps/expo
+yarn test:e2e
+```
+
+### Test Configuration
+
+- **Web E2E Tests**: Configured in `apps/next/playwright.config.ts`
+- **Mobile E2E Tests**: Configured in `apps/expo/.maestro/config.yaml`
+- **Database Tests**: Uses pgTAP via Supabase CLI
+- **API Tests**: Configured in `packages/api/vitest.config.ts`
+
+### Quick Start
+
+1. **Install dependencies:**
+   ```bash
+   yarn install
+   ```
+
+2. **Start Supabase (for database and API tests):**
+   ```bash
+   yarn supabase:start
+   ```
+
+3. **Run tests:**
+   ```bash
+   # Database tests
+   yarn test:db
+
+   # API tests
+   yarn test:api
+
+   # Web E2E tests (requires Next.js dev server)
+   yarn web  # In separate terminal
+   yarn test:e2e:web  # In another terminal
+
+   # Mobile E2E tests (requires Metro bundler and app installed)
+   cd apps/expo
+   yarn start  # Terminal 1: Start Metro
+   yarn ios  # Terminal 2: Build and install app
+   yarn test:e2e  # Terminal 3: Run Maestro tests
+   ```
+
+### Additional Resources
+
+- [Testing Summary](./TESTING_SUMMARY.md) - Overview of all testing setup
+- [Testing Quick Start](./TESTING_QUICKSTART.md) - Quick start guide
+- [Testing Plan](./TESTING_PLAN.md) - Comprehensive testing strategy
+
 ## 🆕 Add new dependencies
 
 ### Pure JS dependencies
@@ -547,6 +761,16 @@ yarn native
 # Start Storybook
 yarn storybook:web      # Web Storybook (port 6006)
 yarn storybook:native  # React Native Storybook (port 7007)
+
+# Testing
+yarn test              # Run all tests (database, API, web E2E)
+yarn test:db           # Run database tests (pgTAP)
+yarn test:api          # Run API/integration tests (Vitest)
+yarn test:e2e:web      # Run web end-to-end tests (Playwright)
+yarn test:watch        # Watch mode for all tests
+yarn test:coverage     # Generate coverage report
+
+yarn test:e2e:mobile    # Run mobile end-to-end tests (Maestro)
 
 # Run linter
 yarn lint

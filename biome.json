@@ -7,7 +7,15 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["apps/**", "packages/**", "*.json", "!locales", "!**/__mocks__", "!**/__tests__"]
+    "includes": [
+      "apps/**",
+      "packages/**",
+      "*.json",
+      "!locales",
+      "!**/__mocks__",
+      "!**/__tests__",
+      "!apps/next/next-env.d.ts"
+    ]
   },
   "formatter": {
     "enabled": true,

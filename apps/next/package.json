@@ -9,7 +9,13 @@
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
-    "format:check": "biome format ."
+    "format:check": "biome format .",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:headed:slow": "playwright test --headed --project=chromium --workers=1",
+    "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.2",
@@ -33,9 +39,11 @@
   },
   "devDependencies": {
     "@lingui/swc-plugin": "^5.5.2",
+    "@playwright/test": "^1.56.1",
     "@types/negotiator": "^0.6.4",
     "@types/node": "^20.0.0",
     "babel-plugin-macros": "^3.1.0",
+    "playwright": "^1.56.1",
     "server-only": "^0.0.1"
   }
 }

@@ -45,7 +45,9 @@
     "test:db": "supabase test db",
     "test:api": "turbo test --filter=api",
     "test:watch": "turbo test:watch",
-    "test:coverage": "turbo test:coverage"
+    "test:coverage": "turbo test:coverage",
+    "test:e2e:web": "turbo test:e2e --filter=next-app",
+    "test:e2e:mobile": "cd apps/expo && yarn test:e2e"
   },
   "packageManager": "yarn@4.7.0",
   "lint-staged": {
