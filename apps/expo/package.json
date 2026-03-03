@@ -17,7 +17,7 @@
     "expo-status-bar": "3.0.9",
     "moti": "^0.30.0",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react-dom": "19.2.4",
     "react-native": "0.81.5",
     "react-native-gesture-handler": "~2.28.0",
     "react-native-reanimated": "4.1.6",
