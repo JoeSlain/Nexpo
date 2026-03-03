@@ -3,16 +3,18 @@ appId: com.nexpo.app
 # Test: Locale Switching
 # Tests the internationalization (i18n) locale switching functionality
 
-- launchApp
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "NEXPO"
+    timeout: 60000
 - scrollUntilVisible:
-    element: "Internationalization (i18n)"
+    element:
+      id: "locale-cs-card"
     direction: DOWN
 # Verify current locale display
-- scrollUntilVisible:
-    element: "Language Tag:"
-    direction: DOWN
-- assertVisible: "Language:"
-- assertVisible: "Current Locale"
+- assertVisible:
+    id: "current-locale-title"
 # Test switching to Czech (cs)
 - tapOn:
     id: "locale-cs-card"
@@ -32,5 +34,9 @@ appId: com.nexpo.app
 # Verify locale changed back (English flag visible)
 - assertVisible: "🇬🇧"
 # Verify translated text example is visible
-- assertVisible: "Example Translated Text:"
-
+- scrollUntilVisible:
+    element:
+      id: "example-translated-text-title"
+    direction: DOWN
+- assertVisible:
+    id: "example-translated-text-title"

@@ -10,15 +10,12 @@ import { getQueryClient } from './query-client'
 export const getServerQueryClient = cache(getQueryClient)
 
 function createTRPCContext() {
-  return {}
+  return { user: null }
 }
 
-// Create a stable caller that will be reused during the same request
-const getCaller = cache(() => {
-  return appRouter.createCaller(createTRPCContext())
-})
+const caller = appRouter.createCaller(createTRPCContext())
 
 export const { trpc, HydrateClient } = createHydrationHelpers<typeof appRouter>(
-  getCaller,
+  caller,
   getServerQueryClient
 )

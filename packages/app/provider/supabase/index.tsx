@@ -2,24 +2,24 @@
 
 import { createClient, type Session, type User } from '@supabase/supabase-js'
 import { createContext, type ReactNode, useContext, useEffect, useState } from 'react'
+import { resolveLocalHostUrl } from '../../utils/resolve-localhost-url'
 
-/**
- * Cross-platform Supabase client utility
- * Detects platform and creates appropriate client
- */
+/** Cross-platform Supabase client — detects platform and creates the appropriate client. */
 function getSupabaseClient() {
-  const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL
+  const rawSupabaseUrl =
+    process.env.EXPO_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabaseAnonKey =
     process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-  if (!supabaseUrl || !supabaseAnonKey) {
+  if (!rawSupabaseUrl || !supabaseAnonKey) {
     throw new Error(
       'Missing Supabase environment variables. Please ensure EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY (or NEXT_PUBLIC_SUPABASE_*) are set.'
     )
   }
 
-  // Check if we're in Expo/React Native
-  // __DEV__ is defined in React Native/Expo environments
+  const supabaseUrl = resolveLocalHostUrl(rawSupabaseUrl)
+
+  // __DEV__ is only defined in React Native/Expo environments
   const isExpo = typeof __DEV__ !== 'undefined'
 
   return createClient(supabaseUrl, supabaseAnonKey, {
@@ -43,7 +43,7 @@ type SupabaseAuthContextType = {
 
 const SupabaseAuthContext = createContext<SupabaseAuthContextType | null>(null)
 
-export const useAuth = () => {
+export function useAuth(): SupabaseAuthContextType {
   const context = useContext(SupabaseAuthContext)
   if (!context) {
     throw new Error('useAuth must be used within SupabaseAuthProvider')
@@ -95,23 +95,17 @@ export function SupabaseAuthProvider({ children }: { children: ReactNode }) {
     }
   }, [supabase])
 
-  // Create a no-op client that throws errors when used if supabase is null
-  // This prevents the app from crashing when env vars are missing
+  // No-op client that returns errors when env vars are missing, preventing app crashes
+  const notInitializedError = new Error('Supabase client not initialized')
   const safeSupabase =
     supabase ||
     ({
       auth: {
-        getSession: () =>
-          Promise.resolve({
-            data: { session: null },
-            error: new Error('Supabase client not initialized'),
-          }),
+        getSession: () => Promise.resolve({ data: { session: null }, error: notInitializedError }),
         onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
-        signInWithPassword: () =>
-          Promise.resolve({ data: null, error: new Error('Supabase client not initialized') }),
-        signUp: () =>
-          Promise.resolve({ data: null, error: new Error('Supabase client not initialized') }),
-        signOut: () => Promise.resolve({ error: new Error('Supabase client not initialized') }),
+        signInWithPassword: () => Promise.resolve({ data: null, error: notInitializedError }),
+        signUp: () => Promise.resolve({ data: null, error: notInitializedError }),
+        signOut: () => Promise.resolve({ error: notInitializedError }),
       },
     } as unknown as ReturnType<typeof getSupabaseClient>)
 

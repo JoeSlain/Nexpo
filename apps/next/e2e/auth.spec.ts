@@ -1,12 +1,20 @@
 import { expect, test } from '@playwright/test'
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from './helpers'
 
-const TEST_USER_EMAIL = process.env.TEST_USER_EMAIL || 'test@test.com'
-const TEST_USER_PASSWORD = process.env.TEST_USER_PASSWORD || 'password'
+const TEST_USER_EMAIL = process.env.TEST_USER_EMAIL
+const TEST_USER_PASSWORD = process.env.TEST_USER_PASSWORD
+const hasAuthCredentials = Boolean(TEST_USER_EMAIL && TEST_USER_PASSWORD)
 
 test.describe('Authentication', () => {
   for (const locale of SUPPORTED_LOCALES) {
     test(`should sign in and sign out for locale ${locale}`, async ({ page }) => {
+      test.skip(
+        !hasAuthCredentials,
+        'Set TEST_USER_EMAIL and TEST_USER_PASSWORD to run authenticated sign-in flow tests'
+      )
+      const testUserEmail = TEST_USER_EMAIL ?? ''
+      const testUserPassword = TEST_USER_PASSWORD ?? ''
+
       await page.goto(`/${locale}`)
       await page.waitForLoadState('networkidle')
 
@@ -21,12 +29,12 @@ test.describe('Authentication', () => {
 
       // Fill in email (it might already have a default value)
       await emailInput.click()
-      await emailInput.fill(TEST_USER_EMAIL)
+      await emailInput.fill(testUserEmail)
 
       // Fill in password
       const passwordInput = page.getByTestId('password-input')
       await passwordInput.click()
-      await passwordInput.fill(TEST_USER_PASSWORD)
+      await passwordInput.fill(testUserPassword)
 
       // Set up dialog handler for native browser alerts (React Native Web uses window.alert)
       let dialogHandled = false
@@ -70,7 +78,7 @@ test.describe('Authentication', () => {
       const signOutButton = page.getByTestId('sign-out-button')
       await expect(signOutButton).toBeVisible({ timeout: 10000 })
       // Also verify email is displayed (this might be translated, but email address is always the same)
-      await expect(page.getByText(TEST_USER_EMAIL, { exact: false })).toBeVisible()
+      await expect(page.getByText(testUserEmail, { exact: false })).toBeVisible()
 
       // Set up dialog handler for any alerts that might appear during sign-out
       const dialogPromise = new Promise<void>((resolve) => {
@@ -180,6 +188,13 @@ test.describe('Authentication', () => {
   }
 
   test('should maintain auth state across page reload for default locale', async ({ page }) => {
+    test.skip(
+      !hasAuthCredentials,
+      'Set TEST_USER_EMAIL and TEST_USER_PASSWORD to run authenticated sign-in flow tests'
+    )
+    const testUserEmail = TEST_USER_EMAIL ?? ''
+    const testUserPassword = TEST_USER_PASSWORD ?? ''
+
     await page.goto(`/${DEFAULT_LOCALE}`)
     await page.waitForLoadState('networkidle')
 
@@ -190,11 +205,11 @@ test.describe('Authentication', () => {
 
     // Sign in
     await emailInput.click()
-    await emailInput.fill(TEST_USER_EMAIL)
+    await emailInput.fill(testUserEmail)
 
     const passwordInput = page.getByTestId('password-input')
     await passwordInput.click()
-    await passwordInput.fill(TEST_USER_PASSWORD)
+    await passwordInput.fill(testUserPassword)
 
     // Set up dialog handler for native browser alerts
     const dialogPromise = new Promise<void>((resolve) => {
@@ -233,8 +248,10 @@ test.describe('Authentication', () => {
     const emailInputAfterReload = page.getByTestId('email-input')
 
     // Wait for either the sign-in form or signed-in state to appear
+    const signOutButtonAfterReload = page.getByTestId('sign-out-button')
     await Promise.race([
       emailInputAfterReload.waitFor({ state: 'visible', timeout: 5000 }).catch(() => null),
+      signOutButtonAfterReload.waitFor({ state: 'visible', timeout: 5000 }).catch(() => null),
     ])
 
     // Auth state should be maintained (signed in)

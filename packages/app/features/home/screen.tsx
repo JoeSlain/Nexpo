@@ -1,21 +1,44 @@
 import { Trans } from '@lingui/react/macro'
 import logo from 'app/assets/logo.png'
+import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
 import { useTheme } from 'app/provider/theme'
 import { Button, Card, H2, H3, Image, ScrollView, Separator, Text, XStack, YStack } from 'tamagui'
 import { AuthTestButton } from './auth-test-button'
 import { LocaleDemo } from './locale-demo'
 import { LoginTest } from './login-test'
 
+const TECHNOLOGIES = [
+  { name: 'Next.js 16', icon: '⚡' },
+  { name: 'Expo SDK 54', icon: '📱' },
+  { name: 'React 19', icon: '⚛️' },
+  { name: 'tRPC', icon: '🔌' },
+  { name: 'Supabase', icon: '🗄️' },
+  { name: 'Tamagui', icon: '🎨' },
+  { name: 'Lingui', icon: '🌍' },
+  { name: 'Sentry', icon: '📊' },
+] as const
+
 export function HomeScreen() {
   const { resolvedTheme, setTheme } = useTheme()
+  const { top, bottom, left, right } = useSafeArea()
 
-  const toggleTheme = () => {
+  function toggleTheme() {
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
   }
 
   return (
     <YStack bg="$background" flex={1}>
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{
+          flexGrow: 1,
+          paddingTop: top,
+          paddingBottom: bottom,
+          paddingLeft: left,
+          paddingRight: right,
+        }}
+        showsHorizontalScrollIndicator={false}
+      >
         <YStack
           style={{
             padding: 24,
@@ -24,6 +47,7 @@ export function HomeScreen() {
             maxWidth: 900,
             width: '100%',
             alignSelf: 'center',
+            flex: 0,
           }}
         >
           {/* Header Section */}
@@ -52,7 +76,6 @@ export function HomeScreen() {
             {/* Logo and Title */}
             <XStack
               style={{
-                flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: 16,
@@ -103,16 +126,7 @@ export function HomeScreen() {
                 justifyContent: 'center',
               }}
             >
-              {[
-                { name: 'Next.js 16', icon: '⚡' },
-                { name: 'Expo SDK 54', icon: '📱' },
-                { name: 'React 19', icon: '⚛️' },
-                { name: 'tRPC', icon: '🔌' },
-                { name: 'Supabase', icon: '🗄️' },
-                { name: 'Tamagui', icon: '🎨' },
-                { name: 'Lingui', icon: '🌍' },
-                { name: 'Sentry', icon: '📊' },
-              ].map((tech) => (
+              {TECHNOLOGIES.map((tech) => (
                 <Card
                   key={tech.name}
                   elevate

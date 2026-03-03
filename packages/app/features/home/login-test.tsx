@@ -17,10 +17,18 @@ export function LoginTest() {
   const isDark = resolvedTheme === 'dark'
   const inputTextColor = isDark ? '#ffffff' : '#000000'
   const inputBorderColor = isDark ? '#666' : '#ccc'
-  const placeholderColor = isDark ? '#999' : '#999'
   const secondaryTextColor = isDark ? '#aaa' : '#666'
 
-  const handleSignIn = async () => {
+  const inputStyle = {
+    borderWidth: 1,
+    borderColor: inputBorderColor,
+    borderRadius: 8,
+    padding: 12,
+    fontSize: 16,
+    color: inputTextColor,
+  }
+
+  async function handleSignIn() {
     if (!email || !password) {
       Alert.alert('Error', 'Please enter both email and password')
       return
@@ -38,14 +46,14 @@ export function LoginTest() {
       } else {
         Alert.alert('Success', 'Signed in successfully!')
       }
-      setIsSigningIn(false)
     } catch (_error) {
       Alert.alert('Error', 'An unexpected error occurred')
+    } finally {
       setIsSigningIn(false)
     }
   }
 
-  const handleSignOut = async () => {
+  async function handleSignOut() {
     try {
       const { error } = await supabase.auth.signOut()
       if (error) {
@@ -123,16 +131,9 @@ export function LoginTest() {
             <Trans>Email</Trans>
           </Text>
           <TextInput
-            style={{
-              borderWidth: 1,
-              borderColor: inputBorderColor,
-              borderRadius: 8,
-              padding: 12,
-              fontSize: 16,
-              color: inputTextColor,
-            }}
+            style={inputStyle}
             placeholder="email@example.com"
-            placeholderTextColor={placeholderColor}
+            placeholderTextColor="#999"
             value={email}
             onChangeText={setEmail}
             autoCapitalize="none"
@@ -148,16 +149,9 @@ export function LoginTest() {
             <Trans>Password</Trans>
           </Text>
           <TextInput
-            style={{
-              borderWidth: 1,
-              borderColor: inputBorderColor,
-              borderRadius: 8,
-              padding: 12,
-              fontSize: 16,
-              color: inputTextColor,
-            }}
+            style={inputStyle}
             placeholder="password"
-            placeholderTextColor={placeholderColor}
+            placeholderTextColor="#999"
             value={password}
             onChangeText={setPassword}
             secureTextEntry

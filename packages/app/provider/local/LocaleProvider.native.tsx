@@ -1,8 +1,8 @@
 import { setupI18n } from '@lingui/core'
 import { I18nProvider, type TransRenderProps } from '@lingui/react'
 import * as Localization from 'expo-localization'
-import type React from 'react'
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import type { ReactNode } from 'react'
+import { createContext, useContext, useMemo, useState } from 'react'
 import { Text } from 'react-native'
 import { DEFAULT_LOCALE, isSupportedLocale } from '../../config/locales.js'
 
@@ -40,96 +40,75 @@ const LocaleContext = createContext<LocaleContextType>({
   setLocale: () => {},
 })
 
-export const useLocale = () => useContext(LocaleContext)
-
-// Helper function to get initial locale from device
-function getInitialLocale(): LocaleInfo {
-  const localizationLocale = Localization.getLocales()[0]
-
-  const localeInfo: LocaleInfo = {
-    languageTag: localizationLocale.languageTag,
-    languageCode: localizationLocale.languageCode || null,
-    regionCode: localizationLocale.regionCode || null,
-    currencyCode: localizationLocale.currencyCode || null,
-    currencySymbol: localizationLocale.currencySymbol || null,
-    decimalSeparator: localizationLocale.decimalSeparator || null,
-    digitGroupingSeparator: localizationLocale.digitGroupingSeparator || null,
-    textDirection: localizationLocale.textDirection || 'ltr',
-    measurementSystem: localizationLocale.measurementSystem || 'metric',
-    temperatureUnit: localizationLocale.temperatureUnit || 'celsius',
-  }
-
-  return localeInfo
+export function useLocale(): LocaleContextType {
+  return useContext(LocaleContext)
 }
 
-// Helper function to get supported Lingui locale
+function getInitialLocale(): LocaleInfo {
+  const deviceLocale = Localization.getLocales()[0]
+
+  return {
+    languageTag: deviceLocale.languageTag,
+    languageCode: deviceLocale.languageCode || null,
+    regionCode: deviceLocale.regionCode || null,
+    currencyCode: deviceLocale.currencyCode || null,
+    currencySymbol: deviceLocale.currencySymbol || null,
+    decimalSeparator: deviceLocale.decimalSeparator || null,
+    digitGroupingSeparator: deviceLocale.digitGroupingSeparator || null,
+    textDirection: deviceLocale.textDirection || 'ltr',
+    measurementSystem: deviceLocale.measurementSystem || 'metric',
+    temperatureUnit: deviceLocale.temperatureUnit || 'celsius',
+  }
+}
+
 function getLinguiLocale(languageCode: string | null): string {
   if (!languageCode) return DEFAULT_LOCALE
-
-  // Use the language code part for Lingui (e.g., 'en' from 'en-US')
   return isSupportedLocale(languageCode) ? languageCode : DEFAULT_LOCALE
 }
 
-// Default component for Trans macro (Text component for React Native)
-const DefaultComponent = (props: TransRenderProps) => {
-  return <Text>{props.children}</Text>
+// Trans macro default component — uses Text for React Native
+function DefaultComponent({ children }: TransRenderProps): JSX.Element {
+  return <Text>{children}</Text>
 }
 
-export const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [locale, setLocaleState] = useState<LocaleInfo>(getInitialLocale)
+type LocaleProviderProps = {
+  children: ReactNode
+}
 
-  // Dynamically import messages based on locale
+export function LocaleProvider({ children }: LocaleProviderProps): JSX.Element {
+  const [locale, setLocaleState] = useState<LocaleInfo>(getInitialLocale)
   const linguiLocale = getLinguiLocale(locale.languageCode)
 
-  // Initialize i18n instance with messages
+  // Static requires for Metro bundler compatibility
   const linguiInstance = useMemo(() => {
-    // Dynamically import messages - After running `lingui compile`,
-    // messages will be available in the compiled message files
-    // Metro bundler requires static requires, so we map all locales
     let messages = {}
 
     try {
-      // Static requires for Metro bundler compatibility
       if (linguiLocale === 'cs') {
         messages = require('../../locales/cs/messages').messages || {}
       } else if (linguiLocale === 'fr') {
         messages = require('../../locales/fr/messages').messages || {}
       } else {
-        // Default to English
         messages = require('../../locales/en/messages').messages || {}
       }
     } catch {
-      // Messages not compiled yet, use empty object
       console.warn(
         `Messages for locale "${linguiLocale}" not found. Run 'yarn lingui:compile' to compile messages.`
       )
     }
 
-    const instance = setupI18n({
+    return setupI18n({
       locale: linguiLocale,
       messages: { [linguiLocale]: messages },
     })
-
-    return instance
   }, [linguiLocale])
 
-  // Re-initialize if device locale changes (e.g., user changes system language)
-  useEffect(() => {
-    const updatedLocale = getInitialLocale()
-    setLocaleState(updatedLocale)
-  }, [])
-
-  // Wrapper for `setLocale` to update the state based on a string input
   const setLocale = (languageTag: string) => {
-    const updatedLocale: LocaleInfo = {
+    setLocaleState({
       ...locale,
       languageTag,
       languageCode: languageTag.split('-')[0] || null,
-    }
-    setLocaleState(updatedLocale)
-
-    // The i18n instance will be recreated via useMemo when linguiLocale changes
-    // which happens when locale.languageCode changes
+    })
   }
 
   return (

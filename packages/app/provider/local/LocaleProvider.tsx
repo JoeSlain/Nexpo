@@ -25,206 +25,138 @@ type LocaleContextType = {
   setLocale: (locale: string) => void
 }
 
+const RTL_LANGUAGES = ['ar', 'he', 'fa', 'ur']
+
+function getTextDirection(languageCode: string | null): 'ltr' | 'rtl' {
+  return languageCode && RTL_LANGUAGES.includes(languageCode) ? 'rtl' : 'ltr'
+}
+
+function getMeasurementSystem(regionCode: string | null): 'metric' | 'us' | 'uk' {
+  if (regionCode === 'US') return 'us'
+  if (regionCode === 'UK') return 'uk'
+  return 'metric'
+}
+
+function getTemperatureUnit(regionCode: string | null): 'celsius' | 'fahrenheit' {
+  return regionCode === 'US' ? 'fahrenheit' : 'celsius'
+}
+
+function parseLanguageTag(tag: string): { languageCode: string | null; regionCode: string | null } {
+  const [languageCode, regionCode] = tag.split('-')
+  return {
+    languageCode: languageCode || null,
+    regionCode: regionCode || null,
+  }
+}
+
+function getFormatterPart(
+  formatter: Intl.NumberFormat,
+  value: number,
+  type: string
+): string | null {
+  return formatter.formatToParts(value).find((part) => part.type === type)?.value || null
+}
+
+function buildLocaleInfo(languageTag: string, formatter?: Intl.NumberFormat): LocaleInfo {
+  const { languageCode, regionCode } = parseLanguageTag(languageTag)
+  return {
+    languageTag,
+    languageCode,
+    regionCode,
+    currencyCode: formatter?.resolvedOptions().currency || null,
+    currencySymbol: formatter ? getFormatterPart(formatter, 1, 'currency') : null,
+    decimalSeparator: formatter ? getFormatterPart(formatter, 1.1, 'decimal') : '.',
+    digitGroupingSeparator: formatter ? getFormatterPart(formatter, 1000, 'group') : ',',
+    textDirection: getTextDirection(languageCode),
+    measurementSystem: getMeasurementSystem(regionCode),
+    temperatureUnit: getTemperatureUnit(regionCode),
+  }
+}
+
+const DEFAULT_LOCALE_INFO: LocaleInfo = buildLocaleInfo('en')
+
 const LocaleContext = createContext<LocaleContextType>({
-  locale: {
-    languageTag: 'en',
-    languageCode: 'en',
-    regionCode: null,
-    currencyCode: null,
-    currencySymbol: null,
-    decimalSeparator: '.',
-    digitGroupingSeparator: ',',
-    textDirection: 'ltr',
-    measurementSystem: 'metric',
-    temperatureUnit: 'celsius',
-  },
+  locale: DEFAULT_LOCALE_INFO,
   setLocale: () => {},
 })
 
-export const useLocale = () => useContext(LocaleContext)
-
-// Helper function to get initial locale from browser
-function getInitialLocale(): LocaleInfo {
-  // Check if we're on the client side (browser)
-  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
-    return {
-      languageTag: 'en',
-      languageCode: 'en',
-      regionCode: null,
-      currencyCode: null,
-      currencySymbol: null,
-      decimalSeparator: '.',
-      digitGroupingSeparator: ',',
-      textDirection: 'ltr',
-      measurementSystem: 'metric',
-      temperatureUnit: 'celsius',
-    }
-  }
-
-  const userLanguage = navigator.language
-  const [languageCode, regionCode] = userLanguage.split('-')
-  const formatter = new Intl.NumberFormat(userLanguage)
-
-  return {
-    languageTag: userLanguage,
-    languageCode: languageCode || null,
-    regionCode: regionCode || null,
-    currencyCode: formatter.resolvedOptions().currency || null,
-    currencySymbol:
-      formatter.formatToParts(1).find((part) => part.type === 'currency')?.value || null,
-    decimalSeparator:
-      formatter.formatToParts(1.1).find((part) => part.type === 'decimal')?.value || null,
-    digitGroupingSeparator:
-      formatter.formatToParts(1000).find((part) => part.type === 'group')?.value || null,
-    textDirection: languageCode && ['ar', 'he', 'fa', 'ur'].includes(languageCode) ? 'rtl' : 'ltr',
-    measurementSystem: regionCode === 'US' ? 'us' : regionCode === 'UK' ? 'uk' : 'metric',
-    temperatureUnit: regionCode === 'US' ? 'fahrenheit' : 'celsius',
-  }
+export function useLocale(): LocaleContextType {
+  return useContext(LocaleContext)
 }
 
-// Helper function to get supported Lingui locale
+function getInitialLocale(): LocaleInfo {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+    return DEFAULT_LOCALE_INFO
+  }
+  return buildLocaleInfo(navigator.language, new Intl.NumberFormat(navigator.language))
+}
+
 function getLinguiLocale(languageCode: string | null): string {
   if (!languageCode) return DEFAULT_LOCALE
-
-  // Use the language code part for Lingui (e.g., 'en' from 'en-US')
   return isSupportedLocale(languageCode) ? languageCode : DEFAULT_LOCALE
 }
 
-// Default component for Trans macro (div component for web)
-const DefaultComponent = ({ children }: TransRenderProps) => {
+function DefaultComponent({ children }: TransRenderProps): JSX.Element {
   return <>{children}</>
 }
 
 export const LocaleProvider: FC<{
   children: ReactNode
-  initialLocale?: string // Optional locale from route params (e.g., 'en', 'fr')
+  initialLocale?: string
 }> = ({ children, initialLocale }) => {
-  // Get Next.js navigation hooks for web
   const router = useRouter()
   const pathname = usePathname()
   const params = useParams()
 
-  // Use a consistent default locale for SSR/hydration to avoid mismatches
-  const defaultLocale: LocaleInfo = {
-    languageTag: 'en',
-    languageCode: 'en',
-    regionCode: null,
-    currencyCode: null,
-    currencySymbol: null,
-    decimalSeparator: '.',
-    digitGroupingSeparator: ',',
-    textDirection: 'ltr',
-    measurementSystem: 'metric',
-    temperatureUnit: 'celsius',
-  }
-
   const [locale, setLocaleState] = useState<LocaleInfo>(() => {
-    // For SSR, use initialLocale if provided, otherwise default
     if (initialLocale) {
-      const [languageCode, regionCode] = initialLocale.split('-')
-      return {
-        languageTag: initialLocale,
-        languageCode: languageCode || null,
-        regionCode: regionCode || null,
-        currencyCode: null,
-        currencySymbol: null,
-        decimalSeparator: '.',
-        digitGroupingSeparator: ',',
-        textDirection:
-          languageCode && ['ar', 'he', 'fa', 'ur'].includes(languageCode) ? 'rtl' : 'ltr',
-        measurementSystem: regionCode === 'US' ? 'us' : regionCode === 'UK' ? 'uk' : 'metric',
-        temperatureUnit: regionCode === 'US' ? 'fahrenheit' : 'celsius',
-      }
+      return buildLocaleInfo(initialLocale)
     }
-    return defaultLocale
+    return DEFAULT_LOCALE_INFO
   })
 
-  // Update locale from route param or browser after hydration to avoid SSR mismatch
   useEffect(() => {
     if (initialLocale) {
-      const [languageCode, regionCode] = initialLocale.split('-')
-      // Use browser locale info for formatting if available
       const browserLocale = typeof navigator !== 'undefined' ? navigator.language : initialLocale
-      const formatter = new Intl.NumberFormat(browserLocale)
-
-      const updatedLocale: LocaleInfo = {
-        languageTag: initialLocale,
-        languageCode: languageCode || null,
-        regionCode: regionCode || null,
-        currencyCode: formatter.resolvedOptions().currency || null,
-        currencySymbol:
-          formatter.formatToParts(1).find((part) => part.type === 'currency')?.value || null,
-        decimalSeparator:
-          formatter.formatToParts(1.1).find((part) => part.type === 'decimal')?.value || null,
-        digitGroupingSeparator:
-          formatter.formatToParts(1000).find((part) => part.type === 'group')?.value || null,
-        textDirection:
-          languageCode && ['ar', 'he', 'fa', 'ur'].includes(languageCode) ? 'rtl' : 'ltr',
-        measurementSystem: regionCode === 'US' ? 'us' : regionCode === 'UK' ? 'uk' : 'metric',
-        temperatureUnit: regionCode === 'US' ? 'fahrenheit' : 'celsius',
-      }
-      setLocaleState(updatedLocale)
+      setLocaleState(buildLocaleInfo(initialLocale, new Intl.NumberFormat(browserLocale)))
     } else {
-      const updatedLocale = getInitialLocale()
-      setLocaleState(updatedLocale)
+      setLocaleState(getInitialLocale())
     }
   }, [initialLocale])
 
-  // Dynamically import messages based on locale
   const linguiLocale = getLinguiLocale(locale.languageCode)
 
-  // Initialize i18n instance with messages
   const linguiInstance = useMemo(() => {
-    // Dynamically import messages - After running `lingui compile`,
-    // messages will be available in the compiled message files
     let messages = {}
 
     try {
-      // Dynamically load messages based on locale
       messages = require(`../../locales/${linguiLocale}/messages`).messages || {}
     } catch {
-      // Messages not compiled yet, use empty object
       console.warn(
         `Messages for locale "${linguiLocale}" not found. Run 'yarn lingui:compile' to compile messages.`
       )
     }
 
-    const instance = setupI18n({
+    return setupI18n({
       locale: linguiLocale,
       messages: { [linguiLocale]: messages },
     })
-
-    return instance
   }, [linguiLocale])
 
-  // Wrapper for `setLocale`
-  const setLocale = (languageTag: string) => {
-    const languageCode = languageTag.split('-')[0] || null
-    const updatedLocale: LocaleInfo = {
-      ...locale,
-      languageTag,
-      languageCode,
-    }
-    setLocaleState(updatedLocale)
+  function setLocale(languageTag: string): void {
+    const { languageCode } = parseLanguageTag(languageTag)
+    setLocaleState({ ...locale, languageTag, languageCode })
 
-    // On web (Next.js), update the URL to match the new locale
     if (languageCode) {
       const currentLang = (params?.lang as string) || initialLocale?.split('-')[0]
 
       if (currentLang && isSupportedLocale(currentLang)) {
-        // Replace the language segment in the pathname
-        // pathname should be like "/fr" or "/fr/users" - replace "/fr" with "/en"
-        const newPath = pathname.replace(`/${currentLang}`, `/${languageCode}`)
-        router.push(newPath)
+        router.push(pathname.replace(`/${currentLang}`, `/${languageCode}`))
       } else {
-        // No language in params yet, prepend the new language
         const newPath = pathname === '/' ? `/${languageCode}` : `/${languageCode}${pathname}`
         router.push(newPath)
       }
     }
-
-    // The i18n instance will be recreated via useMemo when linguiLocale changes
-    // which happens when locale.languageCode changes
   }
 
   return (

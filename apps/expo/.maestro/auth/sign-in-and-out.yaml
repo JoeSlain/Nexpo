@@ -6,12 +6,16 @@ env:
 # Test: Sign In Flow
 # Tests the authentication sign in functionality
 
-- launchApp
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "NEXPO"
+    timeout: 60000
 - scrollUntilVisible:
     element: "Supabase Auth Test"
     direction: DOWN
-- tapOn:
-    id: "email-input"
+- assertVisible:
+    id: "sign-in-button"
 - tapOn:
     id: "sign-in-button"
 # Wait for sign in to complete
@@ -30,4 +34,3 @@ env:
 # Verify we're back to the sign in form
 - assertVisible: "Supabase Auth Test"
 - assertVisible: "Sign In"
-

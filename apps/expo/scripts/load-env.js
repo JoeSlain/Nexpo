@@ -11,38 +11,27 @@
  * Example: node scripts/load-env.js expo start
  */
 
-const { spawn } = require('child_process')
-const fs = require('fs')
-const path = require('path')
+const { spawn } = require('node:child_process')
+const fs = require('node:fs')
+const path = require('node:path')
 
-// Get the directory where this script is located
-const scriptDir = __dirname
-const appDir = path.resolve(scriptDir, '..')
+const appDir = path.resolve(__dirname, '..')
 
-// Determine environment from NODE_ENV or default to development
 const nodeEnv = process.env.NODE_ENV || 'development'
-const isProduction = nodeEnv === 'production'
-
-// Determine which env file to load
-const envFile = isProduction ? '.env.production' : '.env.development'
+const envFile = nodeEnv === 'production' ? '.env.production' : '.env.development'
 const envFilePath = path.join(appDir, envFile)
 const localEnvFilePath = path.join(appDir, '.env.local')
 
-// Check if env file exists
 if (!fs.existsSync(envFilePath)) {
   console.warn(`Warning: ${envFile} not found. Using default environment variables.`)
 }
 
-// Load environment files using dotenv-cli
 // dotenv-cli loads files in order: first file, then second file (overrides)
 const envFiles = [envFilePath]
-
-// Always load .env.local if it exists (highest priority)
 if (fs.existsSync(localEnvFilePath)) {
   envFiles.push(localEnvFilePath)
 }
 
-// Get command and args from process.argv
 const [, , ...commandArgs] = process.argv
 
 if (commandArgs.length === 0) {
@@ -51,30 +40,21 @@ if (commandArgs.length === 0) {
   process.exit(1)
 }
 
-// Find dotenv-cli binary in node_modules
-// Check local node_modules first, then root (yarn workspaces may hoist)
+// Resolve dotenv-cli: local node_modules, then hoisted root, then npx fallback
 const rootDir = path.resolve(appDir, '../..')
-const localDotenvCli = path.join(appDir, 'node_modules', '.bin', 'dotenv-cli')
-const rootDotenvCli = path.join(rootDir, 'node_modules', '.bin', 'dotenv-cli')
-const dotenvCli = fs.existsSync(localDotenvCli)
-  ? localDotenvCli
-  : fs.existsSync(rootDotenvCli)
-    ? rootDotenvCli
-    : 'npx'
+const binPaths = [
+  path.join(appDir, 'node_modules', '.bin', 'dotenv-cli'),
+  path.join(rootDir, 'node_modules', '.bin', 'dotenv-cli'),
+]
+const dotenvCli = binPaths.find((bin) => fs.existsSync(bin)) || 'npx'
 
-// Build dotenv-cli command
-// dotenv-cli -e file1 -e file2 -- command args
-const dotenvArgs = []
-// If using npx, add dotenv-cli as first arg
-if (dotenvCli === 'npx') {
-  dotenvArgs.push('dotenv-cli')
-}
-envFiles.forEach((file) => {
-  dotenvArgs.push('-e', file)
-})
-dotenvArgs.push('--', ...commandArgs)
+const dotenvArgs = [
+  ...(dotenvCli === 'npx' ? ['dotenv-cli'] : []),
+  ...envFiles.flatMap((file) => ['-e', file]),
+  '--',
+  ...commandArgs,
+]
 
-// Spawn dotenv-cli with the command
 const dotenv = spawn(dotenvCli, dotenvArgs, {
   stdio: 'inherit',
   shell: true,

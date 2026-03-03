@@ -5,39 +5,34 @@ import { httpBatchLink } from '@trpc/client'
 import { createTRPCReact } from '@trpc/react-query'
 import type { AppRouter } from 'api'
 import { useState } from 'react'
+import { resolveLocalHostUrl } from '../../utils/resolve-localhost-url'
 import { useAuth } from '../supabase'
 
 export const trpc = createTRPCReact<AppRouter>()
 
+const queryClientOptions = {
+  defaultOptions: {
+    queries: {
+      staleTime: 30 * 1000,
+    },
+  },
+} as const
+
 let clientQueryClientSingleton: QueryClient | undefined
 
-function getQueryClient() {
-  // Detect if we're on the server (Next.js SSR)
+function getQueryClient(): QueryClient {
+  // Server: always make a new query client
   if (typeof window === 'undefined') {
-    // Server: always make a new query client
-    return new QueryClient({
-      defaultOptions: {
-        queries: {
-          staleTime: 30 * 1000,
-        },
-      },
-    })
+    return new QueryClient(queryClientOptions)
   }
-  // Browser/Expo: use singleton pattern to keep the same query client
+  // Browser/Expo: use singleton pattern
   if (!clientQueryClientSingleton) {
-    clientQueryClientSingleton = new QueryClient({
-      defaultOptions: {
-        queries: {
-          staleTime: 30 * 1000,
-        },
-      },
-    })
+    clientQueryClientSingleton = new QueryClient(queryClientOptions)
   }
   return clientQueryClientSingleton
 }
 
-function getUrl() {
-  // Detect platform and build appropriate URL
+function getUrl(): string {
   if (typeof window === 'undefined') {
     // Server-side (Next.js)
     const base = process.env.VERCEL_URL
@@ -46,28 +41,21 @@ function getUrl() {
     return `${base}/api/trpc`
   }
 
-  // Client-side
-  // Check if we're in Expo (React Native) - __DEV__ is defined in React Native
-  if (typeof __DEV__ !== 'undefined' && __DEV__) {
-    // Expo/React Native - use environment variable if set, otherwise fallback to localhost
-    if (process.env.EXPO_PUBLIC_API_URL) {
-      return process.env.EXPO_PUBLIC_API_URL
-    }
-    // Development fallback - for physical devices, set EXPO_PUBLIC_API_URL to your machine's IP
-    // e.g., 'http://192.168.1.100:3000/api/trpc'
-    return 'http://localhost:3000/api/trpc'
+  // Expo — use env var if set
+  if (process.env.EXPO_PUBLIC_API_URL) {
+    return resolveLocalHostUrl(process.env.EXPO_PUBLIC_API_URL)
   }
 
-  // Check if EXPO_PUBLIC_API_URL is set (production Expo)
-  if (process.env.EXPO_PUBLIC_API_URL) {
-    return process.env.EXPO_PUBLIC_API_URL
+  // Expo dev — default to localhost
+  if (typeof __DEV__ !== 'undefined' && __DEV__) {
+    return resolveLocalHostUrl('http://localhost:3000/api/trpc')
   }
 
   // Next.js browser - use relative URL
   return '/api/trpc'
 }
 
-export function TRPCProvider({ children }: { children: React.ReactNode }) {
+export function TRPCProvider({ children }: { children: React.ReactNode }): React.ReactElement {
   // NOTE: Avoid useState when initializing the query client if you don't
   //       have a suspense boundary between this and the code that may
   //       suspend because React will throw away the client on the initial
@@ -81,27 +69,16 @@ export function TRPCProvider({ children }: { children: React.ReactNode }) {
         httpBatchLink({
           url: getUrl(),
           headers: async () => {
-            const headers: Record<string, string> = {}
+            // Use context session, falling back to a fresh fetch
+            const currentSession =
+              session ??
+              (await supabase.auth
+                .getSession()
+                .then(({ data }) => data.session)
+                .catch(() => null))
 
-            // Get current session - try from context first, then fetch if needed
-            let currentSession = session
-            if (!currentSession) {
-              try {
-                const {
-                  data: { session: fetchedSession },
-                } = await supabase.auth.getSession()
-                currentSession = fetchedSession
-              } catch (error) {
-                // Session fetch failed, continue without auth
-                console.error('Failed to get session for tRPC request:', error)
-              }
-            }
-
-            if (currentSession?.access_token) {
-              headers.authorization = `Bearer ${currentSession.access_token}`
-            }
-
-            return headers
+            if (!currentSession?.access_token) return {}
+            return { authorization: `Bearer ${currentSession.access_token}` }
           },
         }),
       ],

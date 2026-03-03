@@ -20,7 +20,6 @@ test.describe('User Page', () => {
 
       // First go to home page
       await page.goto(`/${locale}`)
-      const homeUrl = page.url()
 
       // Navigate to user page
       await page.goto(`/${locale}/users/${testUserId}`)
@@ -29,9 +28,9 @@ test.describe('User Page', () => {
       // Click the back button
       const backButton = page.getByText(`Hi ${testUserId}`, { exact: false })
       await backButton.click()
-
-      // Should navigate back (check if URL changed or page content changed)
-      await page.waitForTimeout(500) // Wait for navigation
+      await expect(page).toHaveURL((url) => !url.pathname.includes(`/users/${testUserId}`), {
+        timeout: 10000,
+      })
 
       // Verify we're back (either URL changed or we're on a different page)
       const currentUrl = page.url()

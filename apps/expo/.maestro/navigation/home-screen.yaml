@@ -3,7 +3,11 @@ appId: com.nexpo.app
 # Test: Home Screen Navigation
 # Verifies that the home screen loads correctly and displays key elements
 
-- launchApp
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "NEXPO"
+    timeout: 60000
 - assertVisible: "NEXPO"
 - assertVisible: "Cross-platform monorepo template"
 - assertVisible: "What's Included"

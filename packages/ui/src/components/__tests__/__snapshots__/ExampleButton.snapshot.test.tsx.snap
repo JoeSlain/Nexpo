@@ -1,0 +1,167 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ExampleButton Snapshots > should match snapshot when disabled 1`] = `
+<span
+  class=""
+  style="display: contents;"
+>
+  <span
+    class=" "
+    style="display: contents;"
+  >
+    <span
+      class=" t_light is_Theme"
+      style="color: var(--color); display: contents;"
+    >
+      <button
+        aria-disabled="true"
+        class="is_Button _outlineStyle-0focus-visible-solid _outlineWidth-0focus-visible-2px _btc-0focus-visible-background _brc-0focus-visible-background _borderBottomColor-0focus-visible-background _borderLeftColor-0focus-visible-background _dsp-flex _alignItems-center _fb-auto _bxs-border-box _pos-relative _minHeight-0px _minWidth-0px _flexShrink-0 _fd-row _justifyContent-center _fwr-nowrap _cur-pointer _backgroundColor-red _btw-1px _brw-1px _borderBottomWidth-1px _borderLeftWidth-1px _btc-transparent _brc-transparent _borderBottomColor-transparent _borderLeftColor-transparent _borderBottomStyle-solid _borderTopStyle-solid _borderLeftStyle-solid _borderRightStyle-solid _pe-none"
+        data-disable-theme="true"
+        disabled=""
+        role="button"
+      >
+        <span
+          class="is_Button font_body _dsp-inline _bxs-border-box _ww-break-word _ws-nowrap _marginTop-0px _marginRight-0px _marginBottom-0px _marginLeft-0px _col-color _userSelect-none _cur-pointer _flexGrow-0 _flexShrink-1 _maxWidth-10037 _ox-hidden _oy-hidden _textOverflow-ellipsis"
+        >
+          Disabled Button
+        </span>
+      </button>
+      <div
+        style="display: contents;"
+      />
+    </span>
+  </span>
+</span>
+`;
+
+exports[`ExampleButton Snapshots > should match snapshot with custom size 1`] = `
+<span
+  class=""
+  style="display: contents;"
+>
+  <span
+    class=" "
+    style="display: contents;"
+  >
+    <span
+      class=" t_light is_Theme"
+      style="color: var(--color); display: contents;"
+    >
+      <button
+        class="is_Button _outlineStyle-0focus-visible-solid _outlineWidth-0focus-visible-2px _dsp-flex _alignItems-center _fb-auto _bxs-border-box _pos-relative _minHeight-0px _minWidth-0px _flexShrink-0 _fd-row _justifyContent-center _fwr-nowrap _cur-pointer _backgroundColor-red _btw-1px _brw-1px _borderBottomWidth-1px _borderLeftWidth-1px _btc-transparent _brc-transparent _borderBottomColor-transparent _borderLeftColor-transparent _borderBottomStyle-solid _borderTopStyle-solid _borderLeftStyle-solid _borderRightStyle-solid"
+        data-disable-theme="true"
+        role="button"
+        tabindex="0"
+      >
+        <span
+          class="is_Button font_body _dsp-inline _bxs-border-box _ww-break-word _ws-nowrap _marginTop-0px _marginRight-0px _marginBottom-0px _marginLeft-0px _col-color _userSelect-none _cur-pointer _flexGrow-0 _flexShrink-1 _maxWidth-10037 _ox-hidden _oy-hidden _textOverflow-ellipsis"
+        >
+          Large Button
+        </span>
+      </button>
+      <div
+        style="display: contents;"
+      />
+    </span>
+  </span>
+</span>
+`;
+
+exports[`ExampleButton Snapshots > should match snapshot with custom width and height 1`] = `
+<span
+  class=""
+  style="display: contents;"
+>
+  <span
+    class=" "
+    style="display: contents;"
+  >
+    <span
+      class=" t_light is_Theme"
+      style="color: var(--color); display: contents;"
+    >
+      <button
+        class="is_Button _outlineStyle-0focus-visible-solid _outlineWidth-0focus-visible-2px _dsp-flex _alignItems-center _fb-auto _bxs-border-box _pos-relative _minHeight-0px _minWidth-0px _flexShrink-0 _fd-row _justifyContent-center _fwr-nowrap _cur-pointer _backgroundColor-red _btw-1px _brw-1px _borderBottomWidth-1px _borderLeftWidth-1px _btc-transparent _brc-transparent _borderBottomColor-transparent _borderLeftColor-transparent _borderBottomStyle-solid _borderTopStyle-solid _borderLeftStyle-solid _borderRightStyle-solid _width-300px _height-60px"
+        data-disable-theme="true"
+        role="button"
+        tabindex="0"
+      >
+        <span
+          class="is_Button font_body _dsp-inline _bxs-border-box _ww-break-word _ws-nowrap _marginTop-0px _marginRight-0px _marginBottom-0px _marginLeft-0px _col-color _userSelect-none _cur-pointer _flexGrow-0 _flexShrink-1 _maxWidth-10037 _ox-hidden _oy-hidden _textOverflow-ellipsis"
+        >
+          Custom Size Button
+        </span>
+      </button>
+      <div
+        style="display: contents;"
+      />
+    </span>
+  </span>
+</span>
+`;
+
+exports[`ExampleButton Snapshots > should match snapshot with default props 1`] = `
+<span
+  class=""
+  style="display: contents;"
+>
+  <span
+    class=" "
+    style="display: contents;"
+  >
+    <span
+      class=" t_light is_Theme"
+      style="color: var(--color); display: contents;"
+    >
+      <button
+        class="is_Button _outlineStyle-0focus-visible-solid _outlineWidth-0focus-visible-2px _dsp-flex _alignItems-center _fb-auto _bxs-border-box _pos-relative _minHeight-0px _minWidth-0px _flexShrink-0 _fd-row _justifyContent-center _fwr-nowrap _cur-pointer _backgroundColor-red _btw-1px _brw-1px _borderBottomWidth-1px _borderLeftWidth-1px _btc-transparent _brc-transparent _borderBottomColor-transparent _borderLeftColor-transparent _borderBottomStyle-solid _borderTopStyle-solid _borderLeftStyle-solid _borderRightStyle-solid"
+        data-disable-theme="true"
+        role="button"
+        tabindex="0"
+      >
+        <span
+          class="is_Button font_body _dsp-inline _bxs-border-box _ww-break-word _ws-nowrap _marginTop-0px _marginRight-0px _marginBottom-0px _marginLeft-0px _col-color _userSelect-none _cur-pointer _flexGrow-0 _flexShrink-1 _maxWidth-10037 _ox-hidden _oy-hidden _textOverflow-ellipsis"
+        >
+          Default Button
+        </span>
+      </button>
+      <div
+        style="display: contents;"
+      />
+    </span>
+  </span>
+</span>
+`;
+
+exports[`ExampleButton Snapshots > should match snapshot with long text 1`] = `
+<span
+  class=""
+  style="display: contents;"
+>
+  <span
+    class=" "
+    style="display: contents;"
+  >
+    <span
+      class=" t_light is_Theme"
+      style="color: var(--color); display: contents;"
+    >
+      <button
+        class="is_Button _outlineStyle-0focus-visible-solid _outlineWidth-0focus-visible-2px _dsp-flex _alignItems-center _fb-auto _bxs-border-box _pos-relative _minHeight-0px _minWidth-0px _flexShrink-0 _fd-row _justifyContent-center _fwr-nowrap _cur-pointer _backgroundColor-red _btw-1px _brw-1px _borderBottomWidth-1px _borderLeftWidth-1px _btc-transparent _brc-transparent _borderBottomColor-transparent _borderLeftColor-transparent _borderBottomStyle-solid _borderTopStyle-solid _borderLeftStyle-solid _borderRightStyle-solid"
+        data-disable-theme="true"
+        role="button"
+        tabindex="0"
+      >
+        <span
+          class="is_Button font_body _dsp-inline _bxs-border-box _ww-break-word _ws-nowrap _marginTop-0px _marginRight-0px _marginBottom-0px _marginLeft-0px _col-color _userSelect-none _cur-pointer _flexGrow-0 _flexShrink-1 _maxWidth-10037 _ox-hidden _oy-hidden _textOverflow-ellipsis"
+        >
+          This is a button with a very long text that might wrap to multiple lines
+        </span>
+      </button>
+      <div
+        style="display: contents;"
+      />
+    </span>
+  </span>
+</span>
+`;

@@ -2,6 +2,8 @@
  * Helper utilities for e2e tests
  */
 
+import type { Page } from '@playwright/test'
+
 export const SUPPORTED_LOCALES = ['en', 'cs', 'fr'] as const
 export const DEFAULT_LOCALE = 'en' as const
 
@@ -62,19 +64,18 @@ export function getUserUrl(userId: string, locale: SupportedLocale = DEFAULT_LOC
 /**
  * Wait for page to be fully loaded
  */
-export async function waitForPageLoad(page: any): Promise<void> {
+export async function waitForPageLoad(page: Page): Promise<void> {
+  // networkidle implies domcontentloaded, so only one wait is needed
   await page.waitForLoadState('networkidle')
-  await page.waitForLoadState('domcontentloaded')
 }
 
 /**
- * Check if element is visible and interactable
+ * Check if element is visible within a timeout period
  */
-export async function isElementVisible(page: any, selector: string): Promise<boolean> {
+export async function isElementVisible(page: Page, selector: string): Promise<boolean> {
   try {
-    const element = page.locator(selector)
-    await element.waitFor({ state: 'visible', timeout: 5000 })
-    return await element.isVisible()
+    await page.locator(selector).waitFor({ state: 'visible', timeout: 5000 })
+    return true
   } catch {
     return false
   }

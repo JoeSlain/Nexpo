@@ -7,7 +7,11 @@ env:
 # Comprehensive integration test combining multiple features
 # Tests: Navigation → Authentication → Theme Toggle → Locale Switch
 
-- launchApp
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "NEXPO"
+    timeout: 60000
 
 # 1. Verify home screen loads
 - assertVisible: "NEXPO"
@@ -23,6 +27,8 @@ env:
 - scrollUntilVisible:
     element: "Supabase Auth Test"
     direction: DOWN
+- assertVisible:
+    id: "sign-in-button"
 - tapOn:
     id: "sign-in-button"
 - waitForAnimationToEnd
@@ -47,7 +53,8 @@ env:
 
 # 5. Test locale switching
 - scrollUntilVisible:
-    element: "Example Translated Text:"
+    element:
+      id: "locale-cs-card"
     direction: DOWN
 - tapOn:
     id: "locale-cs-card"
@@ -69,5 +76,5 @@ env:
 - tapOn:
     id: "sign-out-button"
 - waitForAnimationToEnd
-- assertVisible: "Sign In"
-
+- assertVisible:
+    id: "sign-in-button"

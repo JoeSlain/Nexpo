@@ -2,7 +2,7 @@
 
 import { Trans } from '@lingui/react/macro'
 import { useLocale } from 'app/provider/local/LocaleProvider'
-import { View } from 'react-native'
+import type { ReactNode } from 'react'
 import { Card, Text, XStack, YStack } from 'tamagui'
 
 const SUPPORTED_LOCALES = [
@@ -10,6 +10,24 @@ const SUPPORTED_LOCALES = [
   { code: 'cs', name: 'Čeština', flag: '🇨🇿' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
 ]
+
+interface InfoRowProps {
+  label: ReactNode
+  value: ReactNode
+}
+
+function InfoRow({ label, value }: InfoRowProps): ReactNode {
+  return (
+    <XStack style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+      <Text style={{ fontSize: 14, opacity: 0.7 }} color="$color">
+        {label}:
+      </Text>
+      <Text style={{ fontSize: 14, fontWeight: '600' }} color="$color">
+        {value}
+      </Text>
+    </XStack>
+  )
+}
 
 export function LocaleDemo() {
   const { locale, setLocale } = useLocale()
@@ -35,53 +53,33 @@ export function LocaleDemo() {
         </Text>
       </YStack>
 
-      {/* Current Locale Info */}
       <Card elevate size="$3" bordered style={{ padding: 16 }}>
         <YStack style={{ gap: 12 }}>
-          <Text style={{ fontSize: 16, fontWeight: '600' }}>
+          <Text style={{ fontSize: 16, fontWeight: '600' }} testID="current-locale-title">
             <Trans>Current Locale</Trans>
           </Text>
           <YStack style={{ gap: 8 }}>
-            <XStack style={{ justifyContent: 'space-between', alignItems: 'center' }}>
-              <Text style={{ fontSize: 14, opacity: 0.7 }} color="$color">
-                <Trans>Language</Trans>:
-              </Text>
-              <XStack style={{ gap: 8, alignItems: 'center' }}>
-                <Text style={{ fontSize: 20 }}>{currentLocaleInfo?.flag || '🌐'}</Text>
-                <Text style={{ fontSize: 14, fontWeight: '600' }} color="$color">
-                  {currentLocaleInfo?.name || locale.languageCode}
-                </Text>
-              </XStack>
-            </XStack>
-            <XStack style={{ justifyContent: 'space-between' }}>
-              <Text style={{ fontSize: 14, opacity: 0.7 }} color="$color">
-                <Trans>Language Tag</Trans>:
-              </Text>
-              <Text style={{ fontSize: 14, fontWeight: '600' }} color="$color">
-                {locale.languageTag}
-              </Text>
-            </XStack>
-            <XStack style={{ justifyContent: 'space-between' }}>
-              <Text style={{ fontSize: 14, opacity: 0.7 }} color="$color">
-                <Trans>Language Code</Trans>:
-              </Text>
-              <Text style={{ fontSize: 14, fontWeight: '600' }} color="$color">
-                {locale.languageCode || 'N/A'}
-              </Text>
-            </XStack>
-            <XStack style={{ justifyContent: 'space-between' }}>
-              <Text style={{ fontSize: 14, opacity: 0.7 }} color="$color">
-                <Trans>Text Direction</Trans>:
-              </Text>
-              <Text style={{ fontSize: 14, fontWeight: '600' }} color="$color">
-                {locale.textDirection?.toUpperCase() || 'LTR'}
-              </Text>
-            </XStack>
+            <InfoRow
+              label={<Trans>Language</Trans>}
+              value={
+                <XStack style={{ gap: 8, alignItems: 'center' }}>
+                  <Text style={{ fontSize: 20 }}>{currentLocaleInfo?.flag || '🌐'}</Text>
+                  <Text style={{ fontSize: 14, fontWeight: '600' }} color="$color">
+                    {currentLocaleInfo?.name || locale.languageCode}
+                  </Text>
+                </XStack>
+              }
+            />
+            <InfoRow label={<Trans>Language Tag</Trans>} value={locale.languageTag} />
+            <InfoRow label={<Trans>Language Code</Trans>} value={locale.languageCode || 'N/A'} />
+            <InfoRow
+              label={<Trans>Text Direction</Trans>}
+              value={locale.textDirection?.toUpperCase() || 'LTR'}
+            />
           </YStack>
         </YStack>
       </Card>
 
-      {/* Locale Switcher */}
       <YStack style={{ gap: 12 }}>
         <Text style={{ fontSize: 14, fontWeight: '600' }}>
           <Trans>Switch Language</Trans>:
@@ -101,7 +99,6 @@ export function LocaleDemo() {
                 elevate
                 size="$3"
                 bordered
-                pressStyle={isActive ? { backgroundColor: '$blue10' } : undefined}
                 onPress={() => setLocale(loc.code)}
                 backgroundColor={isActive ? '$blue10' : undefined}
                 testID={`locale-${loc.code}-card`}
@@ -115,7 +112,10 @@ export function LocaleDemo() {
                   cursor: 'pointer',
                   opacity: isActive ? 1 : 0.8,
                 }}
-                hoverStyle={isActive ? { backgroundColor: '$blue10', opacity: 1 } : undefined}
+                {...(isActive && {
+                  pressStyle: { backgroundColor: '$blue10' },
+                  hoverStyle: { backgroundColor: '$blue10', opacity: 1 },
+                })}
               >
                 <YStack style={{ gap: 6, alignItems: 'center' }}>
                   <Text style={{ fontSize: 28 }}>{loc.flag}</Text>
@@ -136,10 +136,13 @@ export function LocaleDemo() {
         </XStack>
       </YStack>
 
-      {/* Translated Text Example */}
       <Card elevate size="$3" bordered style={{ padding: 16, backgroundColor: '$blue2' }}>
         <YStack style={{ gap: 8 }}>
-          <Text style={{ fontSize: 14, fontWeight: '600', opacity: 0.8 }} color="$color">
+          <Text
+            style={{ fontSize: 14, fontWeight: '600', opacity: 0.8 }}
+            color="$color"
+            testID="example-translated-text-title"
+          >
             <Trans>Example Translated Text</Trans>:
           </Text>
           <Text style={{ fontSize: 16, fontWeight: '500' }} color="$color">
@@ -151,7 +154,6 @@ export function LocaleDemo() {
         </YStack>
       </Card>
 
-      {/* Usage Example */}
       <Card elevate size="$3" bordered style={{ padding: 16, backgroundColor: '$gray2' }}>
         <YStack style={{ gap: 8 }}>
           <Text style={{ fontSize: 14, fontWeight: '600' }} color="$color">

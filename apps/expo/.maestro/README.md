@@ -161,8 +161,7 @@ maestro test .maestro/navigation/home-screen.yaml
 │   ├── home-screen.yaml
 │   └── user-detail.yaml
 ├── auth/                    # Authentication tests
-│   ├── sign-in.yaml
-│   ├── sign-out.yaml
+│   ├── sign-in-and-out.yaml
 │   └── protected-endpoint.yaml
 ├── theme/                   # Theme tests
 │   └── theme-toggle.yaml

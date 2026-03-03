@@ -4,7 +4,7 @@
  * @type {import('expo/metro-config')}
  */
 const { getDefaultConfig } = require('expo/metro-config')
-const path = require('path')
+const path = require('node:path')
 
 const projectRoot = __dirname
 const workspaceRoot = path.resolve(projectRoot, '../..')
@@ -19,15 +19,7 @@ config.resolver.nodeModulesPaths = [
 ]
 config.resolver.disableHierarchicalLookup = false
 
-// Add extra node modules paths for workspace packages
-config.resolver.extraNodeModules = {
-  ...config.resolver.extraNodeModules,
-}
-
-// Ensure Metro can resolve workspace packages
 config.resolver.resolverMainFields = ['react-native', 'browser', 'main']
-
-// Configure Metro to resolve paths from workspace root
 config.resolver.platforms = ['ios', 'android', 'native', 'web']
 
 // Add Lingui transformer for compiling .po files on the fly

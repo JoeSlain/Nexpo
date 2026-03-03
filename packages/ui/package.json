@@ -5,21 +5,35 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "dependencies": {
-    "@tamagui/config": "^1.135.7",
-    "tamagui": "^1.135.7"
+    "@tamagui/config": "1.144.4",
+    "tamagui": "1.144.4"
   },
   "peerDependencies": {
     "react": "^19.0.0",
     "react-native": "^0.81.0"
   },
   "devDependencies": {
-    "@types/react": "~19.1.10",
-    "typescript": "~5.9.2"
+    "@tamagui/config": "1.144.4",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "19.1.10",
+    "@vitest/coverage-v8": "4.0.18",
+    "jsdom": "^25.0.1",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "typescript": "~5.9.2",
+    "vitest": "4.0.18"
   },
   "scripts": {
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
-    "format:check": "biome format ."
+    "format:check": "biome format .",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest --coverage"
   }
 }

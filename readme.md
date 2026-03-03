@@ -581,7 +581,7 @@ maestro test .maestro/navigation/home-screen.yaml
 ```
 
 **Important:** For development builds, ensure Metro bundler is running before executing Maestro tests.
-Also make sure to run your web and supabase instance to avoir network errors.
+Also make sure to run your web and supabase instance to avoid network errors.
 
 **Documentation:** See [apps/expo/.maestro/README.md](./apps/expo/.maestro/README.md) for detailed Maestro testing guide.
 

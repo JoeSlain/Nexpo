@@ -4,13 +4,18 @@ appId: com.nexpo.app
 # Tests the protected endpoint button functionality
 # This test verifies both authenticated and unauthenticated states
 
-- launchApp
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "NEXPO"
+    timeout: 60000
 - scrollUntilVisible:
     element: "Test Protected tRPC Procedure"
     direction: DOWN
 # Test unauthenticated state first
 - assertVisible: "Current Status: Not Authenticated"
-- tapOn: "Test Auth (Not Authenticated)"
+- tapOn:
+    id: "auth-test-button"
 - waitForAnimationToEnd
 # Verify alert shows unauthenticated message
 - assertVisible: "Not Authenticated"
@@ -41,4 +46,3 @@ appId: com.nexpo.app
 # Note: The message contains "Authenticated!" but also includes user details
 # Just verify the alert exists and tap OK
 - tapOn: "OK"
-

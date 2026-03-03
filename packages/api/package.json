@@ -6,16 +6,16 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "dependencies": {
-    "@supabase/supabase-js": "^2.78.0",
-    "@trpc/server": "^11.0.0-rc.599",
-    "zod": "^3.22.4"
+    "@supabase/supabase-js": "2.98.0",
+    "@trpc/server": "11.11.0",
+    "zod": "4.3.6"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "@vitest/coverage-v8": "^4.0.6",
-    "@vitest/ui": "^2.1.8",
+    "@types/node": "20.19.35",
+    "@vitest/coverage-v8": "4.0.18",
+    "@vitest/ui": "4.0.18",
     "typescript": "~5.9.2",
-    "vitest": "^4.0.6"
+    "vitest": "4.0.18"
   },
   "scripts": {
     "lint": "biome check .",

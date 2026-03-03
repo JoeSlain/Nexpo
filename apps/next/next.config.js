@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('node:path')
 const { withSentryConfig } = require('@sentry/nextjs')
 
 /**
@@ -6,14 +6,9 @@ const { withSentryConfig } = require('@sentry/nextjs')
  */
 const withWebpack = {
   webpack(config, { isServer }) {
-    if (!config.resolve) {
-      config.resolve = {}
-    }
-
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       'react-native': 'react-native-web',
-      'react-native$': 'react-native-web',
       'react-native/Libraries/EventEmitter/RCTDeviceEventEmitter$':
         'react-native-web/dist/vendor/react-native/NativeEventEmitter/RCTDeviceEventEmitter',
       'react-native/Libraries/vendor/emitter/EventEmitter$':
@@ -30,22 +25,15 @@ const withWebpack = {
       '.web.jsx',
       '.web.ts',
       '.web.tsx',
-      ...(config.resolve?.extensions ?? []),
+      ...(config.resolve.extensions ?? []),
     ]
 
     // Handle image imports from shared packages
-    if (!config.module) {
-      config.module = {}
-    }
-    if (!config.module.rules) {
-      config.module.rules = []
-    }
     config.module.rules.push({
       test: /\.(png|jpe?g|gif|svg|webp)$/i,
       type: 'asset/resource',
     })
 
-    // Exclude Node.js built-in modules from client bundle
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -67,7 +55,7 @@ const withWebpack = {
 /**
  * @type {import('next').NextConfig}
  */
-const withTurpopack = {
+const withTurbopack = {
   turbopack: {
     resolveAlias: {
       'react-native': 'react-native-web',
@@ -125,15 +113,10 @@ const nextConfig = {
   reactStrictMode: false, // reanimated doesn't support this on web
 
   ...withWebpack,
-  ...withTurpopack,
+  ...withTurbopack,
 }
 
-// Sentry configuration options
 const sentryWebpackPluginOptions = {
-  // For all available options, see:
-  // https://github.com/getsentry/sentry-webpack-plugin#options
-
-  // Suppresses source map uploading logs during build
   silent: true,
   org: process.env.SENTRY_ORG,
   project: process.env.SENTRY_PROJECT,
