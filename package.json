@@ -9,7 +9,7 @@
     "@biomejs/biome": "2.4.4",
     "@lingui/babel-plugin-lingui-macro": "5.9.2",
     "@types/negotiator": "^0.6.4",
-    "@types/react": "19.1.10",
+    "@types/react": "19.2.14",
     "check-dependency-version-consistency": "6.0.0",
     "husky": "9.1.7",
     "lingui-ai-translate": "0.1.4",
