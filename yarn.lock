@@ -2355,6 +2355,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formatjs/ecma402-abstract@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@formatjs/ecma402-abstract@npm:3.1.1"
+  dependencies:
+    "@formatjs/fast-memoize": "npm:3.1.0"
+    "@formatjs/intl-localematcher": "npm:0.8.1"
+    decimal.js: "npm:^10.6.0"
+    tslib: "npm:^2.8.1"
+  checksum: 10/cc494b17601034396e989fe3f2a2b15ed79e05c5d7143269f09ba42db382d216133815901e537fe83dccf80ba32f58d2bcea65f27ba5538402b0e7c25196d426
+  languageName: node
+  linkType: hard
+
 "@formatjs/fast-memoize@npm:2.2.7":
   version: 2.2.7
   resolution: "@formatjs/fast-memoize@npm:2.2.7"
@@ -2423,15 +2435,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-pluralrules@npm:^5.4.6":
-  version: 5.4.6
-  resolution: "@formatjs/intl-pluralrules@npm:5.4.6"
+"@formatjs/intl-pluralrules@npm:^6.2.2":
+  version: 6.2.2
+  resolution: "@formatjs/intl-pluralrules@npm:6.2.2"
   dependencies:
-    "@formatjs/ecma402-abstract": "npm:2.3.6"
-    "@formatjs/intl-localematcher": "npm:0.6.2"
-    decimal.js: "npm:^10.4.3"
-    tslib: "npm:^2.8.0"
-  checksum: 10/88aa244e69ccfdf459899f5fa3c64df345f451ef91ce1188eab35b7e37daa225d22120f64be633f2cd8b826ea705d19831915118f555f2d17611ee842a9a86dc
+    "@formatjs/ecma402-abstract": "npm:3.1.1"
+    "@formatjs/intl-localematcher": "npm:0.8.1"
+    decimal.js: "npm:^10.6.0"
+    tslib: "npm:^2.8.1"
+  checksum: 10/71c2844371a427b3d55153b6cf5bcc16b5f0dffeefc048b2fe02a1dabceb062eba4abd39ed154fe11fcfb0e74e3d226c0f82667118606bcda059797894d7d630
   languageName: node
   linkType: hard
 
@@ -7518,7 +7530,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:7.29.0"
     "@formatjs/intl-locale": "npm:^4.2.13"
-    "@formatjs/intl-pluralrules": "npm:^5.4.6"
+    "@formatjs/intl-pluralrules": "npm:^6.2.2"
     "@lingui/cli": "npm:5.9.2"
     "@lingui/core": "npm:5.9.2"
     "@lingui/react": "npm:5.9.2"
@@ -8803,7 +8815,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"decimal.js@npm:^10.4.3":
+"decimal.js@npm:^10.4.3, decimal.js@npm:^10.6.0":
   version: 10.6.0
   resolution: "decimal.js@npm:10.6.0"
   checksum: 10/c0d45842d47c311d11b38ce7ccc911121953d4df3ebb1465d92b31970eb4f6738a065426a06094af59bee4b0d64e42e7c8984abd57b6767c64ea90cf90bb4a69
@@ -10644,7 +10656,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^9.1.7":
+"husky@npm:9.1.7":
   version: 9.1.7
   resolution: "husky@npm:9.1.7"
   bin:
@@ -12471,7 +12483,7 @@ __metadata:
     "@types/negotiator": "npm:^0.6.4"
     "@types/react": "npm:19.1.10"
     check-dependency-version-consistency: "npm:6.0.0"
-    husky: "npm:^9.1.7"
+    husky: "npm:9.1.7"
     lingui-ai-translate: "npm:0.1.4"
     lint-staged: "npm:16.3.1"
     supabase: "npm:2.76.15"
