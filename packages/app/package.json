@@ -26,7 +26,7 @@
     "moti": "^0.30.0",
     "react-native-reanimated": "4.1.6",
     "react-native-safe-area-context": "~5.6.0",
-    "react-native-screens": "~4.16.0",
+    "react-native-screens": "~4.24.0",
     "react-native-worklets": "0.5.1",
     "solito": "next",
     "tamagui": "1.144.4"
