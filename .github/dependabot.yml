@@ -1,0 +1,59 @@
+# Dependabot Configuration
+# https://docs.github.com/en/code-security/dependabot
+
+version: 2
+updates:
+  # Enable version updates for npm packages (monorepo uses yarn but npm is used for resolution)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    labels:
+      - "dependencies"
+
+  # Individual workspace configurations
+  - package-ecosystem: "npm"
+    directory: "/apps/expo"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "deps(expo)"
+
+  - package-ecosystem: "npm"
+    directory: "/apps/next"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "deps(next)"
+
+  - package-ecosystem: "npm"
+    directory: "/packages/api"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "deps(api)"
+
+  - package-ecosystem: "npm"
+    directory: "/packages/app"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "deps(app)"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci"
+    labels:
+      - "ci"
+      - "dependencies"
