@@ -1,0 +1,11 @@
+# Code Owners
+
+# Default owner for all files
+* @JoeSlain
+
+# Additional ownership by directory
+/apps/expo/* @JoeSlain
+/apps/next/* @JoeSlain
+/packages/api/* @JoeSlain
+/packages/app/* @JoeSlain
+/supabase/* @JoeSlain

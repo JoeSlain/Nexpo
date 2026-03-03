@@ -45,17 +45,22 @@ This repository includes:
 - ✅ GitHub Actions workflow for CI/CD
 - ✅ Issue templates for bug reports and feature requests
 - ✅ Template description for GitHub
+- ✅ `SECURITY.md` with vulnerability reporting policy
+- ✅ `CODEOWNERS` for automatic review assignment
+- ✅ Pull request template for consistent PRs
+- ✅ Dependabot configuration for automated dependency updates
 
 ## Customization
 
 After users create a repository from this template, they should:
 
 1. Update `package.json` name
-2. Update `supabase/config.toml` project_id
-3. Set up environment variables
-4. Configure Supabase project
-5. Update hardcoded URLs and API endpoints
-6. Customize branding and app name
+2. Copy `.env.example` files to `.env.development` and `.env.production`
+3. Update `supabase/config.toml` project_id
+4. Set up environment variables
+5. Configure Supabase project
+6. Update hardcoded URLs and API endpoints
+7. Customize branding and app name
 
 ## Best Practices
 

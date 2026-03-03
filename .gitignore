@@ -88,5 +88,9 @@ supabase/.temp/
 apps/next/.env.local
 apps/expo/.env.local
 
+# Example environment files (should be committed for template users)
+apps/next/.env.example
+apps/expo/.env.example
+
 # Coverage
 **/coverage
