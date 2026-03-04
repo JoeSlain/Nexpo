@@ -31,7 +31,7 @@
     "@lingui/metro-transformer": "5.9.2",
     "@types/react": "19.2.14",
     "babel-plugin-react-compiler": "1.0.0",
-    "babel-preset-expo": "54.0.10",
+    "babel-preset-expo": "55.0.10",
     "dotenv-cli": "^7.4.2",
     "react-compiler-runtime": "1.0.0",
     "react-refresh": "^0.18.0",
