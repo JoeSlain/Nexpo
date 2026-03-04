@@ -12950,7 +12950,7 @@ __metadata:
     husky: "npm:9.1.7"
     lingui-ai-translate: "npm:0.1.4"
     lint-staged: "npm:16.3.1"
-    supabase: "npm:2.76.15"
+    supabase: "npm:2.76.16"
     turbo: "npm:2.8.12"
     typescript: "npm:~5.9.2"
   languageName: unknown
@@ -15509,9 +15509,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"supabase@npm:2.76.15":
-  version: 2.76.15
-  resolution: "supabase@npm:2.76.15"
+"supabase@npm:2.76.16":
+  version: 2.76.16
+  resolution: "supabase@npm:2.76.16"
   dependencies:
     bin-links: "npm:^6.0.0"
     https-proxy-agent: "npm:^7.0.2"
@@ -15519,7 +15519,7 @@ __metadata:
     tar: "npm:7.5.9"
   bin:
     supabase: bin/supabase
-  checksum: 10/b2f83e06222f99d6b4d3542d09152fab584eb26397d401be95c66c40883c5c9c9d3df09c7f3e6b2bdafe350a08de4e54b36f2f14b12889494c9df32732f0aa85
+  checksum: 10/091c59971270dd4ba32473f63b49733dbf2c62d9d33aca0471f0e7088120e10aa12dd3c23af24bd19c0d14632c2fd325ecf01a6bb908b35536ca98f45e2f1cd4
   languageName: node
   linkType: hard
 
