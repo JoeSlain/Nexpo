@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@tamagui/config": "1.144.4",
-    "react": "19.1.0",
+    "react": "19.2.4",
     "react-dom": "19.1.0",
     "tamagui": "1.144.4"
   },
@@ -24,7 +24,7 @@
     "@storybook/addon-vitest": "10.2.13",
     "@storybook/react-vite": "10.2.13",
     "@types/node": "20.19.35",
-    "@types/react": "19.1.10",
+    "@types/react": "19.2.14",
     "@types/react-dom": "19.1.11",
     "@vitejs/plugin-react": "5.1.4",
     "@vitest/browser-playwright": "4.0.18",

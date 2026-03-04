@@ -7432,12 +7432,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:19.1.10":
-  version: 19.1.10
-  resolution: "@types/react@npm:19.1.10"
+"@types/react@npm:19.2.14":
+  version: 19.2.14
+  resolution: "@types/react@npm:19.2.14"
   dependencies:
-    csstype: "npm:^3.0.2"
-  checksum: 10/2c2f98e4a36144cddc9300483d0b14a0721dbb3b2fc2242e3841391589570dd344cde0c901eb291dba597a8efdb70543b0dbbae6cc2bef2061eb185c4ca55522
+    csstype: "npm:^3.2.2"
+  checksum: 10/fbff239089ee64b6bd9b00543594db498278b06de527ef1b0f71bb0eb09cc4445a71b5dd3c0d3d0257255c4eed94406be40a74ad4a987ade8a8d5dd65c82bc5f
   languageName: node
   linkType: hard
 
@@ -7938,7 +7938,7 @@ __metadata:
     jest-axe: "npm:^10.0.0"
     jsdom: "npm:^25.0.1"
     moti: "npm:^0.30.0"
-    react: "npm:19.1.0"
+    react: "npm:19.2.4"
     react-dom: "npm:19.1.0"
     react-native: "npm:0.81.5"
     react-native-reanimated: "npm:4.1.6"
@@ -9206,7 +9206,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^3.0.2":
+"csstype@npm:^3.2.2":
   version: 3.2.3
   resolution: "csstype@npm:3.2.3"
   checksum: 10/ad41baf7e2ffac65ab544d79107bf7cd1a4bb9bab9ac3302f59ab4ba655d5e30942a8ae46e10ba160c6f4ecea464cc95b975ca2fefbdeeacd6ac63f12f99fe1f
@@ -10024,7 +10024,7 @@ __metadata:
     "@trpc/client": "npm:11.11.0"
     "@trpc/react-query": "npm:11.11.0"
     "@trpc/server": "npm:11.11.0"
-    "@types/react": "npm:19.1.10"
+    "@types/react": "npm:19.2.14"
     api: "npm:*"
     app: "npm:*"
     babel-plugin-react-compiler: "npm:1.0.0"
@@ -10038,7 +10038,7 @@ __metadata:
     expo-splash-screen: "npm:31.0.13"
     expo-status-bar: "npm:3.0.9"
     moti: "npm:^0.30.0"
-    react: "npm:19.1.0"
+    react: "npm:19.2.4"
     react-compiler-runtime: "npm:1.0.0"
     react-dom: "npm:19.1.0"
     react-native: "npm:0.81.5"
@@ -12945,7 +12945,7 @@ __metadata:
     "@biomejs/biome": "npm:2.4.5"
     "@lingui/babel-plugin-lingui-macro": "npm:5.9.2"
     "@types/negotiator": "npm:^0.6.4"
-    "@types/react": "npm:19.1.10"
+    "@types/react": "npm:19.2.14"
     check-dependency-version-consistency: "npm:6.0.0"
     husky: "npm:9.1.7"
     lingui-ai-translate: "npm:0.1.4"
@@ -12980,7 +12980,7 @@ __metadata:
     next: "npm:16.1.6"
     playwright: "npm:1.58.2"
     raf: "npm:^3.4.1"
-    react: "npm:19.1.0"
+    react: "npm:19.2.4"
     react-dom: "npm:19.1.0"
     react-native: "npm:0.81.5"
     react-native-reanimated: "npm:4.1.6"
@@ -15250,13 +15250,13 @@ __metadata:
     "@react-native-async-storage/async-storage": "npm:^2.1.0"
     "@storybook/react-native": "npm:10.2.3"
     "@tamagui/config": "npm:1.144.4"
-    "@types/react": "npm:19.1.10"
+    "@types/react": "npm:19.2.14"
     api: "npm:*"
     app: "npm:*"
     babel-preset-expo: "npm:54.0.10"
     expo: "npm:55.0.4"
     expo-status-bar: "npm:3.0.9"
-    react: "npm:19.1.0"
+    react: "npm:19.2.4"
     react-native: "npm:0.81.5"
     react-native-gesture-handler: "npm:~2.28.0"
     react-native-reanimated: "npm:4.1.6"
@@ -15283,14 +15283,14 @@ __metadata:
     "@storybook/react-vite": "npm:10.2.13"
     "@tamagui/config": "npm:1.144.4"
     "@types/node": "npm:20.19.35"
-    "@types/react": "npm:19.1.10"
+    "@types/react": "npm:19.2.14"
     "@types/react-dom": "npm:19.1.11"
     "@vitejs/plugin-react": "npm:5.1.4"
     "@vitest/browser-playwright": "npm:4.0.18"
     "@vitest/coverage-v8": "npm:4.0.18"
     globals: "npm:^16.4.0"
     playwright: "npm:1.58.2"
-    react: "npm:19.1.0"
+    react: "npm:19.2.4"
     react-dom: "npm:19.1.0"
     react-native: "npm:0.81.5"
     storybook: "npm:10.2.13"
@@ -16093,10 +16093,10 @@ __metadata:
     "@testing-library/jest-dom": "npm:^6.6.3"
     "@testing-library/react": "npm:16.3.2"
     "@testing-library/user-event": "npm:^14.6.1"
-    "@types/react": "npm:19.1.10"
+    "@types/react": "npm:19.2.14"
     "@vitest/coverage-v8": "npm:4.0.18"
     jsdom: "npm:^25.0.1"
-    react: "npm:19.1.0"
+    react: "npm:19.2.4"
     react-dom: "npm:19.1.0"
     react-native: "npm:0.81.5"
     tamagui: "npm:1.144.4"
