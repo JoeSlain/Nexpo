@@ -18,35 +18,6 @@ updates:
     labels:
       - "dependencies"
 
-  # Individual workspace configurations
-  - package-ecosystem: "npm"
-    directory: "/apps/expo"
-    schedule:
-      interval: "weekly"
-    commit-message:
-      prefix: "deps(expo)"
-
-  - package-ecosystem: "npm"
-    directory: "/apps/next"
-    schedule:
-      interval: "weekly"
-    commit-message:
-      prefix: "deps(next)"
-
-  - package-ecosystem: "npm"
-    directory: "/packages/api"
-    schedule:
-      interval: "weekly"
-    commit-message:
-      prefix: "deps(api)"
-
-  - package-ecosystem: "npm"
-    directory: "/packages/app"
-    schedule:
-      interval: "weekly"
-    commit-message:
-      prefix: "deps(app)"
-
   # GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
