@@ -13,7 +13,7 @@
     "check-dependency-version-consistency": "6.0.0",
     "husky": "9.1.7",
     "lingui-ai-translate": "0.1.4",
-    "lint-staged": "16.3.1",
+    "lint-staged": "16.3.2",
     "supabase": "2.76.16",
     "turbo": "2.8.12",
     "typescript": "~5.9.2"
