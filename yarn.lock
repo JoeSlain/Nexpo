@@ -2072,7 +2072,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@expo/config@npm:~12.0.12, @expo/config@npm:~12.0.13":
+"@expo/config@npm:~12.0.12":
   version: 12.0.13
   resolution: "@expo/config@npm:12.0.13"
   dependencies:
@@ -2253,40 +2253,6 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10/812ea909c527d21a284d6ce273351836b8848618611d6cece0e2a284a7314f9cd7d8ba0deed96125790cdbdd993bdcb68c45d1612604ea4e300021e13f80302b
-  languageName: node
-  linkType: hard
-
-"@expo/metro-config@npm:54.0.14":
-  version: 54.0.14
-  resolution: "@expo/metro-config@npm:54.0.14"
-  dependencies:
-    "@babel/code-frame": "npm:^7.20.0"
-    "@babel/core": "npm:^7.20.0"
-    "@babel/generator": "npm:^7.20.5"
-    "@expo/config": "npm:~12.0.13"
-    "@expo/env": "npm:~2.0.8"
-    "@expo/json-file": "npm:~10.0.8"
-    "@expo/metro": "npm:~54.2.0"
-    "@expo/spawn-async": "npm:^1.7.2"
-    browserslist: "npm:^4.25.0"
-    chalk: "npm:^4.1.0"
-    debug: "npm:^4.3.2"
-    dotenv: "npm:~16.4.5"
-    dotenv-expand: "npm:~11.0.6"
-    getenv: "npm:^2.0.0"
-    glob: "npm:^13.0.0"
-    hermes-parser: "npm:^0.29.1"
-    jsc-safe-url: "npm:^0.2.4"
-    lightningcss: "npm:^1.30.1"
-    minimatch: "npm:^9.0.0"
-    postcss: "npm:~8.4.32"
-    resolve-from: "npm:^5.0.0"
-  peerDependencies:
-    expo: "*"
-  peerDependenciesMeta:
-    expo:
-      optional: true
-  checksum: 10/c1a67c187fcd9f3dd43cd1b33a500644715768ab55939d5e2ff354311709ea5fed2bb3c103610b0ddac961d7ab2f94f7a1d1f25d033af98690ed6b9cec9ac787
   languageName: node
   linkType: hard
 
@@ -11005,7 +10971,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hermes-parser@npm:0.29.1, hermes-parser@npm:^0.29.1":
+"hermes-parser@npm:0.29.1":
   version: 0.29.1
   resolution: "hermes-parser@npm:0.29.1"
   dependencies:
@@ -12753,7 +12719,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^9.0.0, minimatch@npm:^9.0.4":
+"minimatch@npm:^9.0.4":
   version: 9.0.5
   resolution: "minimatch@npm:9.0.5"
   dependencies:
@@ -15278,7 +15244,7 @@ __metadata:
   resolution: "storybook-native@workspace:apps/storybook-native"
   dependencies:
     "@babel/core": "npm:7.29.0"
-    "@expo/metro-config": "npm:54.0.14"
+    "@expo/metro-config": "npm:55.0.9"
     "@gorhom/bottom-sheet": "npm:5.2.8"
     "@react-native-async-storage/async-storage": "npm:^2.1.0"
     "@storybook/react-native": "npm:10.2.3"
