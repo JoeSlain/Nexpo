@@ -10052,7 +10052,7 @@ __metadata:
     babel-preset-expo: "npm:55.0.10"
     dotenv-cli: "npm:^7.4.2"
     expo: "npm:55.0.4"
-    expo-image: "npm:3.0.11"
+    expo-image: "npm:55.0.5"
     expo-linear-gradient: "npm:15.0.8"
     expo-linking: "npm:8.0.11"
     expo-localization: "npm:17.0.8"
@@ -10137,9 +10137,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-image@npm:3.0.11":
-  version: 3.0.11
-  resolution: "expo-image@npm:3.0.11"
+"expo-image@npm:55.0.5":
+  version: 55.0.5
+  resolution: "expo-image@npm:55.0.5"
+  dependencies:
+    sf-symbols-typescript: "npm:^2.2.0"
   peerDependencies:
     expo: "*"
     react: "*"
@@ -10148,7 +10150,7 @@ __metadata:
   peerDependenciesMeta:
     react-native-web:
       optional: true
-  checksum: 10/61d438f9feae0db952f0374050bdbb007002c2aa163270cf7c4ecb8c6b6f6c367bb4f5bf054347ed674ea0318bff6cb51b12eb36c8c8f8e5da6641ba985ac450
+  checksum: 10/8c3cf423b926058aa747f6245c9836ced7fcae12d526ee86c2f16ea9b40d71034072819abd0b727ef587331f6d7fc9d592737191cffe05d89145fddd0a3a4894
   languageName: node
   linkType: hard
 
@@ -14910,6 +14912,13 @@ __metadata:
   version: 2.1.0
   resolution: "sf-symbols-typescript@npm:2.1.0"
   checksum: 10/1fe80afa6a8275bf0665a5ed30fc82b25abd706162235cf77d9422c9cf707aee9bac0e7f3a3effd2177963751e8da9b76e43f1be814660b3a9c18de11274be39
+  languageName: node
+  linkType: hard
+
+"sf-symbols-typescript@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "sf-symbols-typescript@npm:2.2.0"
+  checksum: 10/8623e148bf86151692d3ccb3149122c091b256162a39f4c4f78472811ffe92e3c77a83841a7381a5dc0bc6505ebb73e7ca8901cb077004872d7ee1cb4e5be9d4
   languageName: node
   linkType: hard
 
