@@ -15,7 +15,7 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
-    "@formatjs/intl-locale": "^4.2.13",
+    "@formatjs/intl-locale": "^5.2.1",
     "@formatjs/intl-pluralrules": "^6.2.2",
     "@lingui/core": "5.9.2",
     "@lingui/react": "5.9.2",
