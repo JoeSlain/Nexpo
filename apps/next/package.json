@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "0.8.1",
-    "@sentry/nextjs": "10.40.0",
+    "@sentry/nextjs": "10.42.0",
     "@supabase/supabase-js": "2.98.0",
     "@tanstack/react-query": "5.90.21",
     "@trpc/client": "11.11.0",
@@ -30,11 +30,11 @@
     "negotiator": "^1.0.0",
     "next": "16.1.6",
     "raf": "^3.4.1",
-    "react": "19.1.0",
+    "react": "19.2.4",
     "react-dom": "19.1.0",
-    "react-native-reanimated": "4.1.6",
+    "react-native-reanimated": "4.2.2",
     "react-native-web": "0.21.2",
-    "react-native-worklets": "0.5.1",
+    "react-native-worklets": "0.7.4",
     "ui": "*"
   },
   "devDependencies": {
