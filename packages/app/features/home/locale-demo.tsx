@@ -35,7 +35,7 @@ export function LocaleDemo() {
   const currentLocaleInfo = SUPPORTED_LOCALES.find((l) => l.code === locale.languageCode)
 
   return (
-    <View
+    <YStack
       style={{
         padding: 16,
         gap: 16,
@@ -171,6 +171,6 @@ setLocale('fr')`}
           </Text>
         </YStack>
       </Card>
-    </View>
+    </YStack>
   )
 }
