@@ -10417,10 +10417,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^16.4.0":
-  version: 16.5.0
-  resolution: "globals@npm:16.5.0"
-  checksum: 10/f9e8a2a13f50222c127030a619e283e7bbfe32966316bdde0715af1d15a7e40cb9c24ff52cad59671f97762ed8b515353c2f8674f560c63d9385f19ee26735a6
+"globals@npm:^17.4.0":
+  version: 17.4.0
+  resolution: "globals@npm:17.4.0"
+  checksum: 10/ffad244617e94efcb3da72b7beefc941167c21316148ce378f322db7af72db06468f370e23224b3c7b17b5173a7c75b134e5e7b0949f2828519054a76892508d
   languageName: node
   linkType: hard
 
@@ -10644,7 +10644,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^9.1.7":
+"husky@npm:9.1.7":
   version: 9.1.7
   resolution: "husky@npm:9.1.7"
   bin:
@@ -12471,7 +12471,7 @@ __metadata:
     "@types/negotiator": "npm:^0.6.4"
     "@types/react": "npm:19.1.10"
     check-dependency-version-consistency: "npm:6.0.0"
-    husky: "npm:^9.1.7"
+    husky: "npm:9.1.7"
     lingui-ai-translate: "npm:0.1.4"
     lint-staged: "npm:16.3.1"
     supabase: "npm:2.76.15"
@@ -14885,7 +14885,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:5.1.4"
     "@vitest/browser-playwright": "npm:4.0.18"
     "@vitest/coverage-v8": "npm:4.0.18"
-    globals: "npm:^16.4.0"
+    globals: "npm:^17.4.0"
     playwright: "npm:1.58.2"
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
