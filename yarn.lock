@@ -6734,13 +6734,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@trpc/client@npm:11.11.0":
-  version: 11.11.0
-  resolution: "@trpc/client@npm:11.11.0"
+"@trpc/client@npm:11.12.0":
+  version: 11.12.0
+  resolution: "@trpc/client@npm:11.12.0"
   peerDependencies:
-    "@trpc/server": 11.11.0
+    "@trpc/server": 11.12.0
     typescript: ">=5.7.2"
-  checksum: 10/d7854b13851492cdb9c47f6bafb4052282b3fce8c6e294bcae255bf5108cce771d6c8f4c3caa8a0b58de0c6711a10e7e12667add4c343dcd3968a0ae50339654
+  checksum: 10/3acb4598a93f6103f155f30d6f3e9ceb3e3dc33154b1e6d17cad373334a5ef8ebd5caed7d97d35ba57435eab83f412a8c57bfcc7cc52180ee19b3b008d490a06
   languageName: node
   linkType: hard
 
@@ -9571,7 +9571,7 @@ __metadata:
     "@sentry/react-native": "npm:~7.2.0"
     "@supabase/supabase-js": "npm:2.98.0"
     "@tanstack/react-query": "npm:5.90.21"
-    "@trpc/client": "npm:11.11.0"
+    "@trpc/client": "npm:11.12.0"
     "@trpc/react-query": "npm:11.11.0"
     "@trpc/server": "npm:11.11.0"
     "@types/react": "npm:19.1.10"
@@ -10644,7 +10644,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^9.1.7":
+"husky@npm:9.1.7":
   version: 9.1.7
   resolution: "husky@npm:9.1.7"
   bin:
@@ -12471,7 +12471,7 @@ __metadata:
     "@types/negotiator": "npm:^0.6.4"
     "@types/react": "npm:19.1.10"
     check-dependency-version-consistency: "npm:6.0.0"
-    husky: "npm:^9.1.7"
+    husky: "npm:9.1.7"
     lingui-ai-translate: "npm:0.1.4"
     lint-staged: "npm:16.3.1"
     supabase: "npm:2.76.15"
@@ -12492,7 +12492,7 @@ __metadata:
     "@sentry/nextjs": "npm:10.40.0"
     "@supabase/supabase-js": "npm:2.98.0"
     "@tanstack/react-query": "npm:5.90.21"
-    "@trpc/client": "npm:11.11.0"
+    "@trpc/client": "npm:11.12.0"
     "@trpc/react-query": "npm:11.11.0"
     "@trpc/server": "npm:11.11.0"
     "@types/negotiator": "npm:^0.6.4"
