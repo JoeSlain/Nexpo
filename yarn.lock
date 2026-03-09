@@ -6757,12 +6757,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@trpc/server@npm:11.11.0":
-  version: 11.11.0
-  resolution: "@trpc/server@npm:11.11.0"
+"@trpc/server@npm:11.12.0":
+  version: 11.12.0
+  resolution: "@trpc/server@npm:11.12.0"
   peerDependencies:
     typescript: ">=5.7.2"
-  checksum: 10/8118c208917b9a2aef092a82347bbf65373aaf00cb2cbb65b8b87937b32520623a89abed7ff37b049f69de1d1bb0eba055f7bf14a4e2bc864905694de90e8ffb
+  checksum: 10/69e64f63bf1ec36d0e9dc5e8d5556da301766109f072e378689b5a04719ea9674c0c4679d606f4cd82e0ed724a7319c3d7b0b36b4b8e381e13e763dd03053f32
   languageName: node
   linkType: hard
 
@@ -7502,7 +7502,7 @@ __metadata:
   resolution: "api@workspace:packages/api"
   dependencies:
     "@supabase/supabase-js": "npm:2.98.0"
-    "@trpc/server": "npm:11.11.0"
+    "@trpc/server": "npm:11.12.0"
     "@types/node": "npm:20.19.35"
     "@vitest/coverage-v8": "npm:4.0.18"
     "@vitest/ui": "npm:4.0.18"
@@ -9573,7 +9573,7 @@ __metadata:
     "@tanstack/react-query": "npm:5.90.21"
     "@trpc/client": "npm:11.11.0"
     "@trpc/react-query": "npm:11.11.0"
-    "@trpc/server": "npm:11.11.0"
+    "@trpc/server": "npm:11.12.0"
     "@types/react": "npm:19.1.10"
     api: "npm:*"
     app: "npm:*"
@@ -10644,7 +10644,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^9.1.7":
+"husky@npm:9.1.7":
   version: 9.1.7
   resolution: "husky@npm:9.1.7"
   bin:
@@ -12471,7 +12471,7 @@ __metadata:
     "@types/negotiator": "npm:^0.6.4"
     "@types/react": "npm:19.1.10"
     check-dependency-version-consistency: "npm:6.0.0"
-    husky: "npm:^9.1.7"
+    husky: "npm:9.1.7"
     lingui-ai-translate: "npm:0.1.4"
     lint-staged: "npm:16.3.1"
     supabase: "npm:2.76.15"
@@ -12494,7 +12494,7 @@ __metadata:
     "@tanstack/react-query": "npm:5.90.21"
     "@trpc/client": "npm:11.11.0"
     "@trpc/react-query": "npm:11.11.0"
-    "@trpc/server": "npm:11.11.0"
+    "@trpc/server": "npm:11.12.0"
     "@types/negotiator": "npm:^0.6.4"
     "@types/node": "npm:20.19.35"
     api: "npm:*"
