@@ -4082,41 +4082,41 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/elements@npm:^2.9.8":
-  version: 2.9.8
-  resolution: "@react-navigation/elements@npm:2.9.8"
+"@react-navigation/elements@npm:^2.9.10":
+  version: 2.9.10
+  resolution: "@react-navigation/elements@npm:2.9.10"
   dependencies:
     color: "npm:^4.2.3"
     use-latest-callback: "npm:^0.2.4"
     use-sync-external-store: "npm:^1.5.0"
   peerDependencies:
     "@react-native-masked-view/masked-view": ">= 0.2.0"
-    "@react-navigation/native": ^7.1.31
+    "@react-navigation/native": ^7.1.33
     react: ">= 18.2.0"
     react-native: "*"
     react-native-safe-area-context: ">= 4.0.0"
   peerDependenciesMeta:
     "@react-native-masked-view/masked-view":
       optional: true
-  checksum: 10/b34fc3c69f2bbdf18bf9eecf27c866adc806e90f6bb773f35dc35cd8454c822609ced4446c09feb646002a2ee69e6310b28635627c9132081a325e6b1cc370e7
+  checksum: 10/ef6b7280d8902411431de1038ed6f19caac5fda9b7e2dff28037d0699cf8fd75eaff07169fc114ff8ec9c1099e1617d75b96dd1b616f3d982c67c86f41a8bc43
   languageName: node
   linkType: hard
 
-"@react-navigation/native-stack@npm:7.14.2":
-  version: 7.14.2
-  resolution: "@react-navigation/native-stack@npm:7.14.2"
+"@react-navigation/native-stack@npm:7.14.4":
+  version: 7.14.4
+  resolution: "@react-navigation/native-stack@npm:7.14.4"
   dependencies:
-    "@react-navigation/elements": "npm:^2.9.8"
+    "@react-navigation/elements": "npm:^2.9.10"
     color: "npm:^4.2.3"
     sf-symbols-typescript: "npm:^2.1.0"
     warn-once: "npm:^0.1.1"
   peerDependencies:
-    "@react-navigation/native": ^7.1.31
+    "@react-navigation/native": ^7.1.33
     react: ">= 18.2.0"
     react-native: "*"
     react-native-safe-area-context: ">= 4.0.0"
     react-native-screens: ">= 4.0.0"
-  checksum: 10/d1d1b454d57842d87457c1a556b464fa99d3d94948ffde322fe854d7f5c9909d9bd0e9ee7d051376cb9066fd9619934ce468b2809fd4e8aa3d8b6d6a31cfb3e7
+  checksum: 10/4290d4416502ea2035d28442181caa564fc3d461cd4c7c2b847a51f71876c8a7fa7557dc01b218a549bb0f5efe344cd8463b30463d86193471be9d36f3c22aa6
   languageName: node
   linkType: hard
 
@@ -7523,7 +7523,7 @@ __metadata:
     "@lingui/core": "npm:5.9.2"
     "@lingui/react": "npm:5.9.2"
     "@react-navigation/native": "npm:7.1.31"
-    "@react-navigation/native-stack": "npm:7.14.2"
+    "@react-navigation/native-stack": "npm:7.14.4"
     "@supabase/supabase-js": "npm:2.98.0"
     "@tamagui/config": "npm:1.144.4"
     "@testing-library/dom": "npm:^10.4.0"
@@ -10644,7 +10644,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^9.1.7":
+"husky@npm:9.1.7":
   version: 9.1.7
   resolution: "husky@npm:9.1.7"
   bin:
@@ -12471,7 +12471,7 @@ __metadata:
     "@types/negotiator": "npm:^0.6.4"
     "@types/react": "npm:19.1.10"
     check-dependency-version-consistency: "npm:6.0.0"
-    husky: "npm:^9.1.7"
+    husky: "npm:9.1.7"
     lingui-ai-translate: "npm:0.1.4"
     lint-staged: "npm:16.3.1"
     supabase: "npm:2.76.15"
