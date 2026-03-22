@@ -42,7 +42,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@vitest/coverage-v8": "4.0.18",
     "jest-axe": "^10.0.0",
-    "jsdom": "^25.0.1",
+    "jsdom": "^28.1.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.5",
