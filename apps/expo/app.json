@@ -4,7 +4,10 @@
     "slug": "nexpo",
     "version": "1.0.0",
     "scheme": "nexpo",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "splash": {
       "image": "./assets/logo.png",
       "backgroundColor": "#ffffff",
@@ -16,6 +19,11 @@
     "newArchEnabled": true,
     "experiments": {
       "reactCanary": true
-    }
+    },
+    "plugins": [
+      "@sentry/react-native",
+      "expo-image",
+      "expo-localization"
+    ]
   }
 }
