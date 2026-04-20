@@ -13,9 +13,6 @@
     "ios": {
       "bundleIdentifier": "com.nexpo.app"
     },
-    "newArchEnabled": true,
-    "experiments": {
-      "reactCanary": true
-    }
+    "plugins": ["@sentry/react-native", "expo-image", "expo-localization"]
   }
 }
